@@ -1,0 +1,78 @@
+package sib.cup;
+
+import java_cup.runtime.*;
+import java.io.*;
+import sib.flex.*;
+import sib.controllers.*;
+
+parser code {:
+
+	public ViewsControllerFase1 viewsController;
+
+	public void setViewController( ViewsControllerFase1 vc ) {
+		this.viewsController = vc;
+	}
+
+	/*
+	private Lexico lexico;
+
+	public static void main(String[] arg){
+		parser parserObj = new parser();
+		lexico = new Lexico(new InputStreamReader(System.in));
+		parserObj.setScanner(lexico);
+		try{
+			parserObj.parse();
+		} catch(Exception x){
+			System.out.println("Error fatal.");
+		}
+	}
+	*/
+	/* Este es el que estaba usando y funcionaba
+	public static void main(String args[]) throws Exception {
+		new parser( new AnalizadorLexicoFase2( new InputStreamReader( System.in ) ) ).parse();
+	}
+	*/
+:}; 
+
+/* Inicialización del analizador léxico (si es que hiciera falta) */
+//init with {: lexico.init(); :};
+
+/* Solicitud de un terminal al analizador léxico */
+//scan with {: return lexico.next_token(); :};
+
+/* Terminales sin atributo */
+terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, PUNTO_Y_COMA;
+
+/* Terminales con atributo asociado */
+//terminal Integer NUMERO;
+
+/* No terminales sin atributo */
+non terminal programa, paquete, imports, un_import;
+
+/* No terminales con atributo asociado */
+non terminal String mas_paquete, mas_import;
+
+/* Precedencias */
+//precedence left MAS, MENOS; 
+//precedence left POR, ENTRE, MODULO;
+//precedence left UMENOS;
+
+/* Gramática */
+programa ::= paquete imports;
+paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
+mas_paquete ::= PUNTO:p IDENTIFICADOR:id mas_paquete:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
+				| PUNTO_Y_COMA {: RESULT = ";"; :}
+				;
+
+imports ::= imports un_import PUNTO_Y_COMA
+			|
+			;
+un_import  ::= IMPORT IDENTIFICADOR:id mas_import:mp {: viewsController.printOutput( "\nIMPORT:" + id.toString() + mp ); :};
+mas_import ::= PUNTO:p IDENTIFICADOR:id mas_import:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
+				| {: RESULT = ""; :}
+				;
+/*
+programa ::= programa PALABRA_RESERVADA:r {: System.out.println( "--> RESERVADA:" + r.toString() ); :}
+			| 
+			;
+*/

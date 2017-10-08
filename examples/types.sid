@@ -1,0 +1,27 @@
+// Type: Partiture
+// ****************
+def partiture {
+	clef clef;
+	int tempo;
+	int keysign;
+	nfrac time;
+	float volume;
+	array(2) slurs;
+	int wedge;
+}
+
+// Type: Note
+// ****************
+def note {
+	step v;
+	int d;
+	int o;
+	string a;
+
+	// Alias not yet implemented
+	// ---
+	// alias v value;
+	// alias d duration;
+	// alias o octave;
+	// alias a accent;
+}
