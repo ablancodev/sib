@@ -41,7 +41,7 @@ parser code {:
 //scan with {: return lexico.next_token(); :};
 
 /* Terminales sin atributo */
-terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, PUNTO_Y_COMA;
+terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, PUNTO_Y_COMA, BEGIN, END;
 
 /* Terminales con atributo asociado */
 //terminal Integer NUMERO;
@@ -58,7 +58,8 @@ non terminal String mas_paquete, mas_import;
 //precedence left UMENOS;
 
 /* Gramática */
-programa ::= paquete imports;
+programa ::= paquete imports BEGIN IDENTIFICADOR:id END {: viewsController.printOutput( "\nEl programa se llama:" + id ); :};
+
 paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
 mas_paquete ::= PUNTO:p IDENTIFICADOR:id mas_paquete:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
 				| PUNTO_Y_COMA {: RESULT = ";"; :}

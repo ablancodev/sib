@@ -9,13 +9,15 @@ package sib.cup;
 public class sym {
   /* terminals */
   public static final int PUNTO = 6;
-  public static final int IMPORT = 4;
-  public static final int error = 1;
-  public static final int IDENTIFICADOR = 5;
-  public static final int PALABRA_RESERVADA = 2;
   public static final int PACKAGE = 3;
+  public static final int PALABRA_RESERVADA = 2;
   public static final int PUNTO_Y_COMA = 7;
   public static final int EOF = 0;
+  public static final int error = 1;
+  public static final int END = 9;
+  public static final int BEGIN = 8;
+  public static final int IMPORT = 4;
+  public static final int IDENTIFICADOR = 5;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -24,7 +26,9 @@ public class sym {
   "IMPORT",
   "IDENTIFICADOR",
   "PUNTO",
-  "PUNTO_Y_COMA"
+  "PUNTO_Y_COMA",
+  "BEGIN",
+  "END"
   };
 }
 

@@ -52,10 +52,12 @@ import sib.cup.*;
 
 /* Inicio de Expresiones regulares */
 
-PalabraReservada = BEGIN | END | IF | ENDIF | ELSE | WHILE | ENDWHILE
+PalabraReservada = IF | ENDIF | ELSE | WHILE | ENDWHILE
 
 Package = PACKAGE
 Import = IMPORT
+Begin = BEGIN
+End = END
 
 Tipo = int | float | frac | nfrac | string | step | clef | object | array | note | partiture
 
@@ -121,6 +123,16 @@ Espacio = [ \t\f]
 }
 {Import}	{
 	Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	this._existenTokens = true;
+	return t;
+}
+{Begin}	{
+	Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	this._existenTokens = true;
+	return t;
+}
+{End}	{
+	Token t = new Token( sym.END, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 	this._existenTokens = true;
 	return t;
 }
