@@ -7,6 +7,8 @@ public class Token extends java_cup.runtime.Symbol {
 	public static final String STR_IDENT         = "2";
 	public static final String PALABRA           = "3";
 	public static final String VARIABLE          = "4";
+	public static final String CARACTER          = "5";
+	public static final String OPERADOR_NOTA     = "6";
 
 	private int tipoToken;
 	private int numColumna;

@@ -1,0 +1,11 @@
+PACKAGE com.blancoleon;
+IMPORT leon.mj;
+IMPORT blanco.leire;
+
+BEGIN family
+	int $num;
+	float $peso;
+	$num _b;
+	$num_#;
+	$num_...;
+END

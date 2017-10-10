@@ -59,16 +59,17 @@ Import = IMPORT
 Begin = BEGIN
 End = END
 
-Tipo = int | float | frac | nfrac | string | step | clef | object | array | note | partiture
+Tipo = "int" | "float" | frac | nfrac | string | step | clef | object | array | note | partiture
 
 Punto = "."
+Coma = ","
 Punto_y_coma = ";"
 
 Simbolo = "*"|"+"|"-"|"/"|"#"|"@"|"b"|"("|")"|";"|"."|"="|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
 
 Variable = "$"{Str_ident}
 
-Operador = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."
+Operador_nota = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."
 
 Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[@]? | C[@]? | D[@]? | E[@]? | F[@]? | G[@]? | S
 
@@ -138,18 +139,23 @@ Espacio = [ \t\f]
 }
 
 {Punto}	{
-	Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+	this._existenTokens = true;
+	return t;
+}
+{Coma}	{
+	Token t = new Token( sym.COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 	this._existenTokens = true;
 	return t;
 }
 {Punto_y_coma}	{
-	Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 	this._existenTokens = true;
 	return t;
 }
 
 {Tipo}	{
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
+	Token t = new Token( sym.TIPO, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
 	this._existenTokens = true;
 	return t;
 }
@@ -167,13 +173,13 @@ Espacio = [ \t\f]
 }
 
 {Variable}	{
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+	Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 	this._existenTokens = true;
 	return t;
 }
 
-{Operador}	{
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "OPERADOR");
+{Operador_nota}	{
+	Token t = new Token( sym.OPERADOR_NOTA, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_NOTA);
 	this._existenTokens = true;
 	return t;
 }
