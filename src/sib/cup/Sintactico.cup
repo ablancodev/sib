@@ -41,7 +41,7 @@ parser code {:
 //scan with {: return lexico.next_token(); :};
 
 /* Terminales sin atributo */
-terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, BEGIN, END;
+terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
 terminal TIPO, VARIABLE, OPERADOR_NOTA;
 
 /* Terminales con atributo asociado */
@@ -50,6 +50,7 @@ terminal TIPO, VARIABLE, OPERADOR_NOTA;
 /* No terminales sin atributo */
 non terminal programa, paquete, imports, un_import, instrucciones, instruccion;
 non terminal declaracion, lista_variables, mas_lista_variables, orden, operador;
+non terminal asignacion, origen_asignacion;
 
 /* No terminales con atributo asociado */
 non terminal String mas_paquete, mas_import;
@@ -87,11 +88,18 @@ mas_lista_variables ::= COMA VARIABLE:v mas_lista_variables:mlv {: RESULT = ", "
 						| PUNTO_Y_COMA {: RESULT = ";"; :}
 						;
 
-orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->operador:" + op ); :};
+orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->operador:" + op ); :}
+		| asignacion PUNTO_Y_COMA
+		;
 
 operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
 			| operador:op OPERADOR_NOTA:on {: RESULT = op + "<--" + on;  :}
 			;
+
+/* Asignación */
+asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: viewsController.printOutput( "\nAsignación:" + v + "<--" + oa ); :};
+origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
+					;
 
 
 /*

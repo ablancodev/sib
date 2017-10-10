@@ -8,4 +8,6 @@ BEGIN family
 	$num _b;
 	$num_#;
 	$num_...;
+
+	$num = $peso;
 END

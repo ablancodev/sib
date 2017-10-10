@@ -64,8 +64,9 @@ Tipo = "int" | "float" | frac | nfrac | string | step | clef | object | array | 
 Punto = "."
 Coma = ","
 Punto_y_coma = ";"
+Igual_simple = "="
 
-Simbolo = "*"|"+"|"-"|"/"|"#"|"@"|"b"|"("|")"|";"|"."|"="|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
+Simbolo = "*"|"+"|"-"|"/"|"#"|"@"|"b"|"("|")"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
 
 Variable = "$"{Str_ident}
 
@@ -150,6 +151,11 @@ Espacio = [ \t\f]
 }
 {Punto_y_coma}	{
 	Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+	this._existenTokens = true;
+	return t;
+}
+{Igual_simple}	{
+	Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 	this._existenTokens = true;
 	return t;
 }
