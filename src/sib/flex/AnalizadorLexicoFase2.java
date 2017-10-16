@@ -36,16 +36,16 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\62\1\60\1\63\1\62\1\61\22\0\1\62\1\51\1\51"+
-    "\1\52\1\54\2\0\1\51\1\51\1\51\1\51\1\51\1\46\1\51"+
-    "\1\45\1\51\12\56\1\0\1\47\1\51\1\50\1\51\1\0\1\53"+
-    "\1\13\1\23\1\14\1\5\1\3\1\2\1\16\1\11\1\1\1\57"+
-    "\1\15\1\6\1\17\1\4\1\20\1\12\1\57\1\21\1\7\1\22"+
-    "\2\57\1\10\3\57\1\51\1\0\1\51\1\0\1\55\1\0\1\32"+
-    "\1\41\1\34\1\57\1\37\1\27\1\36\1\57\1\24\1\42\1\57"+
-    "\1\30\1\57\1\25\1\31\1\40\1\57\1\33\1\35\1\26\1\44"+
-    "\3\57\1\43\1\57\1\51\1\0\1\51\7\0\1\63\u1fa2\0\1\63"+
-    "\1\63\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\11\0\1\67\1\65\1\70\1\67\1\66\22\0\1\67\1\52\1\52"+
+    "\1\53\1\55\2\0\1\52\1\52\1\52\1\51\1\52\1\46\1\51"+
+    "\1\45\1\52\1\63\1\61\1\57\2\60\5\63\1\0\1\47\1\52"+
+    "\1\50\1\51\1\0\1\54\1\13\1\23\1\14\1\5\1\3\1\2"+
+    "\1\16\1\11\1\1\1\64\1\15\1\6\1\17\1\4\1\20\1\12"+
+    "\1\64\1\21\1\7\1\22\2\64\1\10\3\64\1\52\1\0\1\52"+
+    "\1\0\1\56\1\0\1\32\1\41\1\34\1\64\1\37\1\27\1\36"+
+    "\1\64\1\24\1\42\1\64\1\30\1\62\1\25\1\31\1\40\1\64"+
+    "\1\33\1\35\1\26\1\44\3\64\1\43\1\64\1\52\1\0\1\52"+
+    "\7\0\1\70\u1fa2\0\1\70\1\70\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -58,14 +58,15 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\2\3\1\2\1\3\2\2\1\3"+
-    "\10\2\1\4\1\5\1\6\1\7\1\10\1\4\2\1"+
-    "\1\11\2\12\1\13\1\14\1\2\3\3\17\2\1\15"+
-    "\4\16\1\2\1\17\4\2\1\20\11\2\1\16\12\2"+
-    "\1\21\2\2\1\22\2\2\1\23\1\2";
+    "\1\0\1\1\1\2\2\3\1\2\2\3\2\2\3\3"+
+    "\11\2\1\4\1\5\1\6\1\7\1\10\1\11\1\4"+
+    "\2\1\1\12\2\13\1\14\1\15\1\2\3\3\1\16"+
+    "\22\2\1\17\4\20\1\2\1\21\4\2\1\22\15\2"+
+    "\1\20\16\2\1\23\6\2\1\24\1\2\1\11\2\2"+
+    "\1\25\1\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[90];
+    int [] result = new int[113];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -90,21 +91,24 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\64\0\150\0\234\0\320\0\u0104\0\u0104\0\u0138"+
-    "\0\u016c\0\u01a0\0\u01d4\0\u0208\0\u023c\0\u0270\0\u02a4\0\u02d8"+
-    "\0\u030c\0\u0340\0\u0104\0\64\0\64\0\64\0\64\0\64"+
-    "\0\u0374\0\u03a8\0\u03dc\0\64\0\u0410\0\64\0\u0104\0\u0444"+
-    "\0\u0478\0\u04ac\0\64\0\u04e0\0\u0514\0\u0548\0\u057c\0\u05b0"+
-    "\0\u05e4\0\u0618\0\u064c\0\u0680\0\u06b4\0\u06e8\0\u071c\0\u0750"+
-    "\0\u0784\0\u07b8\0\u0374\0\u07ec\0\u0820\0\u0854\0\64\0\u0888"+
-    "\0\u08bc\0\u08f0\0\u0924\0\u0958\0\u098c\0\u0104\0\u09c0\0\u09f4"+
-    "\0\u0a28\0\u0a5c\0\u0a90\0\u0ac4\0\u0af8\0\u0b2c\0\u0b60\0\u0b94"+
-    "\0\u0bc8\0\u0bfc\0\u0c30\0\u0c64\0\u0c98\0\u0ccc\0\u0d00\0\u0d34"+
-    "\0\u0d68\0\u0d9c\0\u0104\0\u0dd0\0\u0e04\0\u0104\0\u0e38\0\u0e6c"+
-    "\0\u0104\0\u0ea0";
+    "\0\0\0\71\0\162\0\253\0\344\0\u011d\0\u0156\0\u011d"+
+    "\0\u018f\0\u01c8\0\u0201\0\u023a\0\u0273\0\u02ac\0\u02e5\0\u031e"+
+    "\0\u0357\0\u0390\0\u03c9\0\u0402\0\u043b\0\u0474\0\u011d\0\71"+
+    "\0\71\0\71\0\71\0\71\0\71\0\u04ad\0\u04e6\0\u051f"+
+    "\0\71\0\u0558\0\71\0\u011d\0\u0591\0\u05ca\0\u0603\0\71"+
+    "\0\71\0\u063c\0\u0675\0\u06ae\0\u06e7\0\u0720\0\u0759\0\u0792"+
+    "\0\u07cb\0\u0804\0\u083d\0\u0876\0\u08af\0\u08e8\0\u0921\0\u095a"+
+    "\0\u0993\0\u09cc\0\u0a05\0\u04ad\0\u0a3e\0\u0a77\0\u0ab0\0\71"+
+    "\0\u0ae9\0\u0b22\0\u0b5b\0\u0b94\0\u0bcd\0\u0c06\0\u011d\0\u0c3f"+
+    "\0\u0c78\0\u0cb1\0\u0cea\0\u0d23\0\u0d5c\0\u0d95\0\u0dce\0\u0e07"+
+    "\0\u0e40\0\u0e79\0\u0eb2\0\u0eeb\0\u0f24\0\u0f5d\0\u0f96\0\u0fcf"+
+    "\0\u1008\0\u1041\0\u107a\0\u10b3\0\u10ec\0\u1125\0\u115e\0\u1197"+
+    "\0\u11d0\0\u1209\0\u1242\0\u011d\0\u127b\0\u12b4\0\u12ed\0\u1326"+
+    "\0\u135f\0\u1398\0\u011d\0\u13d1\0\u011d\0\u140a\0\u1443\0\u011d"+
+    "\0\u147c";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[90];
+    int [] result = new int[113];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -127,67 +131,106 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\4\1\6\1\7"+
-    "\1\10\1\6\1\11\2\4\1\6\1\4\4\6\1\12"+
-    "\1\13\1\14\1\6\1\15\1\6\1\16\1\17\1\6"+
-    "\1\20\1\21\2\6\1\22\1\23\3\6\1\24\1\25"+
-    "\1\26\1\27\3\30\1\31\1\32\1\33\1\6\1\34"+
-    "\1\35\1\36\66\0\1\6\1\37\14\6\1\40\25\6"+
-    "\12\0\1\6\5\0\40\6\1\41\3\6\5\0\1\42"+
-    "\1\43\3\0\1\6\5\0\3\6\1\44\1\6\1\45"+
-    "\32\6\1\41\3\6\5\0\1\42\1\43\3\0\1\6"+
-    "\5\0\44\6\12\0\1\6\5\0\10\6\1\46\33\6"+
-    "\12\0\1\6\5\0\12\6\1\47\31\6\12\0\1\6"+
-    "\5\0\2\6\1\50\35\6\1\41\3\6\5\0\1\42"+
-    "\1\43\3\0\1\6\5\0\24\6\1\51\17\6\12\0"+
-    "\1\6\5\0\26\6\1\52\1\6\1\53\13\6\12\0"+
-    "\1\6\5\0\27\6\1\54\2\6\1\55\11\6\12\0"+
-    "\1\6\5\0\40\6\1\56\3\6\12\0\1\6\5\0"+
-    "\32\6\1\57\11\6\12\0\1\6\5\0\27\6\1\60"+
-    "\14\6\12\0\1\6\5\0\25\6\1\61\16\6\12\0"+
-    "\1\6\5\0\31\6\1\62\12\6\12\0\1\6\5\0"+
-    "\44\63\12\0\1\63\45\0\1\64\3\0\1\65\4\0"+
-    "\1\66\1\67\66\0\1\33\65\0\1\34\4\0\11\6"+
-    "\1\70\32\6\12\0\1\6\5\0\40\6\1\41\3\6"+
-    "\5\0\1\42\4\0\1\6\45\0\1\42\10\0\1\42"+
-    "\12\0\4\6\1\71\37\6\12\0\1\6\5\0\6\6"+
-    "\1\72\35\6\12\0\1\6\5\0\1\73\43\6\12\0"+
-    "\1\6\5\0\13\6\1\74\30\6\12\0\1\6\5\0"+
-    "\15\6\1\75\26\6\12\0\1\6\5\0\25\6\1\76"+
-    "\16\6\12\0\1\6\5\0\32\6\1\55\11\6\12\0"+
-    "\1\6\5\0\25\6\1\77\16\6\12\0\1\6\5\0"+
-    "\30\6\1\100\13\6\12\0\1\6\5\0\31\6\1\101"+
-    "\12\6\12\0\1\6\5\0\41\6\1\102\2\6\12\0"+
-    "\1\6\5\0\32\6\1\103\11\6\12\0\1\6\5\0"+
-    "\36\6\1\104\5\6\12\0\1\6\5\0\32\6\1\105"+
-    "\3\6\1\106\5\6\12\0\1\6\5\0\32\6\1\107"+
-    "\11\6\12\0\1\6\45\0\1\67\67\0\1\110\70\0"+
-    "\1\67\12\0\17\6\1\111\24\6\12\0\1\6\5\0"+
-    "\1\112\6\6\1\10\34\6\12\0\1\6\5\0\2\6"+
-    "\1\37\41\6\12\0\1\6\5\0\5\6\1\72\36\6"+
-    "\12\0\1\6\5\0\14\6\1\113\27\6\12\0\1\6"+
-    "\5\0\1\114\43\6\12\0\1\6\5\0\36\6\1\76"+
-    "\5\6\12\0\1\6\5\0\31\6\1\51\12\6\12\0"+
-    "\1\6\5\0\33\6\1\76\10\6\12\0\1\6\5\0"+
-    "\36\6\1\115\5\6\12\0\1\6\5\0\31\6\1\116"+
-    "\12\6\12\0\1\6\5\0\26\6\1\76\15\6\12\0"+
-    "\1\6\5\0\23\6\1\117\20\6\12\0\1\6\5\0"+
-    "\37\6\1\76\4\6\12\0\1\6\5\0\25\6\1\120"+
-    "\16\6\12\0\1\6\51\0\1\67\17\0\20\6\1\121"+
-    "\23\6\12\0\1\6\5\0\1\6\1\37\42\6\12\0"+
-    "\1\6\5\0\12\6\1\122\31\6\12\0\1\6\5\0"+
-    "\3\6\1\123\40\6\12\0\1\6\5\0\33\6\1\51"+
-    "\10\6\12\0\1\6\5\0\42\6\1\76\1\6\12\0"+
-    "\1\6\5\0\24\6\1\124\17\6\12\0\1\6\5\0"+
-    "\23\6\1\125\20\6\12\0\1\6\5\0\21\6\1\126"+
-    "\22\6\12\0\1\6\5\0\15\6\1\127\26\6\12\0"+
-    "\1\6\5\0\35\6\1\76\6\6\12\0\1\6\5\0"+
-    "\25\6\1\130\16\6\12\0\1\6\5\0\2\6\1\131"+
-    "\41\6\12\0\1\6\5\0\43\6\1\132\12\0\1\6"+
-    "\5\0\32\6\1\77\11\6\12\0\1\6\4\0";
+    "\1\2\1\3\1\4\1\5\1\6\1\7\1\6\1\10"+
+    "\1\11\1\6\1\12\1\7\1\13\1\6\1\14\4\6"+
+    "\1\15\1\16\1\17\1\20\1\21\1\6\1\22\1\23"+
+    "\1\6\1\24\1\25\2\6\1\26\1\27\3\6\1\30"+
+    "\1\31\1\32\1\33\1\34\3\35\1\36\1\37\3\40"+
+    "\1\6\1\40\1\6\1\41\1\42\1\43\73\0\1\6"+
+    "\1\44\14\6\1\45\25\6\15\0\1\6\1\0\1\6"+
+    "\5\0\40\6\1\46\3\6\6\0\1\47\1\50\3\0"+
+    "\1\51\1\0\1\6\1\0\1\6\5\0\3\6\1\52"+
+    "\1\6\1\53\32\6\1\46\3\6\6\0\1\47\1\50"+
+    "\5\0\1\6\1\0\1\6\5\0\44\6\15\0\1\6"+
+    "\1\0\1\6\5\0\40\6\1\46\3\6\6\0\1\47"+
+    "\1\50\5\0\1\6\1\0\1\6\5\0\10\6\1\54"+
+    "\33\6\15\0\1\6\1\0\1\6\5\0\12\6\1\55"+
+    "\31\6\15\0\1\6\1\0\1\6\5\0\40\6\1\46"+
+    "\3\6\6\0\1\47\1\50\2\0\3\51\1\6\1\0"+
+    "\1\6\5\0\40\6\1\46\3\6\6\0\1\47\1\50"+
+    "\2\0\1\51\2\0\1\6\1\0\1\6\5\0\2\6"+
+    "\1\56\35\6\1\46\3\6\6\0\1\47\1\50\5\0"+
+    "\1\6\1\0\1\6\5\0\24\6\1\57\17\6\15\0"+
+    "\1\6\1\0\1\6\5\0\26\6\1\60\1\6\1\61"+
+    "\13\6\15\0\1\6\1\0\1\6\5\0\36\6\1\62"+
+    "\5\6\15\0\1\6\1\0\1\6\5\0\27\6\1\63"+
+    "\2\6\1\64\3\6\1\65\5\6\15\0\1\6\1\0"+
+    "\1\6\5\0\40\6\1\66\3\6\15\0\1\6\1\0"+
+    "\1\6\5\0\32\6\1\67\1\70\10\6\15\0\1\6"+
+    "\1\0\1\6\5\0\27\6\1\71\14\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\72\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\73\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\44\74\15\0\1\74\1\0\1\74"+
+    "\45\0\1\75\3\0\1\76\5\0\1\77\1\100\73\0"+
+    "\3\40\1\0\1\40\72\0\1\41\4\0\11\6\1\101"+
+    "\32\6\15\0\1\6\1\0\1\6\5\0\40\6\1\46"+
+    "\3\6\6\0\1\47\6\0\1\6\1\0\1\6\45\0"+
+    "\1\47\11\0\1\47\16\0\4\6\1\102\37\6\15\0"+
+    "\1\6\1\0\1\6\5\0\6\6\1\103\35\6\15\0"+
+    "\1\6\1\0\1\6\5\0\1\104\43\6\15\0\1\6"+
+    "\1\0\1\6\5\0\13\6\1\105\30\6\15\0\1\6"+
+    "\1\0\1\6\5\0\15\6\1\106\26\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\107\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\32\6\1\64\11\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\110\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\24\6\1\111\17\6\15\0\1\6"+
+    "\1\0\1\6\5\0\30\6\1\112\13\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\113\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\32\6\1\114\11\6\15\0\1\6"+
+    "\1\0\1\6\5\0\41\6\1\115\2\6\15\0\1\6"+
+    "\1\0\1\6\5\0\32\6\1\116\11\6\15\0\1\6"+
+    "\1\0\1\6\5\0\33\6\1\117\10\6\15\0\1\6"+
+    "\1\0\1\6\5\0\36\6\1\120\5\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\121\1\122\3\6\1\123"+
+    "\5\6\15\0\1\6\1\0\1\6\5\0\32\6\1\124"+
+    "\11\6\15\0\1\6\1\0\1\6\45\0\1\100\74\0"+
+    "\1\125\76\0\1\100\16\0\17\6\1\126\24\6\15\0"+
+    "\1\6\1\0\1\6\5\0\1\127\6\6\1\11\34\6"+
+    "\15\0\1\6\1\0\1\6\5\0\2\6\1\44\41\6"+
+    "\15\0\1\6\1\0\1\6\5\0\5\6\1\103\36\6"+
+    "\15\0\1\6\1\0\1\6\5\0\14\6\1\130\27\6"+
+    "\15\0\1\6\1\0\1\6\5\0\1\131\43\6\15\0"+
+    "\1\6\1\0\1\6\5\0\36\6\1\107\5\6\15\0"+
+    "\1\6\1\0\1\6\5\0\43\6\1\132\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\57\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\33\6\1\107\10\6\15\0\1\6"+
+    "\1\0\1\6\5\0\44\6\15\0\1\133\1\0\1\6"+
+    "\5\0\36\6\1\134\5\6\15\0\1\6\1\0\1\6"+
+    "\5\0\31\6\1\135\12\6\15\0\1\6\1\0\1\6"+
+    "\5\0\36\6\1\136\5\6\15\0\1\6\1\0\1\6"+
+    "\5\0\26\6\1\107\15\6\15\0\1\6\1\0\1\6"+
+    "\5\0\33\6\1\137\10\6\15\0\1\6\1\0\1\6"+
+    "\5\0\23\6\1\140\20\6\15\0\1\6\1\0\1\6"+
+    "\5\0\37\6\1\107\4\6\15\0\1\6\1\0\1\6"+
+    "\5\0\25\6\1\141\16\6\15\0\1\6\1\0\1\6"+
+    "\51\0\1\100\24\0\20\6\1\142\23\6\15\0\1\6"+
+    "\1\0\1\6\5\0\1\6\1\44\42\6\15\0\1\6"+
+    "\1\0\1\6\5\0\12\6\1\143\31\6\15\0\1\6"+
+    "\1\0\1\6\5\0\3\6\1\144\40\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\145\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\146\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\33\6\1\57\10\6\15\0\1\6"+
+    "\1\0\1\6\5\0\42\6\1\107\1\6\15\0\1\6"+
+    "\1\0\1\6\5\0\24\6\1\147\17\6\15\0\1\6"+
+    "\1\0\1\6\5\0\33\6\1\150\10\6\15\0\1\6"+
+    "\1\0\1\6\5\0\24\6\1\151\17\6\15\0\1\6"+
+    "\1\0\1\6\5\0\23\6\1\152\20\6\15\0\1\6"+
+    "\1\0\1\6\5\0\21\6\1\153\22\6\15\0\1\6"+
+    "\1\0\1\6\5\0\15\6\1\154\26\6\15\0\1\6"+
+    "\1\0\1\6\5\0\30\6\1\155\13\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\156\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\155\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\132\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\35\6\1\107\6\6\15\0\1\6"+
+    "\1\0\1\6\5\0\25\6\1\157\16\6\15\0\1\6"+
+    "\1\0\1\6\5\0\2\6\1\160\41\6\15\0\1\6"+
+    "\1\0\1\6\5\0\31\6\1\155\12\6\15\0\1\6"+
+    "\1\0\1\6\5\0\43\6\1\161\15\0\1\6\1\0"+
+    "\1\6\5\0\32\6\1\110\11\6\15\0\1\6\1\0"+
+    "\1\6\4\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[3796];
+    int [] result = new int[5301];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -225,11 +268,11 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\21\1\5\11\3\1\1\11\1\1\1\11"+
-    "\4\1\1\11\23\1\1\11\43\1";
+    "\1\0\1\11\25\1\6\11\3\1\1\11\1\1\1\11"+
+    "\4\1\2\11\26\1\1\11\61\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[90];
+    int [] result = new int[113];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -346,7 +389,7 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 216) {
+    while (i < 224) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -718,117 +761,129 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
           case 1: 
             { //throw new Exception();
             }
-          case 20: break;
+          case 22: break;
           case 2: 
             { Token t = new Token( sym.IDENTIFICADOR, yycolumn, yyline+1, 0, yytext(), Token.STR_IDENT );
 	this._existenTokens = true;
 	return t;
             }
-          case 21: break;
+          case 23: break;
           case 3: 
-            { Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "STEP");
+            { Token t = new Token( sym.STEP, yycolumn, yyline+1, 0, yytext(), Token.STEP );
 	this._existenTokens = true;
 	return t;
             }
-          case 22: break;
+          case 24: break;
           case 4: 
             { Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
 	this._existenTokens = true;
 	return t;
             }
-          case 23: break;
+          case 25: break;
           case 5: 
             { Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 	this._existenTokens = true;
 	return t;
             }
-          case 24: break;
+          case 26: break;
           case 6: 
             { Token t = new Token( sym.COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 	this._existenTokens = true;
 	return t;
             }
-          case 25: break;
+          case 27: break;
           case 7: 
             { Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 	this._existenTokens = true;
 	return t;
             }
-          case 26: break;
+          case 28: break;
           case 8: 
             { Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 	this._existenTokens = true;
 	return t;
             }
-          case 27: break;
+          case 29: break;
           case 9: 
+            { Token t = new Token( sym.ACCENT_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+	this._existenTokens = true;
+	return t;
+            }
+          case 30: break;
+          case 10: 
             { Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "NUMERO" );
 	this._existenTokens = true;
 	return t;
             }
-          case 28: break;
-          case 10: 
+          case 31: break;
+          case 11: 
             { // Quizás este token no proceda y simplemente haya que limpiar los saltos
 	//Token t = new Token( 0, yycolumn, yyline+1, 0, "Enter", "NUEVA_LINEA");
 	//this._existenTokens = true;
 	//return t;
             }
-          case 29: break;
-          case 11: 
+          case 32: break;
+          case 12: 
             { // Ignorar cuando se ingrese un espacio
 	//Token t = new Token( 0, yycolumn, yyline+1, 0, "Espacio", "ESPACIO");
 	//this._existenTokens = true;
 	//return t;
             }
-          case 30: break;
-          case 12: 
+          case 33: break;
+          case 13: 
             { Token t = new Token( sym.PALABRA_RESERVADA, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 	this._existenTokens = true;
 	return t;
             }
-          case 31: break;
-          case 13: 
-            { Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
-	this._existenTokens = true;
-	return t;
-            }
-          case 32: break;
-          case 14: 
-            { Token t = new Token( sym.OPERADOR_NOTA, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_NOTA);
-	this._existenTokens = true;
-	return t;
-            }
-          case 33: break;
-          case 15: 
-            { Token t = new Token( sym.END, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-            }
           case 34: break;
-          case 16: 
-            { Token t = new Token( sym.TIPO, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
+          case 14: 
+            { Token t = new Token( sym.CLEF_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 	this._existenTokens = true;
 	return t;
             }
           case 35: break;
-          case 17: 
-            { Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+          case 15: 
+            { Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 	this._existenTokens = true;
 	return t;
             }
           case 36: break;
-          case 18: 
-            { Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+          case 16: 
+            { Token t = new Token( sym.OPERADOR_NOTA, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_NOTA);
 	this._existenTokens = true;
 	return t;
             }
           case 37: break;
-          case 19: 
-            { Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+          case 17: 
+            { Token t = new Token( sym.END, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 	this._existenTokens = true;
 	return t;
             }
           case 38: break;
+          case 18: 
+            { Token t = new Token( sym.TIPO, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
+	this._existenTokens = true;
+	return t;
+            }
+          case 39: break;
+          case 19: 
+            { Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	this._existenTokens = true;
+	return t;
+            }
+          case 40: break;
+          case 20: 
+            { Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	this._existenTokens = true;
+	return t;
+            }
+          case 41: break;
+          case 21: 
+            { Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+	this._existenTokens = true;
+	return t;
+            }
+          case 42: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

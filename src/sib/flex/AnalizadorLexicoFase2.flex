@@ -74,6 +74,9 @@ Operador_nota = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."
 
 Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[@]? | C[@]? | D[@]? | E[@]? | F[@]? | G[@]? | S
 
+Clef_value = G[2]? | F[3-4] | C[1-4]
+Accent_value = "." | "-" | ">" | "*" | "staccato" | "tenuto" | "accent" | "fermata"
+
 Digito = [0-9]
 Numero = {Digito}{Digito}*
 Letra = [A-Za-z]
@@ -167,7 +170,19 @@ Espacio = [ \t\f]
 }
 
 {Step}	{
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "STEP");
+	Token t = new Token( sym.STEP, yycolumn, yyline+1, 0, yytext(), Token.STEP );
+	this._existenTokens = true;
+	return t;
+}
+
+{Clef_value} {
+	Token t = new Token( sym.CLEF_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+	this._existenTokens = true;
+	return t;
+}
+
+{Accent_value}	{
+	Token t = new Token( sym.ACCENT_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 	this._existenTokens = true;
 	return t;
 }

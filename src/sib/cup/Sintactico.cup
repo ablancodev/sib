@@ -42,7 +42,7 @@ parser code {:
 
 /* Terminales sin atributo */
 terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
-terminal TIPO, VARIABLE, OPERADOR_NOTA;
+terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 
 /* Terminales con atributo asociado */
 //terminal Integer NUMERO;
@@ -99,6 +99,9 @@ operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
 /* Asignación */
 asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: viewsController.printOutput( "\nAsignación:" + v + "<--" + oa ); :};
 origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
+					| STEP:st {: RESULT = st; :}
+					| CLEF_VALUE:cl {: RESULT = cl; :}
+					| ACCENT_VALUE:ac {: RESULT = ac; :}
 					;
 
 

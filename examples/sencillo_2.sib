@@ -3,9 +3,8 @@ IMPORT leon.mj;
 IMPORT blanco.leire;
 
 BEGIN family
-	int $num;
+	int $num, $nota;
 	float $peso;
-	note $nota;
 
 	$num _b;
 	$num_#;
