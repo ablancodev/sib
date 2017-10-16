@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_3KxWsLJMEeebfO7MkmMkjA" name="Sib - Traductor">
+  <packagedElement xmi:type="uml:Package" xmi:id="_gXTwgLJNEeebfO7MkmMkjA" name="Input / Output"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_tJCWkLJNEeebfO7MkmMkjA" name="Sib">
+    <packageImport xmi:id="_rhCokLJOEeebfO7MkmMkjA" importedPackage="_gXTwgLJNEeebfO7MkmMkjA"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_KfSUULJNEeebfO7MkmMkjA" name="Fase Análisis"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_ayuGkLJNEeebfO7MkmMkjA" name="Fase Síntesis"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_QdU4sLJQEeebfO7MkmMkjA" name="Actor SW">
+    <eAnnotations xmi:id="_QdU4sbJQEeebfO7MkmMkjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details xmi:id="_QdU4srJQEeebfO7MkmMkjA" key="Human"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ZpfGQLJQEeebfO7MkmMkjA" name="Traducir a MusicXML">
+    <ownedUseCase xmi:id="_9rnT4LJUEeePIOklNs4axw" name="Traducir a MusicXML">
+      <include xmi:id="_9rnT4bJUEeePIOklNs4axw" addition="_njGhcLJQEeebfO7MkmMkjA"/>
+    </ownedUseCase>
+    <include xmi:id="_EFj1ULJREeebfO7MkmMkjA" addition="_njGhcLJQEeebfO7MkmMkjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_gCOxALJQEeebfO7MkmMkjA" memberEnd="_gCOxAbJQEeebfO7MkmMkjA _gCOxArJQEeebfO7MkmMkjA">
+    <ownedEnd xmi:id="_gCOxAbJQEeebfO7MkmMkjA" type="_QdU4sLJQEeebfO7MkmMkjA" association="_gCOxALJQEeebfO7MkmMkjA"/>
+    <ownedEnd xmi:id="_gCOxArJQEeebfO7MkmMkjA" type="_ZpfGQLJQEeebfO7MkmMkjA" association="_gCOxALJQEeebfO7MkmMkjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_njGhcLJQEeebfO7MkmMkjA" name="Validar código Sib"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_BzhhQLJREeebfO7MkmMkjA" memberEnd="_BzhhQbJREeebfO7MkmMkjA _BzhhQrJREeebfO7MkmMkjA">
+    <ownedEnd xmi:id="_BzhhQbJREeebfO7MkmMkjA" type="_QdU4sLJQEeebfO7MkmMkjA" association="_BzhhQLJREeebfO7MkmMkjA"/>
+    <ownedEnd xmi:id="_BzhhQrJREeebfO7MkmMkjA" type="_njGhcLJQEeebfO7MkmMkjA" association="_BzhhQLJREeebfO7MkmMkjA"/>
+  </packagedElement>
+</uml:Model>

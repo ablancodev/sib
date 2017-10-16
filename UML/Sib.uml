@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_u2XeQLJREeebfO7MkmMkjA" name="Sib">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_mp1FMLJSEeebfO7MkmMkjA" name="Programador">
+    <eAnnotations xmi:id="_mp1FMbJSEeebfO7MkmMkjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details xmi:id="_mp1FMrJSEeebfO7MkmMkjA" key="Human"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_noa0YLJSEeebfO7MkmMkjA" name="Escribir código Sib">
+    <include xmi:id="_5Kye8LJSEeebfO7MkmMkjA" addition="_tFs8cLJSEeebfO7MkmMkjA"/>
+    <include xmi:id="_5tzscLJSEeebfO7MkmMkjA" addition="_uzO1QLJSEeebfO7MkmMkjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_tFs8cLJSEeebfO7MkmMkjA" name="Crear App"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_uzO1QLJSEeebfO7MkmMkjA" name="Testar código"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4QFKMLJSEeebfO7MkmMkjA" memberEnd="_4QFKMbJSEeebfO7MkmMkjA _4QFKMrJSEeebfO7MkmMkjA">
+    <ownedEnd xmi:id="_4QFKMbJSEeebfO7MkmMkjA" type="_mp1FMLJSEeebfO7MkmMkjA" association="_4QFKMLJSEeebfO7MkmMkjA"/>
+    <ownedEnd xmi:id="_4QFKMrJSEeebfO7MkmMkjA" type="_noa0YLJSEeebfO7MkmMkjA" association="_4QFKMLJSEeebfO7MkmMkjA"/>
+  </packagedElement>
+</uml:Model>
