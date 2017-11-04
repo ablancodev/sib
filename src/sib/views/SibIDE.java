@@ -11,6 +11,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.FileChooserUI;
 
 import sib.controllers.ViewsControllerFase1;
+import sib.views.TextLineNumber;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;

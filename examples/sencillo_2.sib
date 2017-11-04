@@ -16,4 +16,11 @@ BEGIN family
 	$nota = A;
 	$nota = A##;
 	$nota = Cb;
+
+	$nota = "Hola mundo \" y más";
+
+	$nota = -2;
+	$nota = -10.35;
+	$nota = 1 3/4;
+	$nota = 2/4;
 END

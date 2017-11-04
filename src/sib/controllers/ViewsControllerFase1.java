@@ -3,7 +3,6 @@ package sib.controllers;
 import java.io.StringReader;
 
 import sib.cup.parser;
-import sib.flex.AnalizadorLexicoFase1;
 import sib.flex.AnalizadorLexicoFase2;
 import sib.flex.AnalizadorLexicoSid;
 import sib.flex.Token;
@@ -26,7 +25,7 @@ public class ViewsControllerFase1 {
 		view.printLog( "Running Sib..." );
 
 		// Fase 1
-		view.printLog( "Empezamos fase 1: limpieza de comentario sy salto de línea." );
+		view.printLog( "Empezamos fase 1: limpieza de comentarios y salto de línea." );
 
 		AnalizadorLexicoFase2 analizadorJFlex = null;
 		try {

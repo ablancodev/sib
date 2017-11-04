@@ -15,4 +15,37 @@
     <ownedEnd xmi:id="_4QFKMbJSEeebfO7MkmMkjA" type="_mp1FMLJSEeebfO7MkmMkjA" association="_4QFKMLJSEeebfO7MkmMkjA"/>
     <ownedEnd xmi:id="_4QFKMrJSEeebfO7MkmMkjA" type="_noa0YLJSEeebfO7MkmMkjA" association="_4QFKMLJSEeebfO7MkmMkjA"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_3PWWQLKwEeeU87OImI6hbg" name="Sib" node="_KW85QLKxEeeU87OImI6hbg _zJZYELKxEeeU87OImI6hbg _U6es8LKyEeeU87OImI6hbg _6U7VMLKyEeeU87OImI6hbg _O-yVILKzEeeU87OImI6hbg _VmvgkLKzEeeU87OImI6hbg" group="_vKn_8LKyEeeU87OImI6hbg" partition="_vKn_8LKyEeeU87OImI6hbg">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_DYvfELKzEeeU87OImI6hbg" target="_zJZYELKxEeeU87OImI6hbg" source="_KW85QLKxEeeU87OImI6hbg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_DYvfEbKzEeeU87OImI6hbg" name="Inicio programa_To_Packages_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_DYvfErKzEeeU87OImI6hbg" name="Inicio programa_To_Packages_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ERFcULKzEeeU87OImI6hbg" target="_U6es8LKyEeeU87OImI6hbg" source="_zJZYELKxEeeU87OImI6hbg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_ERFcUbKzEeeU87OImI6hbg" name="Packages_To_Imports_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_ERFcUrKzEeeU87OImI6hbg" name="Packages_To_Imports_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_mBFMELKzEeeU87OImI6hbg" target="_O-yVILKzEeeU87OImI6hbg" source="_U6es8LKyEeeU87OImI6hbg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_mBFMEbKzEeeU87OImI6hbg" name="Imports_To_BEGIN_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_mBFMErKzEeeU87OImI6hbg" name="Imports_To_BEGIN_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_m24LoLKzEeeU87OImI6hbg" target="_6U7VMLKyEeeU87OImI6hbg" source="_VmvgkLKzEeeU87OImI6hbg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_m24LobKzEeeU87OImI6hbg" name="END_To_Final_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_m24LorKzEeeU87OImI6hbg" name="END_To_Final_weight"/>
+    </edge>
+    <group xmi:type="uml:ActivityPartition" xmi:id="_vKn_8LKyEeeU87OImI6hbg" name="Cuerpo del programa" node="_O-yVILKzEeeU87OImI6hbg _VmvgkLKzEeeU87OImI6hbg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_KW85QLKxEeeU87OImI6hbg" name="Inicio programa" outgoing="_DYvfELKzEeeU87OImI6hbg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_zJZYELKxEeeU87OImI6hbg" name="Packages" incoming="_DYvfELKzEeeU87OImI6hbg" outgoing="_ERFcULKzEeeU87OImI6hbg">
+      <body>// TODO body of OpaqueAction1</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_U6es8LKyEeeU87OImI6hbg" name="Imports" incoming="_ERFcULKzEeeU87OImI6hbg" outgoing="_mBFMELKzEeeU87OImI6hbg">
+      <body>// TODO body of OpaqueAction2</body>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_6U7VMLKyEeeU87OImI6hbg" name="Final" incoming="_m24LoLKzEeeU87OImI6hbg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_O-yVILKzEeeU87OImI6hbg" name="BEGIN" incoming="_mBFMELKzEeeU87OImI6hbg" inPartition="_vKn_8LKyEeeU87OImI6hbg">
+      <body>// TODO body of OpaqueAction3</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_VmvgkLKzEeeU87OImI6hbg" name="END" outgoing="_m24LoLKzEeeU87OImI6hbg" inPartition="_vKn_8LKyEeeU87OImI6hbg">
+      <body>// TODO body of OpaqueAction4</body>
+    </node>
+  </packagedElement>
 </uml:Model>

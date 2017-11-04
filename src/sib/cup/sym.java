@@ -10,8 +10,12 @@ public class sym {
   /* terminals */
   public static final int IMPORT = 4;
   public static final int PUNTO = 6;
+  public static final int NUMERO_INT_FRAC = 21;
+  public static final int CADENA = 18;
+  public static final int NUMERO_REAL = 20;
   public static final int END = 11;
   public static final int VARIABLE = 13;
+  public static final int NUMERO_ENTERO = 19;
   public static final int TIPO = 12;
   public static final int BEGIN = 10;
   public static final int COMA = 7;
@@ -44,7 +48,11 @@ public class sym {
   "OPERADOR_NOTA",
   "STEP",
   "CLEF_VALUE",
-  "ACCENT_VALUE"
+  "ACCENT_VALUE",
+  "CADENA",
+  "NUMERO_ENTERO",
+  "NUMERO_REAL",
+  "NUMERO_INT_FRAC"
   };
 }
 

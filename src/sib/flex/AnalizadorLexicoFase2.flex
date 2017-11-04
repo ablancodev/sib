@@ -16,9 +16,12 @@ import sib.cup.*;
 %{
  
  /* Código personalizado */
- 
- // Se agregó una propiedad para verificar si existen tokens pendientes
+
+	// Se agregó una propiedad para verificar si existen tokens pendientes
 	private boolean _existenTokens = false;
+
+	// Contiene las cadenas entre comillas
+	StringBuilder string = new StringBuilder();
 
 	public boolean existenTokens(){
 		return this._existenTokens;
@@ -78,19 +81,30 @@ Clef_value = G[2]? | F[3-4] | C[1-4]
 Accent_value = "." | "-" | ">" | "*" | "staccato" | "tenuto" | "accent" | "fermata"
 
 Digito = [0-9]
-Numero = {Digito}{Digito}*
+Numeros = {Digito}{Digito}*
 Letra = [A-Za-z]
 Str_ident = {Letra}{Letra}*
 
 SaltoDeLinea = \n|\r|\r\n
 Espacio = [ \t\f]
 
+// Tipo numeros
+Numero_entero = [-]?{Numeros}
+Numero_real = {Numero_entero}"."{Numeros}
+Numero_int_frac = {Numero_entero}
+				| [-]?{Fraccion}
+				| {Numero_entero}{Espacio}+{Fraccion}
+Fraccion = {Numero_entero}"/"{Numero_entero}
+
 //Package = PACKAGE{Espacio}{Palabra}("."{Palabra})*";"
 
 //Import = IMPORT{Espacio}{Palabra}".sid;"
 
 /* Finaliza expresiones regulares */
- 
+
+/* Estados */
+%state CADENA
+
 %%
 /* Finaliza la sección de declaraciones de JFlex */
  
@@ -115,106 +129,139 @@ Espacio = [ \t\f]
 }
 */
 
-{PalabraReservada}	{
-	Token t = new Token( sym.PALABRA_RESERVADA, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
+<CADENA>	{
+	// @todo falta mejorar el String, en el fichero java.flex hay un ejemplo completo
+	\"	{ 	Token t = new Token( sym.CADENA, yycolumn, yyline+1, -1, string.toString(), Token.STRING );
+				this._existenTokens = true;
+				yybegin( YYINITIAL );
+				return t;
+			}
+	(\\\")	{
+				string.append( "\"" );
+			}
+	[^\r\n\"\\] {
+	 			string.append( yytext() );
+	 			}
+	
+ }
 
-{Package}	{
-	Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
-{Import}	{
-	Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
-{Begin}	{
-	Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
-{End}	{
-	Token t = new Token( sym.END, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
+<YYINITIAL> {
+	[\"]	{
+	 		string.setLength(0);
+			yybegin( CADENA );
+	}
 
-{Punto}	{
-	Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
-	this._existenTokens = true;
-	return t;
-}
-{Coma}	{
-	Token t = new Token( sym.COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
-	this._existenTokens = true;
-	return t;
-}
-{Punto_y_coma}	{
-	Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
-	this._existenTokens = true;
-	return t;
-}
-{Igual_simple}	{
-	Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-	this._existenTokens = true;
-	return t;
-}
-
-{Tipo}	{
-	Token t = new Token( sym.TIPO, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
-	this._existenTokens = true;
-	return t;
-}
-
-{Step}	{
-	Token t = new Token( sym.STEP, yycolumn, yyline+1, 0, yytext(), Token.STEP );
-	this._existenTokens = true;
-	return t;
-}
-
-{Clef_value} {
-	Token t = new Token( sym.CLEF_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
-	this._existenTokens = true;
-	return t;
-}
-
-{Accent_value}	{
-	Token t = new Token( sym.ACCENT_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
-	this._existenTokens = true;
-	return t;
-}
-
-{Simbolo}	{
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
-	this._existenTokens = true;
-	return t;
-}
-
-{Variable}	{
-	Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
-	this._existenTokens = true;
-	return t;
-}
-
-{Operador_nota}	{
-	Token t = new Token( sym.OPERADOR_NOTA, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_NOTA);
-	this._existenTokens = true;
-	return t;
-}
-
-{Numero} {
-	Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "NUMERO" );
-	this._existenTokens = true;
-	return t;
-}
-
-{Str_ident} {
-	Token t = new Token( sym.IDENTIFICADOR, yycolumn, yyline+1, 0, yytext(), Token.STR_IDENT );
-	this._existenTokens = true;
-	return t;
+	{PalabraReservada}	{
+		Token t = new Token( sym.PALABRA_RESERVADA, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Package}	{
+		Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{Import}	{
+		Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{Begin}	{
+		Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{End}	{
+		Token t = new Token( sym.END, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Punto}	{
+		Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+		this._existenTokens = true;
+		return t;
+	}
+	{Coma}	{
+		Token t = new Token( sym.COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+		this._existenTokens = true;
+		return t;
+	}
+	{Punto_y_coma}	{
+		Token t = new Token( sym.PUNTO_Y_COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+		this._existenTokens = true;
+		return t;
+	}
+	{Igual_simple}	{
+		Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Tipo}	{
+		Token t = new Token( sym.TIPO, yycolumn, yyline+1, 0, yytext(), Token.TIPO);
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Step}	{
+		Token t = new Token( sym.STEP, yycolumn, yyline+1, 0, yytext(), Token.STEP );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Clef_value} {
+		Token t = new Token( sym.CLEF_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Accent_value}	{
+		Token t = new Token( sym.ACCENT_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Simbolo}	{
+		Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Variable}	{
+		Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Operador_nota}	{
+		Token t = new Token( sym.OPERADOR_NOTA, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_NOTA);
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Numero_entero} {
+		Token t = new Token( sym.NUMERO_ENTERO, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Numero_real} {
+		Token t = new Token( sym.NUMERO_REAL, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Numero_int_frac} {
+		Token t = new Token( sym.NUMERO_INT_FRAC, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Str_ident} {
+		Token t = new Token( sym.IDENTIFICADOR, yycolumn, yyline+1, 0, yytext(), Token.STR_IDENT );
+		this._existenTokens = true;
+		return t;
+	}
 }
 
 {Espacio} {
