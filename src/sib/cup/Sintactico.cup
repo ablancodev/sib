@@ -45,6 +45,7 @@ terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y
 terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
+terminal OPERADOR_ARIT;
 
 /* Terminales con atributo asociado */
 //terminal Integer NUMERO;
@@ -52,7 +53,7 @@ terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
 /* No terminales sin atributo */
 non terminal programa, paquete, imports, un_import, instrucciones, instruccion;
 non terminal declaracion, lista_variables, mas_lista_variables, orden, operador;
-non terminal asignacion, origen_asignacion, tipo_numeros;
+non terminal asignacion, origen_asignacion, tipo_numeros, expresion_arit, operando_arit;
 
 /* No terminales con atributo asociado */
 non terminal String mas_paquete, mas_import;
@@ -106,11 +107,19 @@ origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
 					| ACCENT_VALUE:ac {: RESULT = ac; :}
 					| CADENA:st {: RESULT = st; :}
 					| tipo_numeros:tn {: RESULT = tn; :}
+					| expresion_arit:exp {: RESULT = exp; :}
 					;
 
 tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = n; :}
 				| NUMERO_REAL:n {: RESULT = n; :}
 				| NUMERO_INT_FRAC:n {: RESULT = n; :}
+				;
+
+expresion_arit ::= operando_arit:oper1 OPERADOR_ARIT:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+				;
+
+operando_arit ::= tipo_numeros:num {: RESULT = num; :}
+				| VARIABLE:v {: RESULT = v; :}
 				;
 
 /*

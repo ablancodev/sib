@@ -23,4 +23,9 @@ BEGIN family
 	$nota = -10.35;
 	$nota = 1 3/4;
 	$nota = 2/4;
+
+	// Operadores aritmeticos
+	$nota = 2 * 3;
+	$nota = $nota + 2;
+
 END

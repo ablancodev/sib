@@ -9,9 +9,10 @@ public class Token extends java_cup.runtime.Symbol {
 	public static final String VARIABLE          = "4";
 	public static final String CARACTER          = "5";
 	public static final String OPERADOR_NOTA     = "6";
-	public static final String STEP              = "7";
-	public static final String SIMBOLO           = "8";
-	public static final String STRING            = "9";
+	public static final String OPERADOR_ARIT     = "7";
+	public static final String STEP              = "8";
+	public static final String SIMBOLO           = "9";
+	public static final String STRING            = "10";
 
 	private int tipoToken;
 	private int numColumna;

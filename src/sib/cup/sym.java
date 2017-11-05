@@ -14,6 +14,7 @@ public class sym {
   public static final int CADENA = 18;
   public static final int NUMERO_REAL = 20;
   public static final int END = 11;
+  public static final int OPERADOR_ARIT = 22;
   public static final int VARIABLE = 13;
   public static final int NUMERO_ENTERO = 19;
   public static final int TIPO = 12;
@@ -52,7 +53,8 @@ public class sym {
   "CADENA",
   "NUMERO_ENTERO",
   "NUMERO_REAL",
-  "NUMERO_INT_FRAC"
+  "NUMERO_INT_FRAC",
+  "OPERADOR_ARIT"
   };
 }
 

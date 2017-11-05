@@ -69,7 +69,9 @@ Coma = ","
 Punto_y_coma = ";"
 Igual_simple = "="
 
-Simbolo = "*"|"+"|"-"|"/"|"#"|"@"|"b"|"("|")"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
+Simbolo = "#"|"@"|"b"|"("|")"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
+
+Operador_arit = "+"|"-"|"/"|"*"|"%"
 
 Variable = "$"{Str_ident}
 
@@ -78,7 +80,11 @@ Operador_nota = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."
 Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[@]? | C[@]? | D[@]? | E[@]? | F[@]? | G[@]? | S
 
 Clef_value = G[2]? | F[3-4] | C[1-4]
-Accent_value = "." | "-" | ">" | "*" | "staccato" | "tenuto" | "accent" | "fermata"
+
+// @todo sustituir los caracteres de Accent_value quizás por palabras, ya que si no entra por aqui y no acepta por ejemplo
+// * como operador_arit
+// Accent_value = "." | "-" | ">" | "*" | "staccato" | "tenuto" | "accent" | "fermata"
+Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent"
 
 Digito = [0-9]
 Numeros = {Digito}{Digito}*
@@ -222,7 +228,13 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		this._existenTokens = true;
 		return t;
 	}
-	
+
+	{Operador_arit}	{
+		Token t = new Token( sym.OPERADOR_ARIT, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_ARIT );
+		this._existenTokens = true;
+		return t;
+	}
+
 	{Simbolo}	{
 		Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
 		this._existenTokens = true;
