@@ -9,22 +9,25 @@ package sib.cup;
 public class sym {
   /* terminals */
   public static final int IMPORT = 4;
+  public static final int MOD = 29;
+  public static final int MENOS = 26;
   public static final int PUNTO = 6;
   public static final int NUMERO_INT_FRAC = 24;
   public static final int CADENA = 21;
   public static final int RPAREN = 13;
   public static final int NUMERO_REAL = 23;
   public static final int END = 11;
-  public static final int OPERADOR_ARIT = 25;
   public static final int VARIABLE = 16;
   public static final int LPAREN = 12;
   public static final int NUMERO_ENTERO = 22;
   public static final int TIPO = 15;
   public static final int BEGIN = 10;
   public static final int COMA = 7;
+  public static final int MULT = 28;
   public static final int EOF = 0;
   public static final int ACCENT_VALUE = 20;
   public static final int STEP = 18;
+  public static final int DIV = 27;
   public static final int CLEF_VALUE = 19;
   public static final int OPERADOR_NOTA = 17;
   public static final int error = 1;
@@ -33,6 +36,7 @@ public class sym {
   public static final int TRANS = 14;
   public static final int PACKAGE = 3;
   public static final int PALABRA_RESERVADA = 2;
+  public static final int MAS = 25;
   public static final int PUNTO_Y_COMA = 8;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -60,7 +64,11 @@ public class sym {
   "NUMERO_ENTERO",
   "NUMERO_REAL",
   "NUMERO_INT_FRAC",
-  "OPERADOR_ARIT"
+  "MAS",
+  "MENOS",
+  "DIV",
+  "MULT",
+  "MOD"
   };
 }
 

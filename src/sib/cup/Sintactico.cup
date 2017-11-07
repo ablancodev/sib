@@ -48,7 +48,7 @@ terminal TRANS;
 terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
-terminal OPERADOR_ARIT;
+terminal MAS, MENOS, DIV, MULT, MOD;
 
 /* Terminales con atributo asociado */
 //terminal Integer NUMERO;
@@ -115,10 +115,10 @@ origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
 					| operacion:op {: RESULT = op; :}
 					;
 
-
 // Operacion TRANS
 operacion ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + v + cc + tn + rp; :}
 			| TRANS:tr LPAREN:lp operacion:op COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + op + cc + tn + rp; :}
+			| TRANS:tr LPAREN:lp operador:op COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + op + cc + tn + rp; :}
 			;
 
 tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = n; :}
@@ -126,7 +126,11 @@ tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = n; :}
 				| NUMERO_INT_FRAC:n {: RESULT = n; :}
 				;
 
-expresion_arit ::= operando_arit:oper1 OPERADOR_ARIT:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+				| operando_arit:oper1 MENOS:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+				| operando_arit:oper1 DIV:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+				| operando_arit:oper1 MULT:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
+				| operando_arit:oper1 MOD:op operando_arit:oper2 {: RESULT = oper1.toString() + op + oper2.toString(); :}
 				;
 
 operando_arit ::= tipo_numeros:num {: RESULT = num; :}

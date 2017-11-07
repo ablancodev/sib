@@ -70,10 +70,13 @@ Punto_y_coma = ";"
 Igual_simple = "="
 Abre_parentesis = "("
 Cierra_parentesis = ")"
+Mas = "+"
+Menos = "-"
+Div = "/"
+Mult = "*"
+Mod = "%"
 
 Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
-
-Operador_arit = "+"|"-"|"/"|"*"|"%"
 
 Variable = "$"{Str_ident}
 
@@ -241,8 +244,28 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 
-	{Operador_arit}	{
-		Token t = new Token( sym.OPERADOR_ARIT, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_ARIT );
+	{Mas}	{
+		Token t = new Token( sym.MAS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Menos}	{
+		Token t = new Token( sym.MENOS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Div}	{
+		Token t = new Token( sym.DIV, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Mult}	{
+		Token t = new Token( sym.MULT, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	{Mod}	{
+		Token t = new Token( sym.MOD, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
 		return t;
 	}
