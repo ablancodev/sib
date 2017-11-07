@@ -68,8 +68,10 @@ Punto = "."
 Coma = ","
 Punto_y_coma = ";"
 Igual_simple = "="
+Abre_parentesis = "("
+Cierra_parentesis = ")"
 
-Simbolo = "#"|"@"|"b"|"("|")"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
+Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
 
 Operador_arit = "+"|"-"|"/"|"*"|"%"
 
@@ -81,10 +83,7 @@ Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[
 
 Clef_value = G[2]? | F[3-4] | C[1-4]
 
-// @todo sustituir los caracteres de Accent_value quizás por palabras, ya que si no entra por aqui y no acepta por ejemplo
-// * como operador_arit
-// Accent_value = "." | "-" | ">" | "*" | "staccato" | "tenuto" | "accent" | "fermata"
-Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent"
+Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent" | "no"
 
 Digito = [0-9]
 Numeros = {Digito}{Digito}*
@@ -94,11 +93,12 @@ Str_ident = {Letra}{Letra}*
 SaltoDeLinea = \n|\r|\r\n
 Espacio = [ \t\f]
 
+Trans = "trans"
+
 // Tipo numeros
 Numero_entero = [-]?{Numeros}
 Numero_real = {Numero_entero}"."{Numeros}
-Numero_int_frac = {Numero_entero}
-				| [-]?{Fraccion}
+Numero_int_frac = [-]?{Fraccion}
 				| {Numero_entero}{Espacio}+{Fraccion}
 Fraccion = {Numero_entero}"/"{Numero_entero}
 
@@ -200,7 +200,19 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 	{Igual_simple}	{
-		Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.IGUAL_SIMPLE, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Abre_parentesis}	{
+		Token t = new Token( sym.LPAREN, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Cierra_parentesis}	{
+		Token t = new Token( sym.RPAREN, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 		this._existenTokens = true;
 		return t;
 	}
@@ -231,6 +243,12 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 
 	{Operador_arit}	{
 		Token t = new Token( sym.OPERADOR_ARIT, yycolumn, yyline+1, 0, yytext(), Token.OPERADOR_ARIT );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{Trans} {
+		Token t = new Token( sym.TRANS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
 		return t;
 	}

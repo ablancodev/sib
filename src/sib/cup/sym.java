@@ -10,24 +10,27 @@ public class sym {
   /* terminals */
   public static final int IMPORT = 4;
   public static final int PUNTO = 6;
-  public static final int NUMERO_INT_FRAC = 21;
-  public static final int CADENA = 18;
-  public static final int NUMERO_REAL = 20;
+  public static final int NUMERO_INT_FRAC = 24;
+  public static final int CADENA = 21;
+  public static final int RPAREN = 13;
+  public static final int NUMERO_REAL = 23;
   public static final int END = 11;
-  public static final int OPERADOR_ARIT = 22;
-  public static final int VARIABLE = 13;
-  public static final int NUMERO_ENTERO = 19;
-  public static final int TIPO = 12;
+  public static final int OPERADOR_ARIT = 25;
+  public static final int VARIABLE = 16;
+  public static final int LPAREN = 12;
+  public static final int NUMERO_ENTERO = 22;
+  public static final int TIPO = 15;
   public static final int BEGIN = 10;
   public static final int COMA = 7;
   public static final int EOF = 0;
-  public static final int ACCENT_VALUE = 17;
-  public static final int STEP = 15;
-  public static final int OPERADOR_NOTA = 14;
-  public static final int CLEF_VALUE = 16;
+  public static final int ACCENT_VALUE = 20;
+  public static final int STEP = 18;
+  public static final int CLEF_VALUE = 19;
+  public static final int OPERADOR_NOTA = 17;
   public static final int error = 1;
   public static final int IDENTIFICADOR = 5;
   public static final int IGUAL_SIMPLE = 9;
+  public static final int TRANS = 14;
   public static final int PACKAGE = 3;
   public static final int PALABRA_RESERVADA = 2;
   public static final int PUNTO_Y_COMA = 8;
@@ -44,6 +47,9 @@ public class sym {
   "IGUAL_SIMPLE",
   "BEGIN",
   "END",
+  "LPAREN",
+  "RPAREN",
+  "TRANS",
   "TIPO",
   "VARIABLE",
   "OPERADOR_NOTA",

@@ -42,6 +42,9 @@ parser code {:
 
 /* Terminales sin atributo */
 terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
+terminal LPAREN, RPAREN;
+terminal TRANS;
+
 terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
@@ -54,6 +57,7 @@ terminal OPERADOR_ARIT;
 non terminal programa, paquete, imports, un_import, instrucciones, instruccion;
 non terminal declaracion, lista_variables, mas_lista_variables, orden, operador;
 non terminal asignacion, origen_asignacion, tipo_numeros, expresion_arit, operando_arit;
+non terminal operacion;
 
 /* No terminales con atributo asociado */
 non terminal String mas_paquete, mas_import;
@@ -92,7 +96,7 @@ mas_lista_variables ::= COMA VARIABLE:v mas_lista_variables:mlv {: RESULT = ", "
 						;
 
 orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->operador:" + op ); :}
-		| asignacion PUNTO_Y_COMA
+		| asignacion:as PUNTO_Y_COMA {:  viewsController.printOutput( "\nAsignación:" + as ); :}
 		;
 
 operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
@@ -100,7 +104,7 @@ operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
 			;
 
 /* Asignación */
-asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: viewsController.printOutput( "\nAsignación:" + v + "<--" + oa ); :};
+asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: RESULT = v + "<--" + oa; :};
 origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
 					| STEP:st {: RESULT = st; :}
 					| CLEF_VALUE:cl {: RESULT = cl; :}
@@ -108,7 +112,14 @@ origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
 					| CADENA:st {: RESULT = st; :}
 					| tipo_numeros:tn {: RESULT = tn; :}
 					| expresion_arit:exp {: RESULT = exp; :}
+					| operacion:op {: RESULT = op; :}
 					;
+
+
+// Operacion TRANS
+operacion ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + v + cc + tn + rp; :}
+			| TRANS:tr LPAREN:lp operacion:op COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + op + cc + tn + rp; :}
+			;
 
 tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = n; :}
 				| NUMERO_REAL:n {: RESULT = n; :}
