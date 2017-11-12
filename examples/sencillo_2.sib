@@ -27,5 +27,16 @@ BEGIN family
 	$nota = 2 * 3;
 	$nota = $nota + 2;
 
-	$nota = trans( 2 , 3 );
+	$nota = trans( $nota , 3 );
+
+	IF ( $nota > 2 )
+		$nota = 2;
+		$nota_#;
+	ENDIF;
+
+	WHILE ( $nota > 0 )
+		$nota = $nota + 1;
+		$num_b;
+	ENDWHILE;
+
 END

@@ -13,6 +13,7 @@ public class Token extends java_cup.runtime.Symbol {
 	public static final String STEP              = "8";
 	public static final String SIMBOLO           = "9";
 	public static final String STRING            = "10";
+	public static final String TEXTO_LIBRE       = "11";
 
 	private int tipoToken;
 	private int numColumna;

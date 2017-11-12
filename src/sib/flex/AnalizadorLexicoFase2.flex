@@ -54,15 +54,23 @@ import sib.cup.*;
 %yylexthrow Exception
 
 /* Inicio de Expresiones regulares */
-
-PalabraReservada = IF | ENDIF | ELSE | WHILE | ENDWHILE
+ComentarioSimple = "//"[^\n|\r|\r\n]*
+ComentarioCompuesto = "/*" ~"*/"
+Comentarios = {ComentarioSimple} | {ComentarioCompuesto}
 
 Package = PACKAGE
 Import = IMPORT
 Begin = BEGIN
 End = END
+If = IF
+Endif = ENDIF
+Else = ELSE
+While = WHILE
+Endwhile = ENDWHILE
 
 Tipo = "int" | "float" | frac | nfrac | string | step | clef | object | array | note | partiture
+
+Trans = "trans"
 
 Punto = "."
 Coma = ","
@@ -76,7 +84,9 @@ Div = "/"
 Mult = "*"
 Mod = "%"
 
-Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"<"|">"|"!"|"\""|"'"
+Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"\""|"'"
+
+Condicion_compara = "<"|">"|"=="|"!="|">="|"<="
 
 Variable = "$"{Str_ident}
 
@@ -95,8 +105,6 @@ Str_ident = {Letra}{Letra}*
 
 SaltoDeLinea = \n|\r|\r\n
 Espacio = [ \t\f]
-
-Trans = "trans"
 
 // Tipo numeros
 Numero_entero = [-]?{Numeros}
@@ -154,18 +162,19 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	
  }
 
+
+	 
+ // @todo voy por aqui, los comentarios no funcionan aún, no sé como pasarlos a CUP. Quizás googleando vea algún ejemplo con JFLEX y CUP
+
+
 <YYINITIAL> {
 	[\"]	{
 	 		string.setLength(0);
 			yybegin( CADENA );
 	}
 
-	{PalabraReservada}	{
-		Token t = new Token( sym.PALABRA_RESERVADA, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
-		this._existenTokens = true;
-		return t;
-	}
-	
+	{Comentarios}	{ /* ignore */ }
+
 	{Package}	{
 		Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
@@ -186,7 +195,38 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		this._existenTokens = true;
 		return t;
 	}
-	
+	{If}	{
+		Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{Else}	{
+		Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{Endif}	{
+		Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{While}	{
+		Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+	{Endwhile}	{
+		Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{Condicion_compara}	{
+		Token t = new Token( sym.CONDICION_COMPARA, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+
 	{Punto}	{
 		Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 		this._existenTokens = true;

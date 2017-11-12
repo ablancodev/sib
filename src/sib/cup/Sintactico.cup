@@ -49,6 +49,7 @@ terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
 terminal MAS, MENOS, DIV, MULT, MOD;
+terminal IF, ENDIF, ELSE, CONDICION_COMPARA, WHILE, ENDWHILE;
 
 /* Terminales con atributo asociado */
 //terminal Integer NUMERO;
@@ -58,6 +59,7 @@ non terminal programa, paquete, imports, un_import, instrucciones, instruccion;
 non terminal declaracion, lista_variables, mas_lista_variables, orden, operador;
 non terminal asignacion, origen_asignacion, tipo_numeros, expresion_arit, operando_arit;
 non terminal operacion;
+non terminal condicional_if, comparacion, sig_condicion_if, bucle_while;
 
 /* No terminales con atributo asociado */
 non terminal String mas_paquete, mas_import;
@@ -68,6 +70,7 @@ non terminal String mas_paquete, mas_import;
 //precedence left UMENOS;
 
 /* Gramática */
+
 programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones END {: viewsController.printOutput( "\nEl programa se llama:" + id ); :};
 
 paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
@@ -83,20 +86,22 @@ mas_import ::= PUNTO:p IDENTIFICADOR:id mas_import:mp {: RESULT = new String( ""
 				| {: RESULT = ""; :}
 				;
 
-instrucciones ::= instrucciones instruccion
+instrucciones ::= instrucciones instruccion:ins {: RESULT = ins; :}
 					|
 					;
-instruccion ::= declaracion
-				| orden
+instruccion ::= declaracion:dec {: RESULT = dec; :}
+				| orden:ord {: RESULT = ord; :}
 				;
-declaracion ::= TIPO:t lista_variables:lv {: viewsController.printOutput( "\nDefinido:" + t + " " + lv ); :};
+declaracion ::= TIPO:t lista_variables:lv {: viewsController.printOutput( "\nDefinido:" + t + " " + lv ); RESULT = t.toString() + " " + lv; :};
 lista_variables ::= VARIABLE:v mas_lista_variables:mlv {: RESULT = v + " " + mlv;  :};
 mas_lista_variables ::= COMA VARIABLE:v mas_lista_variables:mlv {: RESULT = ", " + v + mlv;  :}
 						| PUNTO_Y_COMA {: RESULT = ";"; :}
 						;
 
-orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->operador:" + op ); :}
-		| asignacion:as PUNTO_Y_COMA {:  viewsController.printOutput( "\nAsignación:" + as ); :}
+orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->operador:" + op ); RESULT = op.toString(); :}
+		| asignacion:as PUNTO_Y_COMA {:  viewsController.printOutput( "\nAsignación:" + as ); RESULT = as.toString(); :}
+		| condicional_if:_if PUNTO_Y_COMA {:  viewsController.printOutput( "\nCondicional IF:" + _if ); RESULT = _if.toString(); :}
+		| bucle_while:wh PUNTO_Y_COMA {:  viewsController.printOutput( "\nBucle WHILE:" + wh ); RESULT = wh.toString(); :}
 		;
 
 operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
@@ -115,7 +120,7 @@ origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
 					| operacion:op {: RESULT = op; :}
 					;
 
-// Operacion TRANS
+/* Operacion TRANS */
 operacion ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + v + cc + tn + rp; :}
 			| TRANS:tr LPAREN:lp operacion:op COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + op + cc + tn + rp; :}
 			| TRANS:tr LPAREN:lp operador:op COMA:cc tipo_numeros:tn RPAREN:rp  {: RESULT = tr.toString() + lp + op + cc + tn + rp; :}
@@ -136,6 +141,22 @@ expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = op
 operando_arit ::= tipo_numeros:num {: RESULT = num; :}
 				| VARIABLE:v {: RESULT = v; :}
 				;
+
+/* Condicional IF */
+condicional_if ::= IF:_if LPAREN:lp comparacion:comp RPAREN:rp instrucciones:ins sig_condicion_if:sigif {: RESULT = _if.toString() + lp + comp + rp + ins + sigif; :}
+				;
+
+sig_condicion_if ::= ENDIF:_endif {: RESULT = _endif; :}
+					| ELSE:_else instrucciones:ins ENDIF:_endif {: RESULT = _else.toString() + ins + _endif; :}
+				;
+
+/* Bucle WHILE */
+bucle_while ::= WHILE:wh LPAREN:lp comparacion:com RPAREN:rp instrucciones:ins ENDWHILE:endw {: RESULT = wh.toString() + lp + com + rp + ins + endw; :}
+				;
+
+comparacion ::= origen_asignacion:oper1 CONDICION_COMPARA:cc origen_asignacion:oper2 {: RESULT = oper1.toString() + cc + oper2; :}
+				;
+
 
 /*
 programa ::= programa PALABRA_RESERVADA:r {: System.out.println( "--> RESERVADA:" + r.toString() ); :}
