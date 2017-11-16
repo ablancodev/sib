@@ -9,6 +9,7 @@ import java_cup.runtime.*;
 import java.io.*;
 import sib.flex.*;
 import sib.controllers.*;
+import sib.output.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -238,9 +239,14 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 	public ViewsControllerFase1 viewsController;
+	public SibMusicXMLOutput output;
 
 	public void setViewController( ViewsControllerFase1 vc ) {
 		this.viewsController = vc;
+	}
+
+	public void setOutputController( SibMusicXMLOutput output ) {
+		this.output = output;
 	}
 
 	/*
@@ -295,7 +301,7 @@ class CUP$parser$actions {
 		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		Object id = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-		 viewsController.printOutput( "\nEl programa se llama:" + id ); 
+		 viewsController.printOutput( "\nEl programa se llama:" + id ); output.appendString( "Chimpon" );
               CUP$parser$result = parser.getSymbolFactory().newSymbol("programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

@@ -4,13 +4,19 @@ import java_cup.runtime.*;
 import java.io.*;
 import sib.flex.*;
 import sib.controllers.*;
+import sib.output.*;
 
 parser code {:
 
 	public ViewsControllerFase1 viewsController;
+	public SibMusicXMLOutput output;
 
 	public void setViewController( ViewsControllerFase1 vc ) {
 		this.viewsController = vc;
+	}
+
+	public void setOutputController( SibMusicXMLOutput output ) {
+		this.output = output;
 	}
 
 	/*
@@ -71,7 +77,7 @@ non terminal String mas_paquete, mas_import;
 
 /* Gramática */
 
-programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones END {: viewsController.printOutput( "\nEl programa se llama:" + id ); :};
+programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones END {: viewsController.printOutput( "\nEl programa se llama:" + id ); output.appendString( "Chimpon" );:};
 
 paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
 mas_paquete ::= PUNTO:p IDENTIFICADOR:id mas_paquete:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
