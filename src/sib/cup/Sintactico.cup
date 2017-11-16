@@ -50,6 +50,7 @@ parser code {:
 terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
 terminal LPAREN, RPAREN;
 terminal TRANS;
+terminal PLAY;
 
 terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
@@ -65,7 +66,7 @@ non terminal programa, paquete, imports, un_import, instrucciones, instruccion;
 non terminal declaracion, lista_variables, mas_lista_variables, orden, operador;
 non terminal asignacion, origen_asignacion, tipo_numeros, expresion_arit, operando_arit;
 non terminal operacion;
-non terminal condicional_if, comparacion, sig_condicion_if, bucle_while;
+non terminal condicional_if, comparacion, sig_condicion_if, bucle_while, funcion;
 
 /* No terminales con atributo asociado */
 non terminal String mas_paquete, mas_import;
@@ -108,8 +109,10 @@ orden ::= operador:op PUNTO_Y_COMA {: viewsController.printOutput( "\nOrden->ope
 		| asignacion:as PUNTO_Y_COMA {:  viewsController.printOutput( "\nAsignación:" + as ); RESULT = as.toString(); :}
 		| condicional_if:_if PUNTO_Y_COMA {:  viewsController.printOutput( "\nCondicional IF:" + _if ); RESULT = _if.toString(); :}
 		| bucle_while:wh PUNTO_Y_COMA {:  viewsController.printOutput( "\nBucle WHILE:" + wh ); RESULT = wh.toString(); :}
+		| funcion:fn PUNTO_Y_COMA {:  viewsController.printOutput( "\nFunción:" + fn ); RESULT = fn.toString(); :}
 		;
 
+/* Operador */
 operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
 			| operador:op OPERADOR_NOTA:on {: RESULT = op + "<--" + on;  :}
 			;
@@ -163,6 +166,10 @@ bucle_while ::= WHILE:wh LPAREN:lp comparacion:com RPAREN:rp instrucciones:ins E
 comparacion ::= origen_asignacion:oper1 CONDICION_COMPARA:cc origen_asignacion:oper2 {: RESULT = oper1.toString() + cc + oper2; :}
 				;
 
+/* Funcion */
+funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {: RESULT = pl.toString() + lp + v + rp; output.printNote( "A", "5" ); :}
+			| PLAY:pl LPAREN:lp STEP:st COMA:cc tipo_numeros:tn RPAREN:rp {: RESULT = pl.toString() + lp + st + cc + tn + rp; output.printNote( st.toString(), tn.toString() ); :}
+			;
 
 /*
 programa ::= programa PALABRA_RESERVADA:r {: System.out.println( "--> RESERVADA:" + r.toString() ); :}

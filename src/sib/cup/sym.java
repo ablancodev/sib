@@ -8,42 +8,43 @@ package sib.cup;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int MULT = 28;
-  public static final int TIPO = 15;
+  public static final int MULT = 29;
+  public static final int TIPO = 16;
   public static final int PUNTO_Y_COMA = 8;
-  public static final int NUMERO_INT_FRAC = 24;
+  public static final int NUMERO_INT_FRAC = 25;
   public static final int LPAREN = 12;
   public static final int RPAREN = 13;
   public static final int IDENTIFICADOR = 5;
-  public static final int DIV = 27;
+  public static final int DIV = 28;
   public static final int BEGIN = 10;
-  public static final int IF = 30;
-  public static final int ENDWHILE = 35;
+  public static final int IF = 31;
+  public static final int ENDWHILE = 36;
   public static final int EOF = 0;
   public static final int IGUAL_SIMPLE = 9;
   public static final int error = 1;
   public static final int COMA = 7;
-  public static final int CADENA = 21;
-  public static final int NUMERO_REAL = 23;
-  public static final int MENOS = 26;
-  public static final int MOD = 29;
+  public static final int CADENA = 22;
+  public static final int NUMERO_REAL = 24;
+  public static final int MENOS = 27;
+  public static final int MOD = 30;
   public static final int PALABRA_RESERVADA = 2;
   public static final int IMPORT = 4;
-  public static final int ENDIF = 31;
-  public static final int ELSE = 32;
+  public static final int ENDIF = 32;
+  public static final int ELSE = 33;
   public static final int PUNTO = 6;
-  public static final int VARIABLE = 16;
+  public static final int VARIABLE = 17;
   public static final int PACKAGE = 3;
-  public static final int WHILE = 34;
-  public static final int CLEF_VALUE = 19;
-  public static final int ACCENT_VALUE = 20;
+  public static final int WHILE = 35;
+  public static final int CLEF_VALUE = 20;
+  public static final int ACCENT_VALUE = 21;
   public static final int TRANS = 14;
   public static final int END = 11;
-  public static final int OPERADOR_NOTA = 17;
-  public static final int NUMERO_ENTERO = 22;
-  public static final int STEP = 18;
-  public static final int MAS = 25;
-  public static final int CONDICION_COMPARA = 33;
+  public static final int PLAY = 15;
+  public static final int OPERADOR_NOTA = 18;
+  public static final int NUMERO_ENTERO = 23;
+  public static final int STEP = 19;
+  public static final int MAS = 26;
+  public static final int CONDICION_COMPARA = 34;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -60,6 +61,7 @@ public class sym {
   "LPAREN",
   "RPAREN",
   "TRANS",
+  "PLAY",
   "TIPO",
   "VARIABLE",
   "OPERADOR_NOTA",

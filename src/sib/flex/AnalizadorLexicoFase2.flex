@@ -72,6 +72,9 @@ Tipo = "int" | "float" | frac | nfrac | string | step | clef | object | array | 
 
 Trans = "trans"
 
+/* Funciones */
+Play = "play"
+
 Punto = "."
 Coma = ","
 Punto_y_coma = ";"
@@ -312,6 +315,12 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 
 	{Trans} {
 		Token t = new Token( sym.TRANS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{Play} {
+		Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
 		return t;
 	}

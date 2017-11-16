@@ -215,7 +215,7 @@ public class SibMusicXMLOutput {
 			transformer.setOutputProperty( OutputKeys.DOCTYPE_PUBLIC, "-//Recordare//DTD MusicXML 3.0 Partwise//EN" );
 			
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("cars.xml"));
+			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
 			transformer.transform(source, result);
 
 			// Output to console for testing
