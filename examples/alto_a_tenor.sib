@@ -1,0 +1,23 @@
+PACKAGE sib.ejemplos;
+
+// Transporta una partitura dos tonos y medio más agudos.
+BEGIN altoATenor
+
+	// Variables
+	int $num;
+	note $nota;
+
+	$partiture = readPartiture();
+
+	playPartiture();
+
+	// La partitura original consta de 100 notas.
+	$num = 0;
+	WHILE ( $num <= 100 )
+		$nota = read();
+		$nota = trans( $nota, 2 1/2 );
+		play( $nota );
+		$num = $num + 1;
+	ENDWHILE;
+
+END

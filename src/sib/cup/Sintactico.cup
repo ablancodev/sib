@@ -52,7 +52,7 @@ terminal LPAREN, RPAREN;
 terminal TRANS;
 terminal PLAY;
 
-terminal TIPO, VARIABLE, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
+terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
 terminal MAS, MENOS, DIV, MULT, MOD;
@@ -118,8 +118,12 @@ operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = v + "<--" + on;  :}
 			;
 
 /* Asignación */
-asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: RESULT = v + "<--" + oa; :};
+asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: RESULT = v + "<--" + oa; :}
+				| PROPIEDAD:pr IGUAL_SIMPLE origen_asignacion:oa {: RESULT = pr + "<--" + oa; :}
+				;
+
 origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
+					| PROPIEDAD:pr {: RESULT = pr; :}
 					| STEP:st {: RESULT = st; :}
 					| CLEF_VALUE:cl {: RESULT = cl; :}
 					| ACCENT_VALUE:ac {: RESULT = ac; :}

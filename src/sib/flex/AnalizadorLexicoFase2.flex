@@ -92,6 +92,7 @@ Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"\""|"'"
 Condicion_compara = "<"|">"|"=="|"!="|">="|"<="
 
 Variable = "$"{Str_ident}
+Propiedad = {Variable}"."{Str_ident}
 
 Operador_nota = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."
 
@@ -99,7 +100,7 @@ Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[
 
 Clef_value = G[2]? | F[3-4] | C[1-4]
 
-Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent" | "no"
+Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent" | \"\"
 
 Digito = [0-9]
 Numeros = {Digito}{Digito}*
@@ -333,6 +334,12 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	
 	{Variable}	{
 		Token t = new Token( sym.VARIABLE, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+		this._existenTokens = true;
+		return t;
+	}
+	
+	{Propiedad}	{
+		Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 		this._existenTokens = true;
 		return t;
 	}
