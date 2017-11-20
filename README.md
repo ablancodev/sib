@@ -3,11 +3,9 @@ Sib - Lenguaje de programación
 
 ## Ficheros destacables
 
-sib_ejecutable.jar : Último fichero ejecutable
-
-sib/flex/AnalizadorLexicoFase2.flex : Fichero flex analizador léxico
-
-sib/cup/Sintactico.cup : Fichero cup analizador sintáctico
+- sib_ejecutable.jar : Último fichero ejecutable
+- sib/flex/AnalizadorLexicoFase2.flex : Fichero flex analizador léxico
+- sib/cup/Sintactico.cup : Fichero cup analizador sintáctico
 
 ## Notas sobre la ejecución del .jar
 Actualmente el traductor lee y valida el código que se escriba en el editor izquierdo, mostrando el log en el editor derecho de salida.
