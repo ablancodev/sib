@@ -18,7 +18,7 @@ def note {
 	int o;
 	string a;
 
-	// Alias not yet implemented
+	// Alias - No implementado
 	// ---
 	// alias v value;
 	// alias d duration;

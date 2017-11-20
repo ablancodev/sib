@@ -26,4 +26,26 @@
     <ownedEnd xmi:id="_BzhhQbJREeebfO7MkmMkjA" type="_QdU4sLJQEeebfO7MkmMkjA" association="_BzhhQLJREeebfO7MkmMkjA"/>
     <ownedEnd xmi:id="_BzhhQrJREeebfO7MkmMkjA" type="_njGhcLJQEeebfO7MkmMkjA" association="_BzhhQLJREeebfO7MkmMkjA"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Node" xmi:id="_hUYMAM1EEee4IKYmghrwqg" name="Fase Análisis">
+    <ownedAttribute xmi:id="_UhHC8M1GEee4IKYmghrwqg" name="Análisis léxico" aggregation="composite"/>
+    <ownedAttribute xmi:id="_c9I0EM1GEee4IKYmghrwqg" name="Análisis Sintáctico" aggregation="composite"/>
+    <ownedAttribute xmi:id="_h2zRsM1GEee4IKYmghrwqg" name="Análisis semántico" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_GhtTYM1HEee4IKYmghrwqg" name="Salida" aggregation="composite"/>
+    <ownedConnector xmi:id="_pFyn8M1GEee4IKYmghrwqg" name="Análisis léxico_Análisis Sintáctico_connector">
+      <end xmi:id="_pFyn8c1GEee4IKYmghrwqg" role="_UhHC8M1GEee4IKYmghrwqg"/>
+      <end xmi:id="_pFyn8s1GEee4IKYmghrwqg" role="_c9I0EM1GEee4IKYmghrwqg"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="_pql-IM1GEee4IKYmghrwqg" name="Análisis Sintáctico_Análisis semántico_connector">
+      <end xmi:id="_pql-Ic1GEee4IKYmghrwqg" role="_c9I0EM1GEee4IKYmghrwqg"/>
+      <end xmi:id="_pql-Is1GEee4IKYmghrwqg" role="_h2zRsM1GEee4IKYmghrwqg"/>
+    </ownedConnector>
+    <ownedConnector xmi:id="_JR_psM1HEee4IKYmghrwqg" name="port1_port1_connector">
+      <end xmi:id="_JR_psc1HEee4IKYmghrwqg" role="_GhtTYM1HEee4IKYmghrwqg"/>
+      <end xmi:id="_JR_pss1HEee4IKYmghrwqg" role="_Hxk_0M1HEee4IKYmghrwqg"/>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Node" xmi:id="_yZox4M1GEee4IKYmghrwqg" name="Fase Síntesis">
+    <ownedAttribute xmi:id="_7CVGAM1GEee4IKYmghrwqg" name="Generación código MusicXML" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_Hxk_0M1HEee4IKYmghrwqg" name="Entrada" aggregation="composite"/>
+  </packagedElement>
 </uml:Model>

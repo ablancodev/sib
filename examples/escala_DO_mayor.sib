@@ -29,7 +29,7 @@ BEGIN escalaDOMayor
 
 	WHILE ( $num <= 7 )
 		play( $nota );
-		trans( $nota, 1 );
+		$nota = trans( $nota, 1 );
 		$num = $num + 1;
 	ENDWHILE;
 

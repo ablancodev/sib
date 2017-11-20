@@ -4,12 +4,14 @@ import java_cup.runtime.*;
 import java.io.*;
 import sib.flex.*;
 import sib.controllers.*;
-import sib.output.*;
+import sib.inout.*;
+import sib.models.Note;
 
 parser code {:
 
 	public ViewsControllerFase1 viewsController;
 	public SibMusicXMLOutput output;
+	public SibMusicXMLInput input;
 
 	public void setViewController( ViewsControllerFase1 vc ) {
 		this.viewsController = vc;
@@ -17,6 +19,10 @@ parser code {:
 
 	public void setOutputController( SibMusicXMLOutput output ) {
 		this.output = output;
+	}
+
+	public void setInputController( SibMusicXMLInput input ) {
+		this.input = input;
 	}
 
 	/*
@@ -50,7 +56,7 @@ parser code {:
 terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
 terminal LPAREN, RPAREN;
 terminal TRANS;
-terminal PLAY;
+terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
 terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
@@ -78,7 +84,7 @@ non terminal String mas_paquete, mas_import;
 
 /* Gramática */
 
-programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones END {: viewsController.printOutput( "\nEl programa se llama:" + id ); output.appendString( "Chimpon" );:};
+programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones END {: viewsController.printOutput( "\nEl programa se llama:" + id ); :};
 
 paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
 mas_paquete ::= PUNTO:p IDENTIFICADOR:id mas_paquete:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
@@ -171,8 +177,11 @@ comparacion ::= origen_asignacion:oper1 CONDICION_COMPARA:cc origen_asignacion:o
 				;
 
 /* Funcion */
-funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {: RESULT = pl.toString() + lp + v + rp; output.printNote( "A", "5" ); :}
-			| PLAY:pl LPAREN:lp STEP:st COMA:cc tipo_numeros:tn RPAREN:rp {: RESULT = pl.toString() + lp + st + cc + tn + rp; output.printNote( st.toString(), tn.toString() ); :}
+/* @todo playNote y readNote deben aplicar sobre variables Note. Ver cómo hacerlo, ahora simplemente hay valores ejemplo */
+funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {: RESULT = pl.toString() + lp + v + rp; output.playNote( new Note() ); :}
+			| PLAYPARTITURE:pl LPAREN:lp RPAREN:rp {: RESULT = pl.toString() + lp + rp; output.playPartiture(); :}
+			| VARIABLE:v IGUAL_SIMPLE READ:pl LPAREN:lp RPAREN:rp {: RESULT = pl.toString() + lp + v + rp; Note notaEjemplo = input.readNote(); :}
+			| READPARTITURE:pl LPAREN:lp RPAREN:rp {: RESULT = pl.toString() + lp + rp; input.readPartiture(); :}
 			;
 
 /*

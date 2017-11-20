@@ -7,7 +7,8 @@ BEGIN altoATenor
 	int $num;
 	note $nota;
 
-	$partiture = readPartiture();
+	// Escribe sobre la variable global $partiture
+	readPartiture();
 
 	playPartiture();
 

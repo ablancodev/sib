@@ -74,6 +74,9 @@ Trans = "trans"
 
 /* Funciones */
 Play = "play"
+PlayPartiture = "playPartiture"
+Read = "read"
+ReadPartiture = "readPartiture"
 
 Punto = "."
 Coma = ","
@@ -322,6 +325,24 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 
 	{Play} {
 		Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{PlayPartiture} {
+		Token t = new Token( sym.PLAYPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{Read} {
+		Token t = new Token( sym.READ, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		this._existenTokens = true;
+		return t;
+	}
+
+	{ReadPartiture} {
+		Token t = new Token( sym.READPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
 		return t;
 	}

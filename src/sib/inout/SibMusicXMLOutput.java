@@ -1,4 +1,4 @@
-package sib.output;
+package sib.inout;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,10 +19,13 @@ import org.w3c.dom.DocumentType;
 import org.w3c.dom.NodeList;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
+
+import sib.models.Note;
+
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
-public class SibMusicXMLOutput {
+public class SibMusicXMLOutput implements SibOutputInterface {
 
 	public Document doc;
 
@@ -44,7 +47,7 @@ public class SibMusicXMLOutput {
 			scorepart.setAttribute( "id", "P1" );
 			partList.appendChild( scorepart );
 			Element partName = doc.createElement("part-name");
-			partName.appendChild( doc.createTextNode( "Hello world" ) );
+			partName.appendChild( doc.createTextNode( "Generada por Sib" ) );
 			scorepart.appendChild( partName );
 
 			// Part
@@ -61,14 +64,22 @@ public class SibMusicXMLOutput {
 			measure.appendChild( attr );
 
 			this.addMeasureAttributes( attr );
-			
+
+			// Datos de ejemplo - @todo eliminar la carga de datos de ejemplo
+			Note nota1 = new Note();
+			Note nota2 = new Note();
+
 			// Testing
-			printNote( "C", "4" );
-			printNote( "C", "5" );
+			playNote( nota1 );
+			playNote( nota2 );
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void playPartiture() {
+		// @todo implementarlo. Posiblemente sea parecido a addMeasureAttributes
 	}
 
 	public void addMeasureAttributes( Element attr ) {
@@ -110,7 +121,7 @@ public class SibMusicXMLOutput {
 
 	}
 
-	public void printNote( String step, String octave ) {
+	public void playNote( Note note ) {
 		NodeList mea = doc.getElementsByTagName("measure");
 
 		// New note
@@ -118,97 +129,57 @@ public class SibMusicXMLOutput {
 		Element pi = doc.createElement( "pitch" );
 		n.appendChild( pi );
 		Element st = doc.createElement( "step" );
-		st.appendChild( doc.createTextNode( step ) );
+		st.appendChild( doc.createTextNode( note.value ) );
 		pi.appendChild( st );
 		Element oc = doc.createElement( "octave" );
-		oc.appendChild( doc.createTextNode( octave ) );
+		oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
 		pi.appendChild( oc );
 
 		Element dur = doc.createElement( "duration" );
-		dur.appendChild( doc.createTextNode( "4" ) );
+		dur.appendChild( doc.createTextNode( String.valueOf( note.duration ) ) );
 		n.appendChild( dur );
 		Element ty = doc.createElement( "type" );
-		ty.appendChild( doc.createTextNode( "whole" ) );
+		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
 		n.appendChild( ty );
 
 		mea.item(0).appendChild( n );
 	}
 
-	public void appendString(String str) {
-		//this.cadena += str;
-	}
-	
-
-	/*
-	 * public void read() { try { DocumentBuilderFactory dbFactory =
-	 * DocumentBuilderFactory.newInstance(); DocumentBuilder dBuilder =
-	 * dbFactory.newDocumentBuilder(); Document doc = dBuilder.parse(
-	 * this.cadena ); doc.getDocumentElement().normalize();
-	 * System.out.println("Root element :" +
-	 * doc.getDocumentElement().getNodeName()); NodeList nList =
-	 * doc.getElementsByTagName("student");
-	 * System.out.println("----------------------------");
-	 * 
-	 * for (int temp = 0; temp < nList.getLength(); temp++) { Node nNode =
-	 * nList.item(temp); System.out.println("\nCurrent Element :" +
-	 * nNode.getNodeName());
-	 * 
-	 * if (nNode.getNodeType() == Node.ELEMENT_NODE) { Element eElement =
-	 * (Element) nNode; System.out.println("Student roll no : " +
-	 * eElement.getAttribute("rollno")); System.out.println( "First Name : " +
-	 * eElement.getElementsByTagName("firstname").item(0).getTextContent());
-	 * System.out.println( "Last Name : " +
-	 * eElement.getElementsByTagName("lastname").item(0).getTextContent());
-	 * System.out.println( "Nick Name : " +
-	 * eElement.getElementsByTagName("nickname").item(0).getTextContent());
-	 * System.out.println("Marks : " +
-	 * eElement.getElementsByTagName("marks").item(0).getTextContent()); } } }
-	 * catch (Exception e) { e.printStackTrace(); } }
+	/**
+	 * Devuelve el type de una nota (string) a partir de su duración.
+	 *
+	 * @param duration int
+	 * @return String
 	 */
+	private String noteDurationToType( int duration ) {
+		String resultado = "quarter"; // 4
+		switch ( duration ) {
+			case 1:
+				resultado = "whole";
+				break;
+			case 2:
+				resultado = "half";
+				break;
+			case 4:
+				resultado = "quarter";
+				break;
+			case 8:
+				resultado = "eighth";
+				break;
+			case 16:
+				resultado = "16th";
+				break;
+		}
+		// @todo duration to type - añadir el resto de correspondencias
+		return resultado;
+	}
 
+	/**
+	 * Genera el fichero MusicXML
+	 */
 	public void print() {
 
 		try {
-/*
-			FileWriter fw = new FileWriter("out.txt");
-			fw.write( this.cadena );
-			fw.close();
-*/
-
-			/*
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
-
-			// root element
-			Element rootElement = doc.createElement("cars");
-			doc.appendChild(rootElement);
-
-			// supercars element
-			Element supercar = doc.createElement("supercars");
-			rootElement.appendChild(supercar);
-
-			// setting attribute to element
-			Attr attr = doc.createAttribute("company");
-			attr.setValue("Ferrari");
-			supercar.setAttributeNode(attr);
-
-			// carname element
-			Element carname = doc.createElement("carname");
-			Attr attrType = doc.createAttribute("type");
-			attrType.setValue("formula one");
-			carname.setAttributeNode(attrType);
-			carname.appendChild(doc.createTextNode("Ferrari 101"));
-			supercar.appendChild(carname);
-
-			Element carname1 = doc.createElement("carname");
-			Attr attrType1 = doc.createAttribute("type");
-			attrType1.setValue("sports");
-			carname1.setAttributeNode(attrType1);
-			carname1.appendChild(doc.createTextNode("Ferrari 202"));
-			supercar.appendChild(carname1);
-*/
-			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty( OutputKeys.DOCTYPE_SYSTEM, "http://www.musicxml.org/dtds/partwise.dtd" );

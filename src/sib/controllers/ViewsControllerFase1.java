@@ -34,7 +34,8 @@ public class ViewsControllerFase1 {
 
 			parser p = new parser( analizadorJFlex );
 			p.setViewController( this );
-			p.setOutputController( this.view.getOutput() );
+			p.setOutputController( this.view.getOutputController() );
+			p.setInputController( this.view.getInputController() );
 			p.parse();
 
 			this.view.printMusicXML();

@@ -11,7 +11,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.FileChooserUI;
 
 import sib.controllers.ViewsControllerFase1;
-import sib.output.SibMusicXMLOutput;
+import sib.inout.SibMusicXMLOutput;
+import sib.inout.SibMusicXMLInput;
 import sib.views.TextLineNumber;
 
 import javax.swing.JEditorPane;
@@ -36,6 +37,7 @@ public class SibIDE {
 	ViewsControllerFase1 viewsController;
 
 	SibMusicXMLOutput output;
+	SibMusicXMLInput input;
 
 	/**
 	 * Launch the application.
@@ -67,8 +69,10 @@ public class SibIDE {
 
 		viewsController = new ViewsControllerFase1( this );
 
-		// output
+		// output controller
 		this.output = new SibMusicXMLOutput();
+		// input controller
+		this.input = new SibMusicXMLInput();
 
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -167,8 +171,7 @@ public class SibIDE {
 		JScrollPane jspLog = new JScrollPane( textPaneLog );
 		textPaneLog.setText("// log");
 		splitPaneVertical.setRightComponent(jspLog);
-		
-		
+
 	}
 
 	public void printLog ( String str ) {
@@ -199,9 +202,13 @@ public class SibIDE {
 		textPaneInput.setText( "" );
 	}
 
-	public SibMusicXMLOutput getOutput() {
+	public SibMusicXMLOutput getOutputController() {
 		return this.output;
 	}
+	public SibMusicXMLInput getInputController() {
+		return this.input;
+	}
+
 	public void printMusicXML() {
 		this.output.print();
 	}
