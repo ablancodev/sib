@@ -120,10 +120,6 @@ Numero_int_frac = [-]?{Fraccion}
 				| {Numero_entero}{Espacio}+{Fraccion}
 Fraccion = {Numero_entero}"/"{Numero_entero}
 
-//Package = PACKAGE{Espacio}{Palabra}("."{Palabra})*";"
-
-//Import = IMPORT{Espacio}{Palabra}".sid;"
-
 /* Finaliza expresiones regulares */
 
 /* Estados */
@@ -133,26 +129,6 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 /* Finaliza la sección de declaraciones de JFlex */
  
 /* Inicia sección de reglas */
- 
-// Cada regla está formada por una {expresión} espacio {código}
-
-// Terminales
-/*
-{Package}	{
-	Token t = new Token( 0, 0, this.numLinea, 0, yytext(), "PACKAGE" );
-	this._existenTokens = true;
-	return t;
-}
-*/
-/*
-{Import}	{
-	// No estoy seguro si el lexico debe aqui insersar el texto importado para procesarlo
-	Token t = new Token( 0, 0, this.numLinea, 0, yytext(), "IMPORT" );
-	this._existenTokens = true;
-	return t;
-}
-*/
-
 <CADENA>	{
 	// @todo falta mejorar el String, en el fichero java.flex hay un ejemplo completo
 	\"	{ 	Token t = new Token( sym.CADENA, yycolumn, yyline+1, -1, string.toString(), Token.STRING );
@@ -168,11 +144,6 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	 			}
 	
  }
-
-
-	 
- // @todo voy por aqui, los comentarios no funcionan aún, no sé como pasarlos a CUP. Quizás googleando vea algún ejemplo con JFLEX y CUP
-
 
 <YYINITIAL> {
 	[\"]	{
