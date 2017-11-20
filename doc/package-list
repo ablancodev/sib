@@ -1,4 +1,7 @@
 core
 sib.controllers
+sib.cup
 sib.flex
+sib.inout
+sib.models
 sib.views
