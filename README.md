@@ -6,6 +6,7 @@ Sib - Lenguaje de programación
 sib_ejecutable.jar : Último fichero ejecutable
 
 sib/flex/AnalizadorLexicoFase2.flex : Fichero flex analizador léxico
+
 sib/cup/Sintactico.cup : Fichero cup analizador sintáctico
 
 ## Notas sobre la ejecución del .jar
