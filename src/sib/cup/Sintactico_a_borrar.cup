@@ -1,0 +1,268 @@
+package sib.cup;
+
+import java_cup.runtime.*;
+import java.io.*;
+import sib.flex.*;
+import sib.controllers.*;
+import sib.inout.*;
+import sib.models.nonterminal.*;
+
+parser code {:
+
+	public ViewsControllerFase1 viewsController;
+	public SibMusicXMLOutput output;
+	public SibMusicXMLInput input;
+
+	public TablaSimbolos tablaSimbolos;
+
+	public void setViewController( ViewsControllerFase1 vc ) {
+		this.viewsController = vc;
+	}
+
+	public void setOutputController( SibMusicXMLOutput output ) {
+		this.output = output;
+	}
+
+	public void setInputController( SibMusicXMLInput input ) {
+		this.input = input;
+	}
+
+	public void setTablaSimbolos( TablaSimbolos ts ) {
+		this.tablaSimbolos = ts;
+	}
+
+	/*
+	private Lexico lexico;
+
+	public static void main(String[] arg){
+		parser parserObj = new parser();
+		lexico = new Lexico(new InputStreamReader(System.in));
+		parserObj.setScanner(lexico);
+		try{
+			parserObj.parse();
+		} catch(Exception x){
+			System.out.println("Error fatal.");
+		}
+	}
+	*/
+	/* Este es el que estaba usando y funcionaba
+	public static void main(String args[]) throws Exception {
+		new parser( new AnalizadorLexicoFase2( new InputStreamReader( System.in ) ) ).parse();
+	}
+	*/
+:}; 
+
+/* Inicialización del analizador léxico (si es que hiciera falta) */
+//init with {: lexico.init(); :};
+
+/* Solicitud de un terminal al analizador léxico */
+//scan with {: return lexico.next_token(); :};
+
+/* Terminales sin atributo */
+terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
+terminal LPAREN, RPAREN;
+terminal TRANS;
+terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
+
+terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
+terminal CADENA;
+terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
+terminal MAS, MENOS, DIV, MULT, MOD;
+terminal IF, ENDIF, ELSE, CONDICION_COMPARA, WHILE, ENDWHILE;
+
+/* No terminales sin atributo */
+non terminal paquete, imports, un_import;
+
+/* No terminales con atributo asociado */
+non terminal String mas_paquete, mas_import;
+
+non terminal Programa programa;
+non terminal ListaInstrucciones instrucciones, else_if;
+non terminal Instruccion instruccion;
+non terminal Declaracion declaracion;
+non terminal ListaVariables lista_variables;
+
+non terminal Orden orden;
+non terminal OrdenOperador operador;
+non terminal OrdenAsignacion asignacion;
+non terminal OrdenIf condicional_if;
+non terminal Comparacion comparacion;
+non terminal OrdenWhile bucle_while;
+non terminal OrdenFuncion funcion;
+
+non terminal OrigenAsignacion origen_asignacion;
+
+non terminal TipoNumero tipo_numeros;
+non terminal ExpresionAritmetica expresion_arit;
+non terminal OperandoAritmetico operando_arit;
+
+non terminal Operacion operacion;
+
+
+
+/* Precedencias */
+//precedence left MAS, MENOS; 
+//precedence left POR, ENTRE, MODULO;
+//precedence left UMENOS;
+
+/* Gramática */
+
+programa ::= paquete imports BEGIN IDENTIFICADOR:id instrucciones:inst END {: 
+	viewsController.printOutput( "\nEl programa se llama:" + id );
+	Programa p = new Programa( tablaSimbolos );
+	p.setInstrucciones( inst );
+	p.exec();
+	p.print( viewsController );
+:};
+
+paquete  ::= PACKAGE IDENTIFICADOR:id mas_paquete:mp {: viewsController.printOutput( "\nPACKAGE:" + id.toString() + mp ); :};
+mas_paquete ::= PUNTO:p IDENTIFICADOR:id mas_paquete:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
+				| PUNTO_Y_COMA {: RESULT = ";"; :}
+				;
+
+imports ::= imports un_import PUNTO_Y_COMA
+			|
+			;
+un_import  ::= IMPORT IDENTIFICADOR:id mas_import:mp {: viewsController.printOutput( "\nIMPORT:" + id.toString() + mp ); :};
+mas_import ::= PUNTO:p IDENTIFICADOR:id mas_import:mp {: RESULT = new String( "" + p.toString() + id.toString() + mp.toString() ); :}
+				| {: RESULT = ""; :}
+				;
+
+instrucciones ::= instrucciones:insts instruccion:ins {: insts.add( ins ); RESULT = insts; :}
+				| instruccion:ins {: RESULT = new ListaInstrucciones( ins ); :}
+				;
+instruccion ::= declaracion:dec {: RESULT = dec; :}
+				| orden:ord {: RESULT = ord; :}
+				;
+declaracion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
+						viewsController.printOutput( "\nDefinido:" + t + " " + lv );
+						RESULT = new Declaracion( t, lv );
+					:};
+
+lista_variables ::= lista_variables:lv COMA VARIABLE:v {: lv.add( v ); RESULT = lv; :}
+				| VARIABLE:v {: RESULT = new ListaVariables( new Variable( v ) ); :}
+				;
+
+orden ::= operador:op PUNTO_Y_COMA {:
+			viewsController.printOutput( "\nOrden->operador:" + op );
+			RESULT = op;
+			:}
+		| asignacion:as PUNTO_Y_COMA {:
+			viewsController.printOutput( "\nAsignación:" + as );
+			RESULT = as;
+			:}
+		| condicional_if:_if PUNTO_Y_COMA {:
+			viewsController.printOutput( "\nCondicional IF:" + _if );
+			RESULT = _if;
+			:}
+		| bucle_while:wh PUNTO_Y_COMA {:
+			viewsController.printOutput( "\nBucle WHILE:" + wh );
+			RESULT = wh;
+			:}
+		| funcion:fn PUNTO_Y_COMA {:
+			viewsController.printOutput( "\nFunción:" + fn );
+			RESULT = fn;
+			:}
+		;
+
+/* Operador */
+operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new OrdenOperador( new Variable( v ), on ); :}
+			| operador:op OPERADOR_NOTA:on {: op.addOperadorNota( on ); RESULT = op; :}
+			;
+
+/* Asignación */
+asignacion ::= VARIABLE:v IGUAL_SIMPLE origen_asignacion:oa {: RESULT = new OrdenAsignacion( new Variable( v ), oa ); :}
+				| PROPIEDAD:pr IGUAL_SIMPLE origen_asignacion:oa {: RESULT = new OrdenAsignacion( pr, oa ); :}
+				;
+
+origen_asignacion ::= VARIABLE:v {: RESULT = v; :}
+					| PROPIEDAD:pr {: RESULT = pr; :}
+					| STEP:st {: RESULT = st; :}
+					| CLEF_VALUE:cl {: RESULT = cl; :}
+					| ACCENT_VALUE:ac {: RESULT = ac; :}
+					| CADENA:st {: RESULT = st; :}
+					| tipo_numeros:tn {: RESULT = tn; :}
+					| expresion_arit:exp {: RESULT = exp; :}
+					| operacion:op {: RESULT = op; :}
+					;
+
+/* Operacion TRANS */
+operacion ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {:
+				RESULT = new OperTrans( new Variable( v ), tn );
+				:}
+			| TRANS:tr LPAREN:lp operacion:op COMA:cc tipo_numeros:tn RPAREN:rp {:
+				RESULT = new OperTrans( op, tn );
+				:}
+			| TRANS:tr LPAREN:lp operador:op COMA:cc tipo_numeros:tn RPAREN:rp {:
+				RESULT = new OperTrans( op, tn );
+				:}
+			;
+
+tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n, "int" ); :}
+				| NUMERO_REAL:n {: RESULT = new TipoNumero( n, "real" ); :}
+				| NUMERO_INT_FRAC:n {: RESULT = new TipoNumero( n, "int_frac" ); :}
+				;
+
+expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = new ExpAritMas( oper1, oper2 ); :}
+				| operando_arit:oper1 MENOS:op operando_arit:oper2 {: RESULT = new ExpAritMenos( oper1, oper2 ); :}
+				| operando_arit:oper1 DIV:op operando_arit:oper2 {: RESULT = new ExpAritDiv( oper1, oper2 ); :}
+				| operando_arit:oper1 MULT:op operando_arit:oper2 {: RESULT = new ExpAritMult( oper1, oper2 ); :}
+				| operando_arit:oper1 MOD:op operando_arit:oper2 {: RESULT = new ExpAritMod( oper1, oper2 ); :}
+				;
+
+operando_arit ::= tipo_numeros:num {: RESULT = num; :}
+				| VARIABLE:v {: RESULT = new Variable( v ); :}
+				;
+
+/* Condicional IF */
+condicional_if ::= IF:_if LPAREN:lp comparacion:comp RPAREN:rp instrucciones:ins else_if:elseif {:
+					if ( elseif != null ) {
+						OrdenIf oif = new OrdenIf( comp, ins );
+						oif.setElse( elseif );
+						RESULT = oif;
+					} else {
+						RESULT = new OrdenIf( comp, ins );
+					}
+					:}
+				;
+
+else_if ::= ENDIF:_endif {: RESULT = null; :}
+			| ELSE:_else instrucciones:ins ENDIF:_endif {: RESULT = ins; :}
+			;
+
+/* Bucle WHILE */
+bucle_while ::= WHILE:wh LPAREN:lp comparacion:com RPAREN:rp instrucciones:ins ENDWHILE:endw {:
+					RESULT = new OrdenWhile( com, ins ); :}
+				;
+
+comparacion ::= origen_asignacion:oper1 CONDICION_COMPARA:cc origen_asignacion:oper2 {:
+					RESULT = new Comparacion( oper1, cc, oper2 );
+					:}
+				;
+
+/* Funcion */
+funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {:
+				FuncionPlay fp = new FuncionPlay();
+				fp.play( v );
+				RESULT = fp;
+				//output.playNote( new Note() );
+				:}
+			| PLAYPARTITURE:pl LPAREN:lp RPAREN:rp {:
+				FuncionPlayPartiture fpp = new FuncionPlayPartiture();
+				fpp.playPartiture();
+				RESULT = fpp;
+				//output.playPartiture();
+				:}
+			| VARIABLE:v IGUAL_SIMPLE READ:pl LPAREN:lp RPAREN:rp {:
+				FuncionRead fr = new FuncionRead();
+				v = fr.readNote();
+				RESULT = v; // @todo remove - No sé si tiene que devolver v o fr.
+				//Note notaEjemplo = input.readNote();
+				:}
+			| READPARTITURE:pl LPAREN:lp RPAREN:rp {:
+				FuncionReadPartiture frp = new FuncionReadPartiture();
+				frp.readPartiture();
+				RESULT = frp;
+				//input.readPartiture();
+				:}
+			;

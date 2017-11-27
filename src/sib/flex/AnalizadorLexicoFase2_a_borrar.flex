@@ -108,8 +108,7 @@ Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent" | 
 Digito = [0-9]
 Numeros = {Digito}{Digito}*
 Letra = [A-Za-z]
-LetraNumero = [A-Za-z0-9]
-Str_ident = {Letra}{LetraNumero}*
+Str_ident = {Letra}{Letra}*
 
 SaltoDeLinea = \n|\r|\r\n
 Espacio = [ \t\f]
@@ -155,14 +154,14 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	{Comentarios}	{ /* ignore */ }
 
 	{Package}	{
-		//Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.PACKAGE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Import}	{
-		//Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.IMPORT, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Begin}	{
 		Token t = new Token( sym.BEGIN, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
@@ -175,41 +174,41 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 	{If}	{
-		//Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Else}	{
-		//Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Endif}	{
-		//Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{While}	{
-		//Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Endwhile}	{
-		//Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Condicion_compara}	{
-		//Token t = new Token( sym.CONDICION_COMPARA, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.CONDICION_COMPARA, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Punto}	{
-		//Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
+		Token t = new Token( sym.PUNTO, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Coma}	{
 		Token t = new Token( sym.COMA, yycolumn, yyline+1, -1, yytext(), Token.CARACTER );
@@ -264,29 +263,29 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	}
 
 	{Mas}	{
-		//Token t = new Token( sym.MAS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.MAS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Menos}	{
-		//Token t = new Token( sym.MENOS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.MENOS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Div}	{
-		//Token t = new Token( sym.DIV, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.DIV, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Mult}	{
-		//Token t = new Token( sym.MULT, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.MULT, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Mod}	{
-		//Token t = new Token( sym.MOD, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+		Token t = new Token( sym.MOD, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Trans} {
@@ -296,33 +295,33 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	}
 
 	{Play} {
-		//Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{PlayPartiture} {
-		//Token t = new Token( sym.PLAYPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.PLAYPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Read} {
-		//Token t = new Token( sym.READ, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.READ, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{ReadPartiture} {
-		//Token t = new Token( sym.READPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.READPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Simbolo}	{
-		//Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
+		Token t = new Token( 0, yycolumn, yyline+1, 0, yytext(), "SIMBOLO");
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	
 	{Variable}	{
@@ -332,9 +331,9 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	}
 	
 	{Propiedad}	{
-		//Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+		Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	
 	{Operador_nota}	{

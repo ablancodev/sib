@@ -2,7 +2,7 @@ package core;
 
 import java.util.*;
 
-public class TablaSimbolos {
+public class TablaSimbolosOld {
 /*
 	HashMap table;
 

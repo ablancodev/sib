@@ -12,6 +12,7 @@ import javax.swing.plaf.FileChooserUI;
 
 import sib.controllers.ViewsControllerFase1;
 import sib.inout.SibMusicXMLOutput;
+import sib.models.nonterminal.TablaSimbolos;
 import sib.inout.SibMusicXMLInput;
 import sib.views.TextLineNumber;
 
@@ -35,6 +36,8 @@ public class SibIDE {
 	private JTextPane textPaneOutput;
 
 	ViewsControllerFase1 viewsController;
+
+	TablaSimbolos tablaSimbolos;
 
 	SibMusicXMLOutput output;
 	SibMusicXMLInput input;
@@ -73,6 +76,9 @@ public class SibIDE {
 		this.output = new SibMusicXMLOutput();
 		// input controller
 		this.input = new SibMusicXMLInput();
+
+		// Tabla simbolos
+		this.tablaSimbolos = new TablaSimbolos();
 
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -211,5 +217,9 @@ public class SibIDE {
 
 	public void printMusicXML() {
 		this.output.print();
+	}
+
+	public TablaSimbolos getTablaSimbolos() {
+		return this.tablaSimbolos;
 	}
 }

@@ -1,0 +1,153 @@
+package sib.cup;
+
+import java_cup.runtime.*;
+import java.io.*;
+import sib.flex.*;
+import sib.controllers.*;
+import sib.inout.*;
+import sib.models.nonterminal.*;
+
+parser code {:
+
+	public ViewsControllerFase1 viewsController;
+	public SibMusicXMLOutput output;
+	public SibMusicXMLInput input;
+
+	public TablaSimbolos tablaSimbolos;
+
+	public void setViewController( ViewsControllerFase1 vc ) {
+		this.viewsController = vc;
+	}
+
+	public void setOutputController( SibMusicXMLOutput output ) {
+		this.output = output;
+	}
+
+	public void setInputController( SibMusicXMLInput input ) {
+		this.input = input;
+	}
+
+	public void setTablaSimbolos( TablaSimbolos ts ) {
+		this.tablaSimbolos = ts;
+	}
+
+:};
+
+/* Terminales sin atributo */
+/*
+terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
+terminal LPAREN, RPAREN;
+terminal TRANS;
+terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
+
+terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
+terminal CADENA;
+terminal MAS, MENOS, DIV, MULT, MOD;
+terminal IF, ENDIF, ELSE, CONDICION_COMPARA, WHILE, ENDWHILE;
+*/
+terminal BEGIN, IDENTIFICADOR, END, VARIABLE, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
+terminal OPERADOR_NOTA;
+terminal STEP, CLEF_VALUE, ACCENT_VALUE, CADENA;
+terminal LPAREN, RPAREN, TRANS;
+
+terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
+
+/* No terminales sin atributo */
+/*
+non terminal paquete, imports, un_import;
+non terminal String mas_paquete, mas_import;
+
+non terminal Programa programa;
+non terminal ListaInstrucciones instrucciones, else_if;
+non terminal Instruccion instruccion;
+non terminal Declaracion declaracion;
+non terminal ListaVariables lista_variables;
+
+non terminal Orden orden;
+non terminal OrdenOperador operador;
+non terminal OrdenAsignacion asignacion;
+non terminal OrdenIf condicional_if;
+non terminal Comparacion comparacion;
+non terminal OrdenWhile bucle_while;
+non terminal OrdenFuncion funcion;
+
+non terminal OrigenAsignacion origen_asignacion;
+
+non terminal TipoNumero tipo_numeros;
+non terminal ExpresionAritmetica expresion_arit;
+non terminal OperandoAritmetico operando_arit;
+
+*/
+non terminal Programa programa;
+
+non terminal ListaInstrucciones instrucciones;
+non terminal Instruccion instruccion;
+non terminal InstOperador operador;
+non terminal InstAsignacion asignacion;
+
+non terminal ListaVariables lista_variables;
+non terminal ValorAsignacion valor_asignacion;
+non terminal TipoNumero tipo_numeros;
+
+non terminal OperacionTrans operacion_trans;
+
+/* Gramática */
+
+programa ::= BEGIN IDENTIFICADOR:id instrucciones:inst END {: 
+	Programa p = new Programa( tablaSimbolos );
+	p.setInstrucciones( inst );
+	p.exec();
+	p.print( viewsController );
+:};
+
+
+instrucciones ::= instrucciones:insts instruccion:ins {: insts.add( ins ); RESULT = insts; :}
+				| instruccion:ins {: RESULT = new ListaInstrucciones( ins ); :}
+				;
+instruccion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
+					RESULT = new InstDeclaracion( t.toString(), lv );
+					:}
+				| operador:op PUNTO_Y_COMA {:
+					RESULT = op;  // InstOperador
+					:}
+				| asignacion:as PUNTO_Y_COMA {:
+					RESULT = as;  // InstAsignacion
+					:}
+				;
+
+lista_variables ::= lista_variables:lv COMA VARIABLE:v {: lv.add( new Variable( v.toString() ) ); RESULT = lv; :}
+				| VARIABLE:v {: RESULT = new ListaVariables( new Variable( v.toString() ) ); :}
+				;
+
+/* Operador - InstOperador */
+operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new InstOperador( new Variable( v.toString() ), on.toString() ); :}
+			| operador:op OPERADOR_NOTA:on {: op.addOperadorNota( on.toString() ); RESULT = op; :}
+			;
+
+/* Asignación - InstAsignacion  @todo no se ha tenido en cuenta la signación a propiedades */
+asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( new Variable( v.toString() ), valor ); :}
+			;
+valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
+			| STEP:st {: RESULT = new ValorCadena( st.toString() ); :}
+			| CLEF_VALUE:cl {: RESULT = new ValorCadena( cl.toString() ); :}
+			| ACCENT_VALUE:ac {: RESULT = new ValorCadena( ac.toString() ); :}
+			| CADENA:st {: RESULT = new ValorCadena( st.toString() ); :}
+			| tipo_numeros:tn {: RESULT = tn; :}
+			| operacion_trans:op {: RESULT = op; :}
+			;
+/*
+			| expresion_arit:exp {: RESULT = tn; // expresion_arit debe extender a ValorAsignacion :}
+			;
+*/
+
+tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), "int" ); :}
+			| NUMERO_REAL:n {: RESULT = new TipoNumero( n.toString(), "real" ); :}
+			| NUMERO_INT_FRAC:n {: RESULT = new TipoNumero( n.toString(), "int_frac" ); :}
+			;
+
+/* Operacion_trans - OperacionTrans */
+// De momento no permite anidamiento, sólo transporta variables
+operacion_trans ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {:
+				RESULT = new OperacionTrans( new Variable( v.toString() ), tn );
+				:}
+			;

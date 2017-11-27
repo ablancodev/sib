@@ -36,6 +36,7 @@ public class ViewsControllerFase1 {
 			p.setViewController( this );
 			p.setOutputController( this.view.getOutputController() );
 			p.setInputController( this.view.getInputController() );
+			p.setTablaSimbolos( this.view.getTablaSimbolos() );
 			p.parse();
 
 			this.view.printMusicXML();
