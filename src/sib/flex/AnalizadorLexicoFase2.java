@@ -804,15 +804,15 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 47: break;
           case 2: 
-            { //Token t = new Token( sym.DIV, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.DIV, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 48: break;
           case 3: 
-            { //Token t = new Token( sym.MULT, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.MULT, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 49: break;
           case 4: 
@@ -870,21 +870,21 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 58: break;
           case 13: 
-            { //Token t = new Token( sym.MAS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.MAS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 59: break;
           case 14: 
-            { //Token t = new Token( sym.MENOS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.MENOS, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 60: break;
           case 15: 
-            { //Token t = new Token( sym.MOD, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.MOD, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 61: break;
           case 16: 

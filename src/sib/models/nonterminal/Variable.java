@@ -1,7 +1,7 @@
 package sib.models.nonterminal;
 
 
-public class Variable extends ValorAsignacion{
+public class Variable extends OperandoAritmetico {
 
 	String name;
 	String tipo;

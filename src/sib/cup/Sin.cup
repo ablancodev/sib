@@ -42,7 +42,6 @@ terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
 terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
-terminal MAS, MENOS, DIV, MULT, MOD;
 terminal IF, ENDIF, ELSE, CONDICION_COMPARA, WHILE, ENDWHILE;
 */
 terminal BEGIN, IDENTIFICADOR, END, VARIABLE, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
@@ -51,6 +50,8 @@ terminal STEP, CLEF_VALUE, ACCENT_VALUE, CADENA;
 terminal LPAREN, RPAREN, TRANS;
 
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
+terminal MAS, MENOS, DIV, MULT, MOD;
+
 
 /* No terminales sin atributo */
 /*
@@ -74,8 +75,6 @@ non terminal OrdenFuncion funcion;
 non terminal OrigenAsignacion origen_asignacion;
 
 non terminal TipoNumero tipo_numeros;
-non terminal ExpresionAritmetica expresion_arit;
-non terminal OperandoAritmetico operando_arit;
 
 */
 non terminal Programa programa;
@@ -90,6 +89,8 @@ non terminal ValorAsignacion valor_asignacion;
 non terminal TipoNumero tipo_numeros;
 
 non terminal OperacionTrans operacion_trans;
+non terminal ExpresionAritmetica expresion_arit;
+non terminal OperandoAritmetico operando_arit;
 
 /* Gramática */
 
@@ -134,11 +135,8 @@ valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
 			| CADENA:st {: RESULT = new ValorCadena( st.toString() ); :}
 			| tipo_numeros:tn {: RESULT = tn; :}
 			| operacion_trans:op {: RESULT = op; :}
+			| expresion_arit:exp {: RESULT = exp; :}
 			;
-/*
-			| expresion_arit:exp {: RESULT = tn; // expresion_arit debe extender a ValorAsignacion :}
-			;
-*/
 
 tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), "int" ); :}
 			| NUMERO_REAL:n {: RESULT = new TipoNumero( n.toString(), "real" ); :}
@@ -150,4 +148,16 @@ tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), "int"
 operacion_trans ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {:
 				RESULT = new OperacionTrans( new Variable( v.toString() ), tn );
 				:}
+			;
+
+/* Expresion Aritmetica - ExpresionAritmetica */
+expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = new ExpresionAritmetica( ExpresionAritmetica.MAS, oper1, oper2 ); :}
+			| operando_arit:oper1 MENOS:op operando_arit:oper2 {: RESULT = new ExpresionAritmetica( ExpresionAritmetica.MENOS, oper1, oper2 ); :}
+			| operando_arit:oper1 DIV:op operando_arit:oper2 {: RESULT = new ExpresionAritmetica( ExpresionAritmetica.DIV, oper1, oper2 ); :}
+			| operando_arit:oper1 MULT:op operando_arit:oper2 {: RESULT = new ExpresionAritmetica( ExpresionAritmetica.MULT, oper1, oper2 ); :}
+			| operando_arit:oper1 MOD:op operando_arit:oper2 {: RESULT = new ExpresionAritmetica( ExpresionAritmetica.MOD, oper1, oper2 ); :}
+			;
+
+operando_arit ::= tipo_numeros:num {: RESULT = num; :}
+			| VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
 			;

@@ -8,6 +8,8 @@ package sib.cup;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int MOD = 25;
+  public static final int MENOS = 22;
   public static final int NUMERO_INT_FRAC = 20;
   public static final int CADENA = 14;
   public static final int RPAREN = 16;
@@ -19,15 +21,18 @@ public class sym {
   public static final int TIPO = 6;
   public static final int BEGIN = 2;
   public static final int COMA = 8;
+  public static final int MULT = 24;
   public static final int EOF = 0;
   public static final int ACCENT_VALUE = 13;
   public static final int STEP = 11;
+  public static final int DIV = 23;
   public static final int OPERADOR_NOTA = 10;
   public static final int CLEF_VALUE = 12;
   public static final int error = 1;
   public static final int IDENTIFICADOR = 3;
   public static final int IGUAL_SIMPLE = 9;
   public static final int TRANS = 17;
+  public static final int MAS = 21;
   public static final int PUNTO_Y_COMA = 7;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -50,7 +55,12 @@ public class sym {
   "TRANS",
   "NUMERO_ENTERO",
   "NUMERO_REAL",
-  "NUMERO_INT_FRAC"
+  "NUMERO_INT_FRAC",
+  "MAS",
+  "MENOS",
+  "DIV",
+  "MULT",
+  "MOD"
   };
 }
 

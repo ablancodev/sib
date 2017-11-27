@@ -1,6 +1,6 @@
 package sib.models.nonterminal;
 
-public class TipoNumero extends ValorAsignacion {
+public class TipoNumero extends OperandoAritmetico {
 
 	String valor;
 	String tipo;
@@ -16,6 +16,10 @@ public class TipoNumero extends ValorAsignacion {
 
 	public String getValor() {
 		return valor;
+	}
+
+	public void setValor( Float f ) {
+		// @todo falta implementarlo
 	}
 
 	public ValorAsignacion evalua( TablaSimbolos ts ) {
