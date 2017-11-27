@@ -92,7 +92,7 @@ Mod = "%"
 
 Simbolo = "#"|"@"|"b"|";"|"."|","|"{"|"}"|"["|"]"|"\""|"'"
 
-Condicion_compara = "<"|">"|"=="|"!="|">="|"<="
+Comparador = "<"|">"|"=="|"!="|">="|"<="
 
 Variable = "$"{Str_ident}
 Propiedad = {Variable}"."{Str_ident}
@@ -175,19 +175,19 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 	{If}	{
-		//Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Else}	{
-		//Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Endif}	{
-		//Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{While}	{
 		//Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
@@ -200,10 +200,10 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		//return t;
 	}
 
-	{Condicion_compara}	{
-		//Token t = new Token( sym.CONDICION_COMPARA, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
+	{Comparador} {
+		Token t = new Token( sym.COMPARADOR, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Punto}	{

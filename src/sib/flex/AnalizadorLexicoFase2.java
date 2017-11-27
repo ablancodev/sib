@@ -893,9 +893,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 62: break;
           case 17: 
-            { //Token t = new Token( sym.CONDICION_COMPARA, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
+            { Token t = new Token( sym.COMPARADOR, yycolumn, yyline+1, -1, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 63: break;
           case 18: 
@@ -940,9 +940,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 70: break;
           case 25: 
-            { //Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+            { Token t = new Token( sym.IF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 71: break;
           case 26: 
@@ -992,9 +992,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 79: break;
           case 34: 
-            { //Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+            { Token t = new Token( sym.ELSE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 80: break;
           case 35: 
@@ -1016,9 +1016,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 83: break;
           case 38: 
-            { //Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+            { Token t = new Token( sym.ENDIF, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 84: break;
           case 39: 

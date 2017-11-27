@@ -2,10 +2,10 @@ package sib.models.nonterminal;
 
 public class OrdenWhile extends Orden {
 
-	Comparacion comparacion;
+	Condicion comparacion;
 	ListaInstrucciones listaInstrucciones;
 
-	public OrdenWhile( Comparacion c, ListaInstrucciones insts ) {
+	public OrdenWhile( Condicion c, ListaInstrucciones insts ) {
 		comparacion = c;
 		listaInstrucciones = insts;
 	}

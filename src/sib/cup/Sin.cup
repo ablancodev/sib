@@ -42,7 +42,7 @@ terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
 terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
-terminal IF, ENDIF, ELSE, CONDICION_COMPARA, WHILE, ENDWHILE;
+
 */
 terminal BEGIN, IDENTIFICADOR, END, VARIABLE, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
 terminal OPERADOR_NOTA;
@@ -52,34 +52,30 @@ terminal LPAREN, RPAREN, TRANS;
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
 terminal MAS, MENOS, DIV, MULT, MOD;
 
+terminal IF, ENDIF, ELSE, COMPARADOR, WHILE, ENDWHILE;
 
 /* No terminales sin atributo */
 /*
 non terminal paquete, imports, un_import;
 non terminal String mas_paquete, mas_import;
 
-non terminal Programa programa;
-non terminal ListaInstrucciones instrucciones, else_if;
-non terminal Instruccion instruccion;
 non terminal Declaracion declaracion;
 non terminal ListaVariables lista_variables;
 
 non terminal Orden orden;
 non terminal OrdenOperador operador;
 non terminal OrdenAsignacion asignacion;
-non terminal OrdenIf condicional_if;
-non terminal Comparacion comparacion;
 non terminal OrdenWhile bucle_while;
 non terminal OrdenFuncion funcion;
 
 non terminal OrigenAsignacion origen_asignacion;
 
-non terminal TipoNumero tipo_numeros;
 
 */
+
 non terminal Programa programa;
 
-non terminal ListaInstrucciones instrucciones;
+non terminal ListaInstrucciones instrucciones, else_if;
 non terminal Instruccion instruccion;
 non terminal InstOperador operador;
 non terminal InstAsignacion asignacion;
@@ -91,6 +87,9 @@ non terminal TipoNumero tipo_numeros;
 non terminal OperacionTrans operacion_trans;
 non terminal ExpresionAritmetica expresion_arit;
 non terminal OperandoAritmetico operando_arit;
+
+non terminal Condicion condicion;
+non terminal InstIf condicional_if;
 
 /* Gramática */
 
@@ -113,6 +112,9 @@ instruccion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
 					:}
 				| asignacion:as PUNTO_Y_COMA {:
 					RESULT = as;  // InstAsignacion
+					:}
+				| condicional_if:_if PUNTO_Y_COMA {:
+					RESULT = _if; // InstIf
 					:}
 				;
 
@@ -161,3 +163,21 @@ expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = ne
 operando_arit ::= tipo_numeros:num {: RESULT = num; :}
 			| VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
 			;
+
+/* Condicional IF - InstIf */
+condicional_if ::= IF:_if LPAREN:lp condicion:cond RPAREN:rp instrucciones:ins else_if:elseif {:
+					InstIf oif = new InstIf( cond, ins );
+					if ( elseif != null ) {
+						oif.setElse( elseif );
+					}
+					RESULT = oif;
+					:}
+				;
+else_if ::= ENDIF:_endif {: RESULT = null; :}
+		| ELSE:_else instrucciones:ins ENDIF:_endif {: RESULT = ins; :}
+		;
+
+condicion ::= valor_asignacion:oper1 COMPARADOR:cc valor_asignacion:oper2 {:
+					RESULT = new Condicion( oper1, cc.toString(), oper2 );
+					:}
+				;

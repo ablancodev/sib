@@ -10,17 +10,23 @@ public class sym {
   /* terminals */
   public static final int MOD = 25;
   public static final int MENOS = 22;
+  public static final int ELSE = 28;
   public static final int NUMERO_INT_FRAC = 20;
   public static final int CADENA = 14;
   public static final int RPAREN = 16;
+  public static final int ENDIF = 27;
+  public static final int WHILE = 30;
+  public static final int ENDWHILE = 31;
   public static final int NUMERO_REAL = 19;
   public static final int END = 4;
   public static final int VARIABLE = 5;
+  public static final int IF = 26;
   public static final int LPAREN = 15;
   public static final int NUMERO_ENTERO = 18;
   public static final int TIPO = 6;
   public static final int BEGIN = 2;
   public static final int COMA = 8;
+  public static final int COMPARADOR = 29;
   public static final int MULT = 24;
   public static final int EOF = 0;
   public static final int ACCENT_VALUE = 13;
@@ -60,7 +66,13 @@ public class sym {
   "MENOS",
   "DIV",
   "MULT",
-  "MOD"
+  "MOD",
+  "IF",
+  "ENDIF",
+  "ELSE",
+  "COMPARADOR",
+  "WHILE",
+  "ENDWHILE"
   };
 }
 

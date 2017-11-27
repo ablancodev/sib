@@ -1,37 +1,37 @@
 package sib.models.nonterminal;
 
-public class Comparacion {
+public class Condicion {
 
 	ValorAsignacion operador1;
 	ValorAsignacion operador2;
 	String condicion;
 
-	public Comparacion( ValorAsignacion op1, String cc, ValorAsignacion op2 ) {
+	public Condicion( ValorAsignacion op1, String cc, ValorAsignacion op2 ) {
 		operador1 = op1;
 		operador2 = op2;
 		condicion = cc;
 	}
 
-	public boolean evalua() {
+	public boolean evalua( TablaSimbolos ts ) {
 		boolean result;
 		switch ( condicion ) {
 		case "==":
-			result = this.igualQue( operador1.run(), operador2.run() ); 
+			result = this.igualQue( operador1.evalua( ts ), operador2.evalua( ts ) ); 
 			break;
 		case "!=":
-			result = this.distintoQue( operador1.run(), operador2.run() ); 
+			result = this.distintoQue( operador1.evalua( ts ), operador2.evalua( ts ) ); 
 			break;
 		case "<":
-			result = this.menorQue( operador1.run(), operador2.run() );
+			result = this.menorQue( operador1.evalua( ts ), operador2.evalua( ts ) );
 			break;
 		case "<=":
-			result = this.menorIgualQue( operador1.run(), operador2.run() ); 
+			result = this.menorIgualQue( operador1.evalua( ts ), operador2.evalua( ts ) ); 
 			break;
 		case ">":
-			result = this.mayorQue( operador1.run(), operador2.run() ); 
+			result = this.mayorQue( operador1.evalua( ts ), operador2.evalua( ts ) ); 
 			break;
 		case ">=":
-			result = this.mayorIgualQue( operador1.run(), operador2.run() ); 
+			result = this.mayorIgualQue( operador1.evalua( ts ), operador2.evalua( ts ) ); 
 			break;
 		default:
 			result = false;
