@@ -1,9 +1,11 @@
 package sib.models.nonterminal;
 
-public class FuncionPlay {
+public class FuncionPlay extends InstFuncion {
 
-	public FuncionPlay() {
-		
+	Variable variable;
+
+	public FuncionPlay( Variable v ) {
+		variable = v;
 	}
 
 	public void play( Variable v ) {

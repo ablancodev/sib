@@ -1,6 +1,6 @@
 package sib.models.nonterminal;
 
-public class FuncionPlayPartiture {
+public class FuncionPlayPartiture extends InstFuncion {
 
 	public FuncionPlayPartiture() {
 		

@@ -8,38 +8,42 @@ package sib.cup;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int MOD = 25;
-  public static final int MENOS = 22;
-  public static final int ELSE = 28;
-  public static final int NUMERO_INT_FRAC = 20;
-  public static final int CADENA = 14;
-  public static final int RPAREN = 16;
-  public static final int ENDIF = 27;
-  public static final int WHILE = 30;
-  public static final int ENDWHILE = 31;
-  public static final int NUMERO_REAL = 19;
-  public static final int END = 4;
-  public static final int VARIABLE = 5;
-  public static final int IF = 26;
-  public static final int LPAREN = 15;
-  public static final int NUMERO_ENTERO = 18;
+  public static final int COMPARADOR = 33;
+  public static final int READPARTITURE = 21;
+  public static final int MULT = 28;
   public static final int TIPO = 6;
-  public static final int BEGIN = 2;
-  public static final int COMA = 8;
-  public static final int COMPARADOR = 29;
-  public static final int MULT = 24;
-  public static final int EOF = 0;
-  public static final int ACCENT_VALUE = 13;
-  public static final int STEP = 11;
-  public static final int DIV = 23;
-  public static final int OPERADOR_NOTA = 10;
-  public static final int CLEF_VALUE = 12;
-  public static final int error = 1;
-  public static final int IDENTIFICADOR = 3;
-  public static final int IGUAL_SIMPLE = 9;
-  public static final int TRANS = 17;
-  public static final int MAS = 21;
   public static final int PUNTO_Y_COMA = 7;
+  public static final int NUMERO_INT_FRAC = 24;
+  public static final int LPAREN = 15;
+  public static final int RPAREN = 16;
+  public static final int IDENTIFICADOR = 3;
+  public static final int DIV = 27;
+  public static final int BEGIN = 2;
+  public static final int IF = 30;
+  public static final int ENDWHILE = 35;
+  public static final int EOF = 0;
+  public static final int IGUAL_SIMPLE = 9;
+  public static final int error = 1;
+  public static final int COMA = 8;
+  public static final int CADENA = 14;
+  public static final int NUMERO_REAL = 23;
+  public static final int MENOS = 26;
+  public static final int MOD = 29;
+  public static final int ENDIF = 31;
+  public static final int ELSE = 32;
+  public static final int VARIABLE = 5;
+  public static final int READ = 20;
+  public static final int WHILE = 34;
+  public static final int CLEF_VALUE = 12;
+  public static final int PLAYPARTITURE = 19;
+  public static final int ACCENT_VALUE = 13;
+  public static final int TRANS = 17;
+  public static final int END = 4;
+  public static final int PLAY = 18;
+  public static final int OPERADOR_NOTA = 10;
+  public static final int NUMERO_ENTERO = 22;
+  public static final int STEP = 11;
+  public static final int MAS = 25;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -59,6 +63,10 @@ public class sym {
   "LPAREN",
   "RPAREN",
   "TRANS",
+  "PLAY",
+  "PLAYPARTITURE",
+  "READ",
+  "READPARTITURE",
   "NUMERO_ENTERO",
   "NUMERO_REAL",
   "NUMERO_INT_FRAC",

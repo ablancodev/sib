@@ -1,6 +1,6 @@
 package sib.models.nonterminal;
 
-public class FuncionReadPartiture {
+public class FuncionReadPartiture extends InstFuncion {
 
 	public FuncionReadPartiture() {
 		

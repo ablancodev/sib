@@ -296,27 +296,27 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	}
 
 	{Play} {
-		//Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.PLAY, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{PlayPartiture} {
-		//Token t = new Token( sym.PLAYPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.PLAYPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Read} {
-		//Token t = new Token( sym.READ, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.READ, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{ReadPartiture} {
-		//Token t = new Token( sym.READPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
+		Token t = new Token( sym.READPARTITURE, yycolumn, yyline+1, 0, yytext(), Token.FUNCTION );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Simbolo}	{

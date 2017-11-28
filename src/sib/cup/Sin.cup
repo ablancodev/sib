@@ -38,7 +38,6 @@ parser code {:
 terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
 terminal LPAREN, RPAREN;
 terminal TRANS;
-terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
 terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
@@ -48,26 +47,22 @@ terminal BEGIN, IDENTIFICADOR, END, VARIABLE, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SI
 terminal OPERADOR_NOTA;
 terminal STEP, CLEF_VALUE, ACCENT_VALUE, CADENA;
 terminal LPAREN, RPAREN, TRANS;
+terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
 terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
 terminal MAS, MENOS, DIV, MULT, MOD;
 
 terminal IF, ENDIF, ELSE, COMPARADOR, WHILE, ENDWHILE;
 
+
+
 /* No terminales sin atributo */
 /*
 non terminal paquete, imports, un_import;
 non terminal String mas_paquete, mas_import;
 
-non terminal Declaracion declaracion;
-non terminal ListaVariables lista_variables;
 
-non terminal Orden orden;
-non terminal OrdenOperador operador;
-non terminal OrdenAsignacion asignacion;
-non terminal OrdenFuncion funcion;
 
-non terminal OrigenAsignacion origen_asignacion;
 
 
 */
@@ -90,6 +85,8 @@ non terminal OperandoAritmetico operando_arit;
 non terminal Condicion condicion;
 non terminal InstIf condicional_if;
 non terminal InstWhile bucle_while;
+
+non terminal InstFuncion funcion;
 
 /* Gramática */
 
@@ -118,6 +115,9 @@ instruccion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
 					:}
 				| bucle_while:wh PUNTO_Y_COMA {:
 					RESULT = wh; // InstWhile
+					:}
+				| funcion:fn PUNTO_Y_COMA {:
+					RESULT = fn; // InstFuncion
 					:}
 				;
 
@@ -189,3 +189,18 @@ condicion ::= valor_asignacion:oper1 COMPARADOR:cc valor_asignacion:oper2 {:
 					RESULT = new Condicion( oper1, cc.toString(), oper2 );
 					:}
 				;
+
+/* Funcion - InstFuncion */
+funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {:
+				RESULT = new FuncionPlay( new Variable( v.toString() ) );
+				:}
+			| PLAYPARTITURE:pl LPAREN:lp RPAREN:rp {:
+				RESULT =  new FuncionPlayPartiture();
+				:}
+			| VARIABLE:v IGUAL_SIMPLE READ:pl LPAREN:lp RPAREN:rp {:
+				RESULT = new FuncionRead( new Variable( v.toString() ) );
+				:}
+			| READPARTITURE:pl LPAREN:lp RPAREN:rp {:
+				RESULT = new FuncionReadPartiture();
+				:}
+			;

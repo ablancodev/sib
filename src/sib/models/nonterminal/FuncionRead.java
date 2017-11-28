@@ -1,14 +1,15 @@
 package sib.models.nonterminal;
 
-public class FuncionRead {
+public class FuncionRead extends InstFuncion {
 
-	public FuncionRead() {
-	
+	Variable variable;
+
+	public FuncionRead( Variable v ) {
+		variable = v;
 	}
 
 	public Variable readNote() {
-		Variable v = null;
 		// @todo implementar readNote
-		return v;
+		return variable;
 	}
 }
