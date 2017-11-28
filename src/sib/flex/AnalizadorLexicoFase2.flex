@@ -190,14 +190,14 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 	{While}	{
-		//Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	{Endwhile}	{
-		//Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+		Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 
 	{Comparador} {

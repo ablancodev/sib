@@ -65,7 +65,6 @@ non terminal ListaVariables lista_variables;
 non terminal Orden orden;
 non terminal OrdenOperador operador;
 non terminal OrdenAsignacion asignacion;
-non terminal OrdenWhile bucle_while;
 non terminal OrdenFuncion funcion;
 
 non terminal OrigenAsignacion origen_asignacion;
@@ -90,6 +89,7 @@ non terminal OperandoAritmetico operando_arit;
 
 non terminal Condicion condicion;
 non terminal InstIf condicional_if;
+non terminal InstWhile bucle_while;
 
 /* Gramática */
 
@@ -115,6 +115,9 @@ instruccion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
 					:}
 				| condicional_if:_if PUNTO_Y_COMA {:
 					RESULT = _if; // InstIf
+					:}
+				| bucle_while:wh PUNTO_Y_COMA {:
+					RESULT = wh; // InstWhile
 					:}
 				;
 
@@ -176,6 +179,11 @@ condicional_if ::= IF:_if LPAREN:lp condicion:cond RPAREN:rp instrucciones:ins e
 else_if ::= ENDIF:_endif {: RESULT = null; :}
 		| ELSE:_else instrucciones:ins ENDIF:_endif {: RESULT = ins; :}
 		;
+
+/* Bucle WHILE - InstWhile */
+bucle_while ::= WHILE:wh LPAREN:lp condicion:con RPAREN:rp instrucciones:ins ENDWHILE:endw {:
+					RESULT = new InstWhile( con, ins ); :}
+				;
 
 condicion ::= valor_asignacion:oper1 COMPARADOR:cc valor_asignacion:oper2 {:
 					RESULT = new Condicion( oper1, cc.toString(), oper2 );

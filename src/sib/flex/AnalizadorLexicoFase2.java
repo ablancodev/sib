@@ -1028,9 +1028,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 85: break;
           case 40: 
-            { //Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+            { Token t = new Token( sym.WHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 86: break;
           case 41: 
@@ -1052,9 +1052,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 89: break;
           case 44: 
-            { //Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
+            { Token t = new Token( sym.ENDWHILE, yycolumn, yyline+1, -1, yytext(), Token.PALABRA_RESERVADA );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 90: break;
           case 45: 
