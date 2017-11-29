@@ -15,12 +15,12 @@ public class InstIf extends Instruccion {
 		elseInstrucciones = insts;
 	}
 
-	public void run( TablaSimbolos ts ) {
-		if ( condicion.evalua( ts ) ) {
-			ifInstrucciones.run( ts );
+	public void run() {
+		if ( condicion.evalua() ) {
+			ifInstrucciones.run();
 		} else {
 			if ( elseInstrucciones != null ) {
-				elseInstrucciones.run( ts );
+				elseInstrucciones.run();
 			}
 		}
 	}

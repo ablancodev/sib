@@ -10,9 +10,9 @@ public class InstWhile extends Instruccion {
 		instrucciones = insts;
 	}
 
-	public void run( TablaSimbolos ts ) {
-		while ( condicion.evalua( ts ) ) {
-			instrucciones.run( ts );
+	public void run() {
+		while ( condicion.evalua() ) {
+			instrucciones.run();
 		}
 	}
 

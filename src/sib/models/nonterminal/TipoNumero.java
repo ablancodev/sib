@@ -10,24 +10,20 @@ public class TipoNumero extends OperandoAritmetico {
 		tipo = t;
 	}
 
-	public String getTipo() {
+	public String getType() {
 		return tipo;
 	}
 
 	/**
 	 * Devuelve el valor del TipoNumero como el string del float que lo representa.
 	 */
-	public String getValor() {
+	public String getValue() {
 		// @todo esto habrá que mejorarlo para que contemple todos los tipos de cadenas que representan a frac, ...
 		return String.valueOf( toFloat() );
 	}
 
-	public void setValor( Float f ) {
+	public void setValue( Float f ) {
 		valor = f.toString();
-	}
-
-	public ValorAsignacion evalua( TablaSimbolos ts ) {
-		return this;
 	}
 
 	public String toString() {

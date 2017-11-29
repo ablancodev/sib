@@ -2,22 +2,42 @@ package sib.models.nonterminal;
 
 public class Variable extends OperandoAritmetico {
 
+	TablaSimbolos tablaSimbolos;
+
 	String name;
 	String tipo;
 	ValorAsignacion valor;
 
-	public Variable(String n ) {
+	public Variable(String n, TablaSimbolos ts ) {
+
+		tablaSimbolos = ts;
 		name = n;
-		tipo = "";
-		valor = null;
+
+		Variable v = ts.getVariable( n );
+		if ( v != null ) {
+			tipo = v.getType();
+			valor = v.valor;
+		} else {
+			tipo = "";
+			valor = null;
+		}
 	}
 
-	public String getTipo() {
+	/**
+	 * Registra la variable en la tabla de simbolos.
+	 */
+	public void register() {
+		tablaSimbolos.addVariable( this );
+	}
+
+	public String getType() {
 		return tipo;
 	}
 
-	public void setTipo( String t ) {
+	public void setType( String t ) {
 		tipo = t;
+		// Actualizamos TablaSimbolos
+		tablaSimbolos.updateVariable( this );
 	}
 
 	public void setValue( ValorAsignacion v ) {
@@ -28,11 +48,20 @@ public class Variable extends OperandoAritmetico {
 			} else {
 				valor = newV;
 			}
+			// Actualizamos TablaSimbolos
+			tablaSimbolos.updateVariable( this );
+		} else {
+			try {
+				throw new Exception( "ERROR variable->setValue, v es null para " + this.name );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public String getValor() {
-		return this.valor.getValor();
+	public String getValue() {
+		return this.valor.getValue();
 	}
 
 	public void aplicarOperador( String op ) {
@@ -42,20 +71,39 @@ public class Variable extends OperandoAritmetico {
 				v = valor.toString();
 			}
 			valor = new ValorCadena( v + "_" + op );
+			// Actualizamos TablaSimbolos
+			tablaSimbolos.updateVariable( this );
 		}
 	}
 
+/*
 	public ValorAsignacion evalua( TablaSimbolos ts ) {
 		Variable temp = ts.getVariable( name );
 		if ( temp != null ) {
 			valor = temp.valor;
-			tipo = temp.getTipo();
+			tipo = temp.getType();
 		}
 		return valor;
 	}
-
+*/
 	public ValorAsignacion evalua() {
-		return valor;
+		// Cargamos desde la tabla de simbolos
+		Variable v = this.tablaSimbolos.getVariable( this.name );
+		this.tipo = v.tipo;
+		this.setValue( v.valor );
+
+		try {
+			if ( valor != null ) {
+				if ( this.valor.getClass() == Variable.class ) {
+					return this.valor;
+				} else {
+					return valor.evalua();
+				}
+			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR evalua variable:" + e.getMessage() );
+		}
+		return null;
 	}
 
 	public String toString() {
@@ -100,12 +148,13 @@ public class Variable extends OperandoAritmetico {
 
 	public void trans( Float float1 ) {
 		valor.trans( float1 );
-		
+		// Actualizamos TablaSimbolos
+		tablaSimbolos.updateVariable( this );
 	}
 
 	protected Variable clone() {
-		Variable v = new Variable( this.name );
-		v.setTipo( this.tipo );
+		Variable v = new Variable( this.name, this.tablaSimbolos );
+		v.setType( this.tipo );
 		if ( this.valor != null ) {
 			v.setValue( this.valor.clone() );
 		}
@@ -134,22 +183,21 @@ public class Variable extends OperandoAritmetico {
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		return this.getValor().compareTo( op2.getValor() ) == 0;
+		return this.getValue().compareTo( op2.getValue() ) == 0;
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return this.getValor().compareTo( op2.getValor() ) != 0;
+		return this.getValue().compareTo( op2.getValue() ) != 0;
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		String t = op2.getValor();
-		return this.getValor().compareTo( op2.getValor() ) < 0;
+		return this.getValue().compareTo( op2.getValue() ) < 0;
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return this.getValor().compareTo( op2.getValor() ) <= 0;
+		return this.getValue().compareTo( op2.getValue() ) <= 0;
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return this.getValor().compareTo( op2.getValor() ) > 0;
+		return this.getValue().compareTo( op2.getValue() ) > 0;
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return this.getValor().compareTo( op2.getValor() ) >= 0;
+		return this.getValue().compareTo( op2.getValue() ) >= 0;
 	}
 }

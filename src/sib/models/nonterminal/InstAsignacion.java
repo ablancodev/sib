@@ -11,12 +11,10 @@ public class InstAsignacion extends Instruccion {
 	}
 
 	@Override
-	public void run( TablaSimbolos ts ) {
-		ValorAsignacion nuevoValor = valorAsignacion.evalua( ts );
-		variable = ts.getVariable( variable.name );
+	public void run() {
+		ValorAsignacion nuevoValor = valorAsignacion.evalua();
 		if ( tiposCompatibles( variable, nuevoValor ) ) {
 			variable.setValue( nuevoValor );
-			ts.updateVariable( variable );
 		}
 	}
 

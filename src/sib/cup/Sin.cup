@@ -121,19 +121,19 @@ instruccion ::= TIPO:t lista_variables:lv PUNTO_Y_COMA {:
 					:}
 				;
 
-lista_variables ::= lista_variables:lv COMA VARIABLE:v {: lv.add( new Variable( v.toString() ) ); RESULT = lv; :}
-				| VARIABLE:v {: RESULT = new ListaVariables( new Variable( v.toString() ) ); :}
+lista_variables ::= lista_variables:lv COMA VARIABLE:v {: lv.add( new Variable( v.toString(), tablaSimbolos ) ); RESULT = lv; :}
+				| VARIABLE:v {: RESULT = new ListaVariables( new Variable( v.toString(), tablaSimbolos ) ); :}
 				;
 
 /* Operador - InstOperador */
-operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new InstOperador( new Variable( v.toString() ), on.toString() ); :}
+operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new InstOperador( new Variable( v.toString(), tablaSimbolos ), on.toString() ); :}
 			| operador:op OPERADOR_NOTA:on {: op.addOperadorNota( on.toString() ); RESULT = op; :}
 			;
 
 /* Asignación - InstAsignacion  @todo no se ha tenido en cuenta la signación a propiedades */
-asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( new Variable( v.toString() ), valor ); :}
+asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( new Variable( v.toString(), tablaSimbolos ), valor ); :}
 			;
-valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
+valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
 			| STEP:st {: RESULT = new ValorCadena( st.toString() ); :}
 			| CLEF_VALUE:cl {: RESULT = new ValorCadena( cl.toString() ); :}
 			| ACCENT_VALUE:ac {: RESULT = new ValorCadena( ac.toString() ); :}
@@ -151,7 +151,7 @@ tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), "int"
 /* Operacion_trans - OperacionTrans */
 // De momento no permite anidamiento, sólo transporta variables
 operacion_trans ::= TRANS:tr LPAREN:lp VARIABLE:v COMA:cc tipo_numeros:tn RPAREN:rp  {:
-				RESULT = new OperacionTrans( new Variable( v.toString() ), tn );
+				RESULT = new OperacionTrans( new Variable( v.toString(), tablaSimbolos ), tn );
 				:}
 			;
 
@@ -164,7 +164,7 @@ expresion_arit ::= operando_arit:oper1 MAS:op operando_arit:oper2 {: RESULT = ne
 			;
 
 operando_arit ::= tipo_numeros:num {: RESULT = num; :}
-			| VARIABLE:v {: RESULT = new Variable( v.toString() ); :}
+			| VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
 			;
 
 /* Condicional IF - InstIf */
@@ -192,13 +192,13 @@ condicion ::= valor_asignacion:oper1 COMPARADOR:cc valor_asignacion:oper2 {:
 
 /* Funcion - InstFuncion */
 funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {:
-				RESULT = new FuncionPlay( new Variable( v.toString() ) );
+				RESULT = new FuncionPlay( new Variable( v.toString(), tablaSimbolos ) );
 				:}
 			| PLAYPARTITURE:pl LPAREN:lp RPAREN:rp {:
 				RESULT =  new FuncionPlayPartiture();
 				:}
 			| VARIABLE:v IGUAL_SIMPLE READ:pl LPAREN:lp RPAREN:rp {:
-				RESULT = new FuncionRead( new Variable( v.toString() ) );
+				RESULT = new FuncionRead( new Variable( v.toString(), tablaSimbolos ) );
 				:}
 			| READPARTITURE:pl LPAREN:lp RPAREN:rp {:
 				RESULT = new FuncionReadPartiture();

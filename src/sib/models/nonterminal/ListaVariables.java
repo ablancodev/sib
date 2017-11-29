@@ -1,7 +1,6 @@
 package sib.models.nonterminal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ListIterator;
 
 public class ListaVariables {
@@ -17,21 +16,21 @@ public class ListaVariables {
 		variables.add( v );
 	}
 
-	public void setTipo( String tipo ) {
+	public void setType( String tipo ) {
 		Variable temp;
 		ListIterator<Variable> it = variables.listIterator();
 		while ( it.hasNext() ) {
 			temp = it.next();
-			temp.setTipo( tipo );
+			temp.setType( tipo );
 		}
 	}
 
-	public void run( TablaSimbolos ts ) {
+	public void run() {
 		Variable temp;
 		ListIterator<Variable> it = variables.listIterator();
 		while ( it.hasNext() ) {
 			temp = it.next();
-			ts.addVariable( temp );
+			temp.register(); // Registramos las variables en la TablaSimbolos
 		}
 	}
 

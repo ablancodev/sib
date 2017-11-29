@@ -12,34 +12,28 @@ public class Condicion {
 		condicion = cc;
 	}
 
-	public boolean evalua( TablaSimbolos ts ) {
+	public boolean evalua() {
 		boolean result = false;
-		operador1.evalua( ts );
-		operador2.evalua( ts );
-		if ( operador1.getTipo().equals( operador2.getTipo() ) ) {
+		operador1.evalua();
+		operador2.evalua();
+		if ( operador1.getType().equals( operador2.getType() ) ) {
 			switch ( condicion ) {
 			case "==":
-				operador1.evalua( ts );
 				result = operador1.igualQue( operador2 );
 				break;
 			case "!=":
-				operador1.evalua( ts );
 				result = operador1.distintoQue( operador2 );
 				break;
 			case "<":
-				operador1.evalua( ts );
 				result = operador1.menorQue( operador2 );
 				break;
 			case "<=":
-				operador1.evalua( ts );
 				result = operador1.menorIgualQue( operador2 );
 				break;
 			case ">":
-				operador1.evalua( ts );
 				result = operador1.mayorQue( operador2 );
 				break;
 			case ">=":
-				operador1.evalua( ts );
 				result = operador1.mayorIgualQue( operador2 );
 				break;
 			default:
@@ -54,7 +48,7 @@ public class Condicion {
 			}
 		} else {
 			try {
-				throw new Exception( "Para comparar dos elementos, deben ser del mismo tipo:" + operador1.getTipo() + "-" + operador2.getTipo() );
+				throw new Exception( "Para comparar dos elementos, deben ser del mismo tipo:" + operador1.getType() + "-" + operador2.getType() );
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

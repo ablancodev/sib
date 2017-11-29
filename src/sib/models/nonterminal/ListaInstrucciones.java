@@ -16,12 +16,12 @@ public class ListaInstrucciones {
 		instrucciones.add( i );
 	}
 
-	public void run( TablaSimbolos ts ) {
+	public void run() {
 		Instruccion ins;
 		ListIterator<Instruccion> it = instrucciones.listIterator();
 		while ( it.hasNext() ) {
 			ins = it.next();
-			ins.run( ts );
+			ins.run();
 		}
 	}
 }

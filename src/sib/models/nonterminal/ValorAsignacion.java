@@ -2,10 +2,10 @@ package sib.models.nonterminal;
 
 public abstract class ValorAsignacion {
 
-	public abstract String getTipo();
-	public abstract String getValor();
+	public abstract String getType();
+	public abstract String getValue();
 
-	public abstract ValorAsignacion evalua( TablaSimbolos ts );
+	//public abstract ValorAsignacion evalua( TablaSimbolos ts );
 
 	public abstract ValorAsignacion evalua( );
 

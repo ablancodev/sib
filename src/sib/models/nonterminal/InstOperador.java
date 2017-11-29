@@ -18,15 +18,14 @@ public class InstOperador extends Instruccion {
 		listaOperadores.add( op );
 	}
 
-	public void run( TablaSimbolos ts ) {
+	public void run() {
 		String operador;
 		ListIterator<String> it = listaOperadores.listIterator();
 		while ( it.hasNext() ) {
 			operador = it.next();
-			variable = ts.getVariable( variable.name ); // Cojemos la variable de la tabla de simbolos
 			variable.aplicarOperador( operador );
 		}
-		ts.updateVariable( variable );
+		variable.register();
 	}
 
 

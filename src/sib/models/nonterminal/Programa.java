@@ -17,10 +17,18 @@ public class Programa {
 	}
 
 	public void exec() {
-		instrucciones.run( tablaSimbolos );
+		try {
+			instrucciones.run();
+		} catch ( Exception e ) {
+			System.err.println( "ERROR exec:" + e.getMessage());
+		}
 	}
 
 	public void print( ViewsControllerFase1 vc ) {
-		tablaSimbolos.print( vc );
+		try {
+			tablaSimbolos.print( vc );
+		} catch ( Exception e ) {
+			System.err.println( "ERROR print:" + e.getMessage());
+		}
 	}
 }

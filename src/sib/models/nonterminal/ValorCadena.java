@@ -2,15 +2,20 @@ package sib.models.nonterminal;
 
 public class ValorCadena extends ValorAsignacion {
 
-	String valor;
+	String value;
 
 	public ValorCadena ( String s ) {
-		valor = s;
+		value = s;
 	}
 
 	public String getValue() {
-		return valor;
+		return value;
 	}
+
+	public String getType() {
+		return "string";
+	}
+
 
 	public ValorCadena evalua() {
 		return this;
@@ -21,32 +26,32 @@ public class ValorCadena extends ValorAsignacion {
 	}
 
 	public String toString() {
-		return valor;
+		return value;
 	}
 
 	protected ValorCadena clone() {
-		ValorCadena cad = new ValorCadena( this.valor );
+		ValorCadena cad = new ValorCadena( this.value );
 		return cad;
 	}
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		System.err.println( "VALOR CADENA->" + this.valor);
-		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) == 0;
+		return this.value.compareTo( ((ValorCadena)op2).getValue() ) == 0;
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) != 0;
+		return this.value.compareTo( ((ValorCadena)op2).getValue() ) != 0;
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		return this.valor.compareTo(((ValorCadena)op2).getValue() ) < 0;
+		return this.value.compareTo(((ValorCadena)op2).getValue() ) < 0;
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) <= 0;
+		return this.value.compareTo( ((ValorCadena)op2).getValue() ) <= 0;
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) > 0;
+		return this.value.compareTo( ((ValorCadena)op2).getValue() ) > 0;
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return this.valor.compareTo(((ValorCadena)op2).getValue() ) >= 0;
+		return this.value.compareTo(((ValorCadena)op2).getValue() ) >= 0;
 	}
+
 }

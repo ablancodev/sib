@@ -22,13 +22,12 @@ public class ExpresionAritmetica extends ValorAsignacion {
 	 * Evalua la expresión aritmética.
 	 * Coge los valores float de los operandos y aplica la función matemática para obtener el resultado.
 	 *
-	 * @param ts TablaSimbolos
 	 * @return OperandoAritmetico TipoNumero float con el resultado
 	 */
-	public OperandoAritmetico evalua( TablaSimbolos ts ) {
+	public OperandoAritmetico evalua() {
 		OperandoAritmetico result = null;
-		OperandoAritmetico operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua( ts );
-		OperandoAritmetico operandoDer = (OperandoAritmetico) this.operandoDer.evalua( ts );
+		OperandoAritmetico operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua();
+		OperandoAritmetico operandoDer = (OperandoAritmetico) this.operandoDer.evalua();
 		float fl;
 		switch ( operador ) {
 			case ExpresionAritmetica.MAS :
@@ -52,7 +51,12 @@ public class ExpresionAritmetica extends ValorAsignacion {
 				result = new TipoNumero( String.valueOf( fl ),  "float" );
 				break;
 			default:
-				// Quizás lanzar excepcion de error
+				try {
+					throw new Exception ( "Operador aritmético no válido.");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 		}
 		return result;
@@ -81,5 +85,19 @@ public class ExpresionAritmetica extends ValorAsignacion {
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
 		return this.operandoIzq.mayorIgualQue( (OperandoAritmetico)op2 );
+	}
+
+	public String getType() {
+		return this.evalua().getType();
+	}
+
+	public String getValue() {
+		return this.evalua().getValue();
+	}
+
+	public void trans(Float float1) {
+		// TODO Auto-generated method stub
+		OperandoAritmetico op = this.evalua();
+		op.trans( float1 );
 	}
 }

@@ -8,13 +8,12 @@ public class InstDeclaracion extends Instruccion {
 	public InstDeclaracion( String tipo, ListaVariables lv ) {
 		this.tipo = tipo;
 		this.variables = lv;
-		variables.setTipo( tipo );
+		variables.setType( tipo );
 	}
 
 	@Override
-	public void run( TablaSimbolos ts ) {
-		
-		variables.run( ts );
+	public void run() {
+		variables.run();
 
 		//variable.setTipo( tipo );
 		//ts.addVariable( variable, tipo );
