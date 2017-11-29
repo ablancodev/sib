@@ -3,7 +3,7 @@
   associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="sib.models.nonterminal.InstDeclaracion" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/InstDeclaracion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="207" x="982" y="37"/>    
+    <position height="117" width="207" x="1488" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="sib.models.nonterminal.FuncionPlay" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/FuncionPlay.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="116" x="41" y="37"/>    
+    <position height="99" width="131" x="1255" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="sib.models.nonterminal.InstAsignacion" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/InstAsignacion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="277" x="1713" y="37"/>    
+    <position height="117" width="277" x="1171" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="sib.models.nonterminal.FuncionPlayPartiture" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/FuncionPlayPartiture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="142" x="357" y="37"/>    
+    <position height="99" width="142" x="1789" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="sib.models.nonterminal.Variable" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/Variable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="216" x="1613" y="338"/>    
+    <position height="261" width="216" x="1173" y="1128"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="sib.models.nonterminal.Condicion" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/Condicion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="308" x="3286" y="338"/>    
+    <position height="225" width="308" x="524" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,280 +57,571 @@
   </class>  
   <class id="7" language="java" name="sib.models.nonterminal.TipoNumero" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/TipoNumero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="216" x="539" y="37"/>    
+    <position height="261" width="216" x="226" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="sib.models.nonterminal.OrdenWhile" project="Sib" 
-    file="/Sib/src/sib/models/nonterminal/OrdenWhile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="228" x="3286" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="sib.models.nonterminal.InstIf" project="Sib" 
+  <class id="8" language="java" name="sib.models.nonterminal.InstIf" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/InstIf.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="195" x="3051" y="37"/>    
+    <position height="117" width="195" x="689" y="176"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="sib.models.nonterminal.ListaInstrucciones" project="Sib" 
+  <class id="9" language="java" name="sib.models.nonterminal.ListaInstrucciones" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/ListaInstrucciones.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="206" x="3040" y="338"/>    
+    <position height="117" width="175" x="893" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="sib.models.nonterminal.InstOperador" project="Sib" 
+  <class id="10" language="java" name="sib.models.nonterminal.InstOperador" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/InstOperador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="193" x="1480" y="37"/>    
+    <position height="135" width="193" x="1415" y="742"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="sib.models.nonterminal.Programa" project="Sib" 
+  <class id="11" language="java" name="sib.models.nonterminal.Programa" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/Programa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="225" x="2786" y="37"/>    
+    <position height="135" width="225" x="1221" y="176"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="sib.models.nonterminal.OperandoAritmetico" project="Sib" 
+  <class id="12" language="java" name="sib.models.nonterminal.OperandoAritmetico" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/OperandoAritmetico.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="139" x="2211" y="37"/>    
+    <position height="81" width="139" x="165" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="sib.models.nonterminal.FuncionRead" project="Sib" 
+  <class id="13" language="java" name="sib.models.nonterminal.FuncionRead" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/FuncionRead.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="120" x="197" y="37"/>    
+    <position height="99" width="136" x="1426" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="sib.models.nonterminal.FuncionReadPartiture" project="Sib" 
+  <class id="14" language="java" name="sib.models.nonterminal.FuncionReadPartiture" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/FuncionReadPartiture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="147" x="795" y="37"/>    
+    <position height="99" width="147" x="1602" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="sib.models.nonterminal.ExpresionAritmetica" project="Sib" 
+  <class id="15" language="java" name="sib.models.nonterminal.ExpresionAritmetica" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/ExpresionAritmetica.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="356" x="2390" y="37"/>    
+    <position height="225" width="356" x="293" y="176"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="sib.models.nonterminal.OperacionTrans" project="Sib" 
+  <class id="16" language="java" name="sib.models.nonterminal.OperacionTrans" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/OperacionTrans.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="211" x="1229" y="37"/>    
+    <position height="99" width="211" x="42" y="176"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="sib.models.nonterminal.ListaVariables" project="Sib" 
+  <class id="17" language="java" name="sib.models.nonterminal.ListaVariables" project="Sib" 
     file="/Sib/src/sib/models/nonterminal/ListaVariables.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="141" x="2030" y="37"/>    
+    <position height="135" width="141" x="1234" y="742"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="19">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="20" name="ifInstrucciones"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="22">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="23" name="variable">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="26" name="variable">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="28">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="29" name="listaInstrucciones">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="32" name="operandoDer"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="35" name="condicion"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="38" name="elseInstrucciones">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="40">    
-    <end type="SOURCE" refId="16"/>    
+  <class id="18" language="java" name="sib.models.nonterminal.TablaSimbolos" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/TablaSimbolos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="186" x="893" y="935"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="sib.models.nonterminal.Instruccion" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/Instruccion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="141" x="1467" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="sib.models.nonterminal.InstWhile" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/InstWhile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="215" x="924" y="176"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="sib.models.nonterminal.ValorAsignacion" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/ValorAsignacion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="216" x="325" y="742"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="sib.models.nonterminal.ValorCadena" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/ValorCadena.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="148" x="325" y="1429"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="sib.models.nonterminal.InstFuncion" project="Sib" 
+    file="/Sib/src/sib/models/nonterminal/InstFuncion.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="106" x="1648" y="742"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="41">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="42" name="variable">        
+  <association id="25">    
+    <bendpoint x="758" y="935"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="26" name="valor"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="28">    
+    <bendpoint x="153" y="441"/>    
+    <bendpoint x="216" y="742"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="29">    
+    <bendpoint x="1190" y="176"/>    
+    <bendpoint x="1119" y="441"/>    
+    <bendpoint x="1119" y="742"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="30">    
+    <bendpoint x="718" y="742"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="32">    
+    <bendpoint x="902" y="742"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <association id="34">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="35" name="instrucciones"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="40">    
+    <bendpoint x="1725" y="441"/>    
+    <bendpoint x="1725" y="176"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <dependency id="41">    
+    <bendpoint x="1098" y="441"/>    
+    <bendpoint x="1098" y="742"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="43">    
+    <bendpoint x="1169" y="176"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="44" name="instrucciones"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <bendpoint x="1224" y="935"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="47" name="variable">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="43" minimum="0" maximum="1">        
+      <multiplicity id="48" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="45" name="valor"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
+  <dependency id="49">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="50">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="51" name="variables">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="54" name="valorAsignacion"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="57" name="elseInstrucciones">        
+        <position height="0" width="0" x="92" y="-12"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="92" y="-12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="59">    
+    <bendpoint x="862" y="441"/>    
+    <bendpoint x="862" y="742"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="60">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <generalization id="61">    
+    <bendpoint x="334" y="1128"/>    
+    <bendpoint x="334" y="935"/>    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="62">    
+    <bendpoint x="132" y="441"/>    
+    <bendpoint x="132" y="742"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="63" name="operandoDer">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="65">    
+    <bendpoint x="1746" y="441"/>    
+    <bendpoint x="1746" y="176"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <association id="66">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="67" name="operador2"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="69">    
+    <bendpoint x="571" y="742"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="70">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="71">    
+    <bendpoint x="195" y="742"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="72">    
+    <bendpoint x="1476" y="176"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <association id="73">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="74" name="ifInstrucciones">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="75" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <bendpoint x="174" y="441"/>    
+    <bendpoint x="174" y="742"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="77" name="operandoIzq">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="78" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="80">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="81" name="instrucciones">        
+        <position height="0" width="0" x="92" y="-12"/>      
+      </attribute>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="0" width="0" x="92" y="-12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="83">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="84">    
+    <bendpoint x="195" y="441"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="85">    
+    <bendpoint x="1497" y="176"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <association id="86">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="87" name="variable"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="91" name="valor">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="47">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="48">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="49" name="instrucciones">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="92" y="-12"/>      
-      </multiplicity>    
+  <generalization id="93">    
+    <bendpoint x="472" y="441"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="94">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="95" name="vars"/>      
+      <multiplicity id="96" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="51">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="52" name="operandoIzq"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="55" name="comparacion">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="97">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="98" name="condicion"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="57">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="13"/>  
-  </generalization>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="2"/>    
+  <dependency id="100">    
+    <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="59">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="60" name="variables"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
+  <association id="101">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="102" name="operador1"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="62">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="63" name="variables">        
+  <association id="104">    
+    <bendpoint x="111" y="441"/>    
+    <bendpoint x="111" y="742"/>    
+    <bendpoint x="111" y="935"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="105" name="variable">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="64" minimum="0" maximum="2147483647">        
+      <multiplicity id="106" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="65">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="13"/>  
+  <dependency id="107">    
+    <bendpoint x="1203" y="742"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="108">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="109" name="condicion">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <bendpoint x="1182" y="742"/>    
+    <bendpoint x="1182" y="935"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="112" name="variable">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="113" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <bendpoint x="1140" y="441"/>    
+    <bendpoint x="1140" y="742"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="115" name="tablaSimbolos"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="117">    
+    <bendpoint x="1161" y="742"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="118">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <association id="119">    
+    <bendpoint x="1203" y="935"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="120" name="variables">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="121" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="123" name="variable"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="125">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="19"/>  
   </generalization>  
+  <dependency id="126">    
+    <bendpoint x="493" y="441"/>    
+    <bendpoint x="592" y="742"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
     <operations public="true" package="true" protected="true" private="true" static="true"/>  
   </classifier-display>  
-  <association-display labels="true" multiplicity="true"/>
+  <association-display labels="false" multiplicity="true"/>
 </class-diagram>

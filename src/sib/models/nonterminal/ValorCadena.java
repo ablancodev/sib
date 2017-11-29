@@ -8,7 +8,11 @@ public class ValorCadena extends ValorAsignacion {
 		valor = s;
 	}
 
-	public ValorAsignacion evalua() {
+	public String getValue() {
+		return valor;
+	}
+
+	public ValorCadena evalua() {
 		return this;
 	}
 
@@ -23,5 +27,26 @@ public class ValorCadena extends ValorAsignacion {
 	protected ValorCadena clone() {
 		ValorCadena cad = new ValorCadena( this.valor );
 		return cad;
+	}
+
+	// Comparaciones
+	public boolean igualQue( ValorAsignacion op2 ) {
+		System.err.println( "VALOR CADENA->" + this.valor);
+		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) == 0;
+	}
+	public boolean distintoQue( ValorAsignacion op2 ) {
+		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) != 0;
+	}
+	public boolean menorQue( ValorAsignacion op2 ) {
+		return this.valor.compareTo(((ValorCadena)op2).getValue() ) < 0;
+	}
+	public boolean menorIgualQue( ValorAsignacion op2 ) {
+		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) <= 0;
+	}
+	public boolean mayorQue( ValorAsignacion op2 ) {
+		return this.valor.compareTo( ((ValorCadena)op2).getValue() ) > 0;
+	}
+	public boolean mayorIgualQue( ValorAsignacion op2 ) {
+		return this.valor.compareTo(((ValorCadena)op2).getValue() ) >= 0;
 	}
 }

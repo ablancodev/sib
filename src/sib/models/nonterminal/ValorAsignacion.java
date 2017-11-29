@@ -1,25 +1,28 @@
 package sib.models.nonterminal;
 
-public class ValorAsignacion {
+public abstract class ValorAsignacion {
 
-	public ValorAsignacion evalua( TablaSimbolos ts ) {
-		return this;
-	}
+	public abstract String getTipo();
+	public abstract String getValor();
 
-	public ValorAsignacion evalua( ) {
-		return this;
-	}
+	public abstract ValorAsignacion evalua( TablaSimbolos ts );
+
+	public abstract ValorAsignacion evalua( );
 
 	/**
 	 * TRansporta el valor
 	 * @param float1 float
 	 */
-	public void trans( Float float1 ) {
+	public abstract void trans( Float float1 );
 
-	}
+	protected abstract ValorAsignacion clone();
 
-	protected ValorAsignacion clone() {
-		return new ValorAsignacion();
-	}
+	// Comparaciones
+	public abstract boolean igualQue( ValorAsignacion op2 );
+	public abstract boolean distintoQue( ValorAsignacion op2 );
+	public abstract boolean menorQue( ValorAsignacion op2 );
+	public abstract boolean menorIgualQue( ValorAsignacion op2 );
+	public abstract boolean mayorQue( ValorAsignacion op2 );
+	public abstract boolean mayorIgualQue( ValorAsignacion op2 );
 
 }

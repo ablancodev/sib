@@ -1,6 +1,5 @@
 package sib.models.nonterminal;
 
-
 public class Variable extends OperandoAritmetico {
 
 	String name;
@@ -11,6 +10,10 @@ public class Variable extends OperandoAritmetico {
 		name = n;
 		tipo = "";
 		valor = null;
+	}
+
+	public String getTipo() {
+		return tipo;
 	}
 
 	public void setTipo( String t ) {
@@ -28,6 +31,10 @@ public class Variable extends OperandoAritmetico {
 		}
 	}
 
+	public String getValor() {
+		return this.valor.getValor();
+	}
+
 	public void aplicarOperador( String op ) {
 		if ( this.esAplicable( op ) ) {
 			String v = "";
@@ -42,7 +49,12 @@ public class Variable extends OperandoAritmetico {
 		Variable temp = ts.getVariable( name );
 		if ( temp != null ) {
 			valor = temp.valor;
+			tipo = temp.getTipo();
 		}
+		return valor;
+	}
+
+	public ValorAsignacion evalua() {
 		return valor;
 	}
 
@@ -100,4 +112,44 @@ public class Variable extends OperandoAritmetico {
 		return v;
 	}
 
+	/**
+	 * Obtiene un valor float para las operaciones aritmeticas.
+	 * Lanza excepción en caso de no ser de un tipo correcto.
+	 *
+	 * @return float representacion del valor
+	 */
+	public float toFloat() {
+		if ( valor.getClass() == TipoNumero.class ) {
+			return ((TipoNumero)valor).toFloat();
+		} else {
+			try {
+				throw new Exception( "Variable " + name + " no es aplicable toFloat(), es de tipo: " + tipo);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+
+	// Comparaciones
+	public boolean igualQue( ValorAsignacion op2 ) {
+		return this.getValor().compareTo( op2.getValor() ) == 0;
+	}
+	public boolean distintoQue( ValorAsignacion op2 ) {
+		return this.getValor().compareTo( op2.getValor() ) != 0;
+	}
+	public boolean menorQue( ValorAsignacion op2 ) {
+		String t = op2.getValor();
+		return this.getValor().compareTo( op2.getValor() ) < 0;
+	}
+	public boolean menorIgualQue( ValorAsignacion op2 ) {
+		return this.getValor().compareTo( op2.getValor() ) <= 0;
+	}
+	public boolean mayorQue( ValorAsignacion op2 ) {
+		return this.getValor().compareTo( op2.getValor() ) > 0;
+	}
+	public boolean mayorIgualQue( ValorAsignacion op2 ) {
+		return this.getValor().compareTo( op2.getValor() ) >= 0;
+	}
 }

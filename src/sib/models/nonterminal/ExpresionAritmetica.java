@@ -18,38 +18,42 @@ public class ExpresionAritmetica extends ValorAsignacion {
 		this.operandoDer = oper2;
 	}
 
-	// @todo falta implementar la evaluacion de las operaciones aritmeticas para las variables. Ahora solo lo hace sbre numeros
-	public ValorAsignacion evalua( TablaSimbolos ts ) {
-		ValorAsignacion result = null;
-		operandoIzq = (OperandoAritmetico) operandoIzq.evalua( ts );
-		operandoDer = (OperandoAritmetico) operandoDer.evalua( ts );
-		if ( ( operandoIzq.getClass() == TipoNumero.class ) && ( operandoDer.getClass() == TipoNumero.class ) ) {  // TipoNumero
-			float fl;
-			switch ( operador ) {
-				case ExpresionAritmetica.MAS :
-					fl = ( ((TipoNumero) operandoIzq).toFloat() + ((TipoNumero) operandoDer).toFloat() );
-					result = new TipoNumero( String.valueOf( fl ),  ((TipoNumero) operandoIzq).getTipo() );
-					break;
-				case ExpresionAritmetica.MENOS :
-					fl = ( ((TipoNumero) operandoIzq).toFloat() - ((TipoNumero) operandoDer).toFloat() );
-					result = new TipoNumero( String.valueOf( fl ),  ((TipoNumero) operandoIzq).getTipo() );
-					break;
-				case ExpresionAritmetica.DIV :
-					fl = ( ((TipoNumero) operandoIzq).toFloat() / ((TipoNumero) operandoDer).toFloat() );
-					result = new TipoNumero( String.valueOf( fl ),  ((TipoNumero) operandoIzq).getTipo() );
-					break;
-				case ExpresionAritmetica.MULT :
-					fl = ( ((TipoNumero) operandoIzq).toFloat() * ((TipoNumero) operandoDer).toFloat() );
-					result = new TipoNumero( String.valueOf( fl ),  ((TipoNumero) operandoIzq).getTipo() );
-					break;
-				case ExpresionAritmetica.MOD :
-					fl = ( ((TipoNumero) operandoIzq).toFloat() % ((TipoNumero) operandoDer).toFloat() );
-					result = new TipoNumero( String.valueOf( fl ),  ((TipoNumero) operandoIzq).getTipo() );
-					break;
-				default:
-					// Quizás lanzar excepcion de error
-					break;
-			}
+	/**
+	 * Evalua la expresión aritmética.
+	 * Coge los valores float de los operandos y aplica la función matemática para obtener el resultado.
+	 *
+	 * @param ts TablaSimbolos
+	 * @return OperandoAritmetico TipoNumero float con el resultado
+	 */
+	public OperandoAritmetico evalua( TablaSimbolos ts ) {
+		OperandoAritmetico result = null;
+		OperandoAritmetico operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua( ts );
+		OperandoAritmetico operandoDer = (OperandoAritmetico) this.operandoDer.evalua( ts );
+		float fl;
+		switch ( operador ) {
+			case ExpresionAritmetica.MAS :
+				fl = operandoIzq.toFloat() + operandoDer.toFloat();
+				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				break;
+			case ExpresionAritmetica.MENOS :
+				fl = operandoIzq.toFloat() - operandoDer.toFloat();
+				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				break;
+			case ExpresionAritmetica.DIV :
+				fl = operandoIzq.toFloat() / operandoDer.toFloat();
+				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				break;
+			case ExpresionAritmetica.MULT :
+				fl = operandoIzq.toFloat() * operandoDer.toFloat();
+				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				break;
+			case ExpresionAritmetica.MOD :
+				fl = operandoIzq.toFloat() % operandoDer.toFloat();
+				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				break;
+			default:
+				// Quizás lanzar excepcion de error
+				break;
 		}
 		return result;
 	}
@@ -59,4 +63,23 @@ public class ExpresionAritmetica extends ValorAsignacion {
 		return exp;
 	}
 
+	// Comparaciones
+	public boolean igualQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.igualQue( (OperandoAritmetico)op2 );
+	}
+	public boolean distintoQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.distintoQue( (OperandoAritmetico)op2 );
+	}
+	public boolean menorQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.menorQue( (OperandoAritmetico)op2 );
+	}
+	public boolean menorIgualQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.menorIgualQue( (OperandoAritmetico)op2 );
+	}
+	public boolean mayorQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.mayorQue( (OperandoAritmetico)op2 );
+	}
+	public boolean mayorIgualQue( ValorAsignacion op2 ) {
+		return this.operandoIzq.mayorIgualQue( (OperandoAritmetico)op2 );
+	}
 }

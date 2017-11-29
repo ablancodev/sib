@@ -1,6 +1,6 @@
 package sib.models.nonterminal;
 
-public class OperandoAritmetico extends ValorAsignacion {
+public abstract class OperandoAritmetico extends ValorAsignacion {
 
-
+	public abstract float toFloat();
 }

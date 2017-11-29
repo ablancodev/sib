@@ -14,12 +14,16 @@ public class TipoNumero extends OperandoAritmetico {
 		return tipo;
 	}
 
+	/**
+	 * Devuelve el valor del TipoNumero como el string del float que lo representa.
+	 */
 	public String getValor() {
-		return valor;
+		// @todo esto habrá que mejorarlo para que contemple todos los tipos de cadenas que representan a frac, ...
+		return String.valueOf( toFloat() );
 	}
 
 	public void setValor( Float f ) {
-		// @todo falta implementarlo
+		valor = f.toString();
 	}
 
 	public ValorAsignacion evalua( TablaSimbolos ts ) {
@@ -30,7 +34,7 @@ public class TipoNumero extends OperandoAritmetico {
 		return tipo + ":" + valor;
 	}
 
-	public Float toFloat() {
+	public float toFloat() {
 		float result = 0;
 		try {
 			result = Float.valueOf( valor );
@@ -49,5 +53,29 @@ public class TipoNumero extends OperandoAritmetico {
 	protected TipoNumero clone() {
 		TipoNumero num = new TipoNumero( this.valor, this.tipo );
 		return num;
+	}
+
+	// Comparaciones
+	public boolean igualQue( ValorAsignacion op2 ) {
+		return this.toFloat() == ((TipoNumero)op2).toFloat();
+	}
+	public boolean distintoQue( ValorAsignacion op2 ) {
+		return this.toFloat() != ((TipoNumero)op2).toFloat();
+	}
+	public boolean menorQue( ValorAsignacion op2 ) {
+		return this.toFloat() < ((TipoNumero)op2).toFloat();
+	}
+	public boolean menorIgualQue( ValorAsignacion op2 ) {
+		return this.toFloat() <= ((TipoNumero)op2).toFloat();
+	}
+	public boolean mayorQue( ValorAsignacion op2 ) {
+		return this.toFloat() > ((TipoNumero)op2).toFloat();
+	}
+	public boolean mayorIgualQue( ValorAsignacion op2 ) {
+		return this.toFloat() >= ((TipoNumero)op2).toFloat();
+	}
+
+	public ValorAsignacion evalua() {
+		return this;
 	}
 }
