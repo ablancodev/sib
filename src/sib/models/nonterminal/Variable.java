@@ -147,6 +147,8 @@ public class Variable extends OperandoAritmetico {
 	}
 
 	public void trans( Float float1 ) {
+		Variable v = tablaSimbolos.getVariable( this.name );
+		valor = v.valor;
 		valor.trans( float1 );
 		// Actualizamos TablaSimbolos
 		tablaSimbolos.updateVariable( this );

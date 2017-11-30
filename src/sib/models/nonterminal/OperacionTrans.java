@@ -11,12 +11,14 @@ public class OperacionTrans extends ValorAsignacion {
 		valor = tn;
 	}
 
-	public Variable evalua( TablaSimbolos ts ) {
-		if ( variable != null ) {
-			variable = ts.getVariable( variable.name );
+	public Variable evalua() {
+		try {
 			if ( variable != null ) {
 				variable.trans( valor.toFloat() );
 			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR en OperacionTrans->evalua: " + e.getMessage());
+			e.printStackTrace();
 		}
 		return variable;
 	}
@@ -34,15 +36,14 @@ public class OperacionTrans extends ValorAsignacion {
 	}
 
 	@Override
-	public ValorAsignacion evalua() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void trans(Float float1) {
-		// TODO Auto-generated method stub
-		
+		try {
+			if ( variable != null ) {
+				variable.trans( valor.toFloat() );
+			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR en OperacionTrans->trans: " + e.getMessage());
+		}
 	}
 
 	@Override
