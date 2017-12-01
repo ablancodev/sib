@@ -25,7 +25,7 @@ import sib.models.Note;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
-public class SibMusicXMLOutput implements SibOutputInterface {
+public class SibMusicXMLOutput implements SibOutputController {
 
 	public Document doc;
 

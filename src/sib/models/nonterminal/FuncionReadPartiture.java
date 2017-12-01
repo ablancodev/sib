@@ -1,12 +1,19 @@
 package sib.models.nonterminal;
 
+import sib.inout.SibInputController;
+
 public class FuncionReadPartiture extends InstFuncion {
 
-	public FuncionReadPartiture() {
-		
+	SibInputController inputController;
+
+	public FuncionReadPartiture( SibInputController input ) {
+		inputController = input;
 	}
 
-	public void readPartiture() {
-		// @todo implementar el metodo playPartiture
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,12 +1,17 @@
 package sib.models.nonterminal;
 
+import sib.inout.SibOutputController;
+
 public class FuncionPlayPartiture extends InstFuncion {
 
-	public FuncionPlayPartiture() {
-		
+	SibOutputController output;
+
+	public FuncionPlayPartiture( SibOutputController output ) {
+
 	}
 
-	public void playPartiture() {
-		// @todo implementar el metodo playPartiture
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 	}
 }

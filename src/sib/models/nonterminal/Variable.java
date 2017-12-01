@@ -60,6 +60,8 @@ public class Variable extends OperandoAritmetico {
 		}
 	}
 
+	// @todo IMPORTANT - creo que no cumple con su cometido, quizás deba devolver sólo .valor y 
+	// necesitemos otra funcion para coger el value del .valor
 	public String getValue() {
 		return this.valor.getValue();
 	}

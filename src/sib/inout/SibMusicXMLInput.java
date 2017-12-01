@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 
 import sib.models.Note;
 
-public class SibMusicXMLInput implements SibInputInterface {
+public class SibMusicXMLInput implements SibInputController {
 
 	public Document doc;
 

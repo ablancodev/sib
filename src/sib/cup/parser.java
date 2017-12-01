@@ -230,8 +230,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 	public ViewsControllerFase1 viewsController;
-	public SibMusicXMLOutput output;
-	public SibMusicXMLInput input;
+	public SibOutputController output;
+	public SibInputController input;
 
 	public TablaSimbolos tablaSimbolos;
 
@@ -239,11 +239,11 @@ public class parser extends java_cup.runtime.lr_parser {
 		this.viewsController = vc;
 	}
 
-	public void setOutputController( SibMusicXMLOutput output ) {
+	public void setOutputController( SibOutputController output ) {
 		this.output = output;
 	}
 
-	public void setInputController( SibMusicXMLInput input ) {
+	public void setInputController( SibInputController input ) {
 		this.input = input;
 	}
 
@@ -900,7 +900,9 @@ class CUP$parser$actions {
 		int rpright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-				RESULT = new FuncionPlay( new Variable( v.toString(), tablaSimbolos ) );
+				FuncionPlay fp = new FuncionPlay( output );
+				fp.play( new Variable( v.toString(), tablaSimbolos ) );
+				RESULT = fp;
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -920,7 +922,7 @@ class CUP$parser$actions {
 		int rpright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-				RESULT =  new FuncionPlayPartiture();
+				RESULT =  new FuncionPlayPartiture( output );
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -943,7 +945,16 @@ class CUP$parser$actions {
 		int rpright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-				RESULT = new FuncionRead( new Variable( v.toString(), tablaSimbolos ) );
+				FuncionRead fr = new FuncionRead( input );
+				fr.read(new Variable( v.toString(), tablaSimbolos ) );
+				RESULT = fr;
+				/*
+				Variable varOrigen = fr.read();
+				Variable varDestino = new Variable( v.toString(), tablaSimbolos );
+				varDestino.setType( varOrigen.getType() );
+				varDestino.setValue( varOrigen.getValue() );
+				RESULT = fr;  // Quizás devolver null, ya que no queremos este valor para nada.
+				*/
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -963,7 +974,7 @@ class CUP$parser$actions {
 		int rpright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-				RESULT = new FuncionReadPartiture();
+				RESULT = new FuncionReadPartiture( input );
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }

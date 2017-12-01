@@ -37,11 +37,6 @@ public class SibIDE {
 
 	ViewsControllerFase1 viewsController;
 
-	TablaSimbolos tablaSimbolos;
-
-	SibMusicXMLOutput output;
-	SibMusicXMLInput input;
-
 	/**
 	 * Launch the application.
 	 */
@@ -71,14 +66,6 @@ public class SibIDE {
 	private void initialize() {
 
 		viewsController = new ViewsControllerFase1( this );
-
-		// output controller
-		this.output = new SibMusicXMLOutput();
-		// input controller
-		this.input = new SibMusicXMLInput();
-
-		// Tabla simbolos
-		this.tablaSimbolos = new TablaSimbolos();
 
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -208,18 +195,4 @@ public class SibIDE {
 		textPaneInput.setText( "" );
 	}
 
-	public SibMusicXMLOutput getOutputController() {
-		return this.output;
-	}
-	public SibMusicXMLInput getInputController() {
-		return this.input;
-	}
-
-	public void printMusicXML() {
-		this.output.print();
-	}
-
-	public TablaSimbolos getTablaSimbolos() {
-		return this.tablaSimbolos;
-	}
 }

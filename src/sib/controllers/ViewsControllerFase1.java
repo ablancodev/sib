@@ -6,12 +6,22 @@ import sib.cup.parser;
 import sib.flex.AnalizadorLexicoFase2;
 import sib.flex.AnalizadorLexicoSid;
 import sib.flex.Token;
+import sib.inout.SibInputController;
+import sib.inout.SibMusicXMLInput;
+import sib.inout.SibMusicXMLOutput;
+import sib.inout.SibOutputController;
+import sib.models.nonterminal.TablaSimbolos;
 import sib.views.SibIDE;
 
 public class ViewsControllerFase1 {
 
 	private SibIDE view;
-	
+
+	TablaSimbolos tablaSimbolos;
+
+	SibOutputController output;
+	SibInputController input;
+
 	public ViewsControllerFase1 ( SibIDE view ) {
 		this.view = view;
 	}
@@ -34,12 +44,19 @@ public class ViewsControllerFase1 {
 
 			parser p = new parser( analizadorJFlex );
 			p.setViewController( this );
-			p.setOutputController( this.view.getOutputController() );
-			p.setInputController( this.view.getInputController() );
-			p.setTablaSimbolos( this.view.getTablaSimbolos() );
+
+			// input / output controllers
+			output = new SibMusicXMLOutput();
+			input = new SibMusicXMLInput();
+			p.setOutputController( output );
+			p.setInputController( input );
+
+			// Tabla simbolos
+			tablaSimbolos = new TablaSimbolos();
+			p.setTablaSimbolos( tablaSimbolos );
 			p.parse();
 
-			this.view.printMusicXML();
+			output.print();
 
 			//new parser( analizadorJFlex ).parse();
 
