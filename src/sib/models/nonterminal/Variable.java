@@ -1,5 +1,7 @@
 package sib.models.nonterminal;
 
+import sib.models.datatype.StringType;
+
 public class Variable extends OperandoAritmetico {
 
 	TablaSimbolos tablaSimbolos;
@@ -67,12 +69,13 @@ public class Variable extends OperandoAritmetico {
 	}
 
 	public void aplicarOperador( String op ) {
+		// @todo implementar el operador sobre una variable, tendrá que aplica sobre cada tipo de dato posible
 		if ( this.esAplicable( op ) ) {
 			String v = "";
 			if ( valor != null ) {
 				v = valor.toString();
 			}
-			valor = new ValorCadena( v + "_" + op );
+			valor = new StringType( v + "_" + op );
 			// Actualizamos TablaSimbolos
 			tablaSimbolos.updateVariable( this );
 		}

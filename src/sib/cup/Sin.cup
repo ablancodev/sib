@@ -5,6 +5,7 @@ import java.io.*;
 import sib.flex.*;
 import sib.controllers.*;
 import sib.inout.*;
+import sib.models.datatype.*;
 import sib.models.nonterminal.*;
 
 parser code {:
@@ -134,10 +135,10 @@ operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new InstOperador( new Varia
 asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( new Variable( v.toString(), tablaSimbolos ), valor ); :}
 			;
 valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
-			| STEP:st {: RESULT = new ValorCadena( st.toString() ); :}
-			| CLEF_VALUE:cl {: RESULT = new ValorCadena( cl.toString() ); :}
-			| ACCENT_VALUE:ac {: RESULT = new ValorCadena( ac.toString() ); :}
-			| CADENA:st {: RESULT = new ValorCadena( st.toString() ); :}
+			| STEP:st {: RESULT = new StepType( st.toString() ); :}
+			| CLEF_VALUE:cl {: RESULT = new ClefType( cl.toString() ); :}
+			| ACCENT_VALUE:ac {: RESULT = new StringType( ac.toString() ); :}
+			| CADENA:st {: RESULT = new StringType( st.toString() ); :}
 			| tipo_numeros:tn {: RESULT = tn; :}
 			| operacion_trans:op {: RESULT = op; :}
 			| expresion_arit:exp {: RESULT = exp; :}

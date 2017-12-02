@@ -2,7 +2,7 @@ package sib.inout;
 
 import org.w3c.dom.Document;
 
-import sib.models.Note;
+import sib.models.datatype.NoteType;
 
 public class SibMusicXMLInput implements SibInputController {
 
@@ -15,7 +15,7 @@ public class SibMusicXMLInput implements SibInputController {
 		// @todo implementarlo - Devuelve void, porque escribirá sobre la variable global $partiture
 	}
 
-	public Note readNote() {
+	public NoteType readNote() {
 		// @todo implementarlo
 		return null;
 	}

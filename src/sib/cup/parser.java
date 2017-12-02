@@ -10,6 +10,7 @@ import java.io.*;
 import sib.flex.*;
 import sib.controllers.*;
 import sib.inout.*;
+import sib.models.datatype.*;
 import sib.models.nonterminal.*;
 import java_cup.runtime.XMLElement;
 
@@ -516,7 +517,7 @@ class CUP$parser$actions {
 		int stleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int stright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object st = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new ValorCadena( st.toString() ); 
+		 RESULT = new StepType( st.toString() ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("valor_asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -528,7 +529,7 @@ class CUP$parser$actions {
 		int clleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int clright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object cl = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new ValorCadena( cl.toString() ); 
+		 RESULT = new ClefType( cl.toString() ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("valor_asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -540,7 +541,7 @@ class CUP$parser$actions {
 		int acleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int acright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object ac = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new ValorCadena( ac.toString() ); 
+		 RESULT = new StringType( ac.toString() ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("valor_asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -552,7 +553,7 @@ class CUP$parser$actions {
 		int stleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int stright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object st = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new ValorCadena( st.toString() ); 
+		 RESULT = new StringType( st.toString() ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("valor_asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

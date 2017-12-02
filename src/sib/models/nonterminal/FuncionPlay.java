@@ -1,7 +1,7 @@
 package sib.models.nonterminal;
 
 import sib.inout.SibOutputController;
-import sib.models.Note;
+import sib.models.datatype.NoteType;
 
 public class FuncionPlay extends InstFuncion {
 
@@ -27,10 +27,10 @@ public class FuncionPlay extends InstFuncion {
 		outputController.playNote( this.toNote( variable ) );
 	}
 
-	private Note toNote(Variable v ) {
-		Note n = null;
+	private NoteType toNote(Variable v ) {
+		NoteType n = null;
 		try {
-			n = new Note();
+			n = new NoteType();
 			TipoNumero tn = (TipoNumero) v.valor;
 			n.value = tn.toString();
 		} catch ( Exception e ) {

@@ -1,11 +1,11 @@
 package sib.inout;
 
-import sib.models.Note;
+import sib.models.datatype.NoteType;
 
 public interface SibInputController {
 
 	public void readPartiture();
 
-	public Note readNote();
+	public NoteType readNote();
 
 }

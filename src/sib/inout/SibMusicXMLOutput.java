@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 
-import sib.models.Note;
+import sib.models.datatype.NoteType;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
@@ -66,8 +66,8 @@ public class SibMusicXMLOutput implements SibOutputController {
 			this.addMeasureAttributes( attr );
 
 			// Datos de ejemplo - @todo eliminar la carga de datos de ejemplo
-			Note nota1 = new Note();
-			Note nota2 = new Note();
+			NoteType nota1 = new NoteType();
+			NoteType nota2 = new NoteType();
 
 			// Testing
 			playNote( nota1 );
@@ -121,7 +121,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 	}
 
-	public void playNote( Note note ) {
+	public void playNote( NoteType note ) {
 		NodeList mea = doc.getElementsByTagName("measure");
 
 		// New note
