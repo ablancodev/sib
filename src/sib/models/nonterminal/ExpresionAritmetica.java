@@ -91,8 +91,12 @@ public class ExpresionAritmetica extends ValorAsignacion {
 		return this.evalua().getType();
 	}
 
-	public String getValue() {
+	public ValorAsignacion getValue() {
 		return this.evalua().getValue();
+	}
+
+	public String getStringValue() {
+		return this.evalua().getStringValue();
 	}
 
 	public void trans(Float float1) {

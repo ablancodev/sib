@@ -22,20 +22,22 @@ public class NoteType extends DataType {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "note";
 	}
 
 	@Override
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+	public ValorAsignacion getValue() {
+		return this;
+	}
+
+	public String getStringValue() {
+		return value;
 	}
 
 	@Override
 	public ValorAsignacion evalua() {
 		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
@@ -46,8 +48,13 @@ public class NoteType extends DataType {
 
 	@Override
 	protected ValorAsignacion clone() {
-		// TODO Auto-generated method stub
-		return null;
+		NoteType n = new NoteType();
+		n.value = value;
+		n.accent = accent;
+		n.dots = dots;
+		n.duration = duration;
+		n.octave = octave;
+		return n;
 	}
 
 	@Override

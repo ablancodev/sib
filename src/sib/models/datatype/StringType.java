@@ -4,24 +4,27 @@ import sib.models.nonterminal.ValorAsignacion;
 
 public class StringType extends DataType {
 
-	private String string;
+	private String value;
 
 	public StringType( String str ) {
-		string = str;
+		value = str;
 	}
 
 	public void setValue( String str ) {
-		string = str;
+		value = str;
 	}
 
-	public String getValue() {
-		return string;
+	public ValorAsignacion getValue() {
+		return this;
+	}
+
+	public String getStringValue() {
+		return value;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "string";
 	}
 
 	@Override
@@ -44,8 +47,22 @@ public class StringType extends DataType {
 
 	@Override
 	public boolean igualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "clef":
+				case "step":
+					result = this.value.compareTo( op2.getStringValue() ) == 0;
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR ClefType: Comparación igualQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override

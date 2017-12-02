@@ -70,8 +70,8 @@ public class SibMusicXMLOutput implements SibOutputController {
 			NoteType nota2 = new NoteType();
 
 			// Testing
-			playNote( nota1 );
-			playNote( nota2 );
+//			playNote( nota1 );
+//			playNote( nota2 );
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -186,12 +186,13 @@ public class SibMusicXMLOutput implements SibOutputController {
 			transformer.setOutputProperty( OutputKeys.DOCTYPE_PUBLIC, "-//Recordare//DTD MusicXML 3.0 Partwise//EN" );
 			
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
-			transformer.transform(source, result);
 
 			// Output to console for testing
 			StreamResult consoleResult = new StreamResult(System.out);
 			transformer.transform(source, consoleResult);
+
+			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
+			transformer.transform(source, result);
 
 		} catch (Exception e) {
 			e.printStackTrace();

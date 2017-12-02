@@ -3,7 +3,6 @@ package sib.models.nonterminal;
 public class OperacionTrans extends ValorAsignacion {
 
 	Variable variable;
-
 	TipoNumero valor;
 
 	public OperacionTrans( Variable v, TipoNumero tn ) {
@@ -23,20 +22,27 @@ public class OperacionTrans extends ValorAsignacion {
 		return variable;
 	}
 
-	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return variable.getType();
 	}
 
-	@Override
-	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Obtiene el valor de la variable. No aplica la operación trans para obtener el valor.
+	 *
+	 * @return ValorAsignacion
+	 */
+	public ValorAsignacion getValue() {
+		return variable.getValue();
 	}
 
-	@Override
-	public void trans(Float float1) {
+	public String getStringValue() {
+		return variable.getStringValue();
+	}
+
+	/**
+	 * Aplica la función de transportación de 'numTonos' sobre la variable anteriormente asignada.
+	 */
+	public void trans(Float numTonos) {
 		try {
 			if ( variable != null ) {
 				variable.trans( valor.toFloat() );
@@ -48,43 +54,37 @@ public class OperacionTrans extends ValorAsignacion {
 
 	@Override
 	protected ValorAsignacion clone() {
-		// TODO Auto-generated method stub
-		return null;
+		OperacionTrans op = new OperacionTrans( variable.clone(), valor.clone() );
+		return op;
 	}
 
 	@Override
 	public boolean igualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().igualQue( op2 );
 	}
 
 	@Override
 	public boolean distintoQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().distintoQue( op2 );
 	}
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().menorQue( op2 );
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().menorIgualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().mayorQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.evalua().mayorIgualQue( op2 );
 	}
 }

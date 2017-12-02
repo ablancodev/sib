@@ -62,10 +62,12 @@ public class Variable extends OperandoAritmetico {
 		}
 	}
 
-	// @todo IMPORTANT - creo que no cumple con su cometido, quizás deba devolver sólo .valor y 
-	// necesitemos otra funcion para coger el value del .valor
-	public String getValue() {
-		return this.valor.getValue();
+	public ValorAsignacion getValue() {
+		return this.valor;
+	}
+
+	public String getStringValue() {
+		return this.valor.getStringValue();
 	}
 
 	public void aplicarOperador( String op ) {
@@ -190,21 +192,27 @@ public class Variable extends OperandoAritmetico {
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) == 0;
+		return this.valor.igualQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) == 0;
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) != 0;
+		return this.valor.distintoQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) != 0;
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) < 0;
+		return this.valor.menorQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) < 0;
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) <= 0;
+		return this.valor.menorIgualQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) <= 0;
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) > 0;
+		return this.valor.mayorQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) > 0;
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return this.getValue().compareTo( op2.getValue() ) >= 0;
+		return this.valor.mayorIgualQue( op2 );
+		//return this.getValue().compareTo( op2.getValue() ) >= 0;
 	}
 }

@@ -3,7 +3,7 @@ package sib.models.nonterminal;
 public abstract class ValorAsignacion {
 
 	public abstract String getType();
-	public abstract String getValue();
+	public abstract ValorAsignacion getValue();
 
 	//public abstract ValorAsignacion evalua( TablaSimbolos ts );
 
@@ -24,5 +24,6 @@ public abstract class ValorAsignacion {
 	public abstract boolean menorIgualQue( ValorAsignacion op2 );
 	public abstract boolean mayorQue( ValorAsignacion op2 );
 	public abstract boolean mayorIgualQue( ValorAsignacion op2 );
+	public abstract String getStringValue();
 
 }

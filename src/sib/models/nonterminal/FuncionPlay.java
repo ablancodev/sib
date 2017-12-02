@@ -27,12 +27,26 @@ public class FuncionPlay extends InstFuncion {
 		outputController.playNote( this.toNote( variable ) );
 	}
 
+	/**
+	 * Genera un NoteType apartir de un variable.
+	 * Valores aceptados del tipo de variable: step, note
+	 * @param v
+	 * @return
+	 */
 	private NoteType toNote(Variable v ) {
-		NoteType n = null;
+		NoteType n = new NoteType();
 		try {
-			n = new NoteType();
-			TipoNumero tn = (TipoNumero) v.valor;
-			n.value = tn.toString();
+			switch ( v.getType() ) {
+			case "step":
+				n.value = v.getStringValue();
+				break;
+			case "note":
+				n = (NoteType)v.getValue().clone();
+				break;
+			default:
+				throw new Exception();
+			}
+			outputController.playNote( n );
 		} catch ( Exception e ) {
 			System.err.println( "Error al aplicar toNote en FunctionPlay.");
 			e.printStackTrace();

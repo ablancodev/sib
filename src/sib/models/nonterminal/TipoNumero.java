@@ -1,12 +1,14 @@
 package sib.models.nonterminal;
 
+import sib.models.datatype.DataType;
+
 public class TipoNumero extends OperandoAritmetico {
 
-	String valor;
+	float valor;
 	String tipo;
 
 	public TipoNumero( String num, String t ) {
-		valor = num;
+		valor = Float.parseFloat( num );
 		tipo = t;
 	}
 
@@ -15,19 +17,24 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	/**
-	 * Devuelve el valor del TipoNumero como el string del float que lo representa.
+	 * Devuelve el valor. Como TipoNúmero es 'atómico', devuelte un TipoNumero
+	 *
+	 * @return ValorAsignacion > TipoNumero
 	 */
-	public String getValue() {
-		// @todo esto habrá que mejorarlo para que contemple todos los tipos de cadenas que representan a frac, ...
-		return String.valueOf( toFloat() );
+	public ValorAsignacion getValue() {
+		return this;
+	}
+
+	public String getStringValue() {
+		return String.valueOf( valor );
 	}
 
 	public void setValue( Float f ) {
-		valor = f.toString();
+		valor = f;
 	}
 
 	public String toString() {
-		return tipo + ":" + valor;
+		return tipo + ":" + String.valueOf( valor );
 	}
 
 	public float toFloat() {
@@ -41,34 +48,32 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	public void trans( Float f ) {
-		Float origen = Float.valueOf( valor );
-		origen = origen + f;
-		valor = origen.toString();
+		valor = valor + f;
 	}
 
 	protected TipoNumero clone() {
-		TipoNumero num = new TipoNumero( this.valor, this.tipo );
+		TipoNumero num = new TipoNumero( String.valueOf( valor ), this.tipo );
 		return num;
 	}
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		return this.toFloat() == ((TipoNumero)op2).toFloat();
+		return valor == ((TipoNumero)op2).toFloat();
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return this.toFloat() != ((TipoNumero)op2).toFloat();
+		return valor != ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		return this.toFloat() < ((TipoNumero)op2).toFloat();
+		return valor < ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return this.toFloat() <= ((TipoNumero)op2).toFloat();
+		return valor <= ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return this.toFloat() > ((TipoNumero)op2).toFloat();
+		return valor > ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return this.toFloat() >= ((TipoNumero)op2).toFloat();
+		return valor >= ((TipoNumero)op2).toFloat();
 	}
 
 	public ValorAsignacion evalua() {
