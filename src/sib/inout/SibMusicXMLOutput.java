@@ -29,6 +29,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 	public Document doc;
 
+	/**
+	 * Indica los tiempos consumidos del actual compás, para añadir nuevo compás cuando playNote()
+	 */
+	private float actualDuration = 0;
+
 	public SibMusicXMLOutput() {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -56,20 +61,18 @@ public class SibMusicXMLOutput implements SibOutputController {
 			rootElement.appendChild( part );
 
 			// Part - Measure
-			Element measure = doc.createElement("measure");
-			measure.setAttribute( "number", "1" );
-			part.appendChild( measure );
-			// Attributes
-			Element attr = doc.createElement("attributes");
-			measure.appendChild( attr );
+//			Element measure = doc.createElement("measure");
+//			measure.setAttribute( "number", "1" );
+//			part.appendChild( measure );
+//			// Attributes
+//			Element attr = doc.createElement("attributes");
+//			measure.appendChild( attr );
 
-			this.addMeasureAttributes( attr );
+//			this.addMeasureAttributes( attr );
 
 			// Datos de ejemplo - @todo eliminar la carga de datos de ejemplo
-			NoteType nota1 = new NoteType();
-			NoteType nota2 = new NoteType();
-
-			// Testing
+//			NoteType nota1 = new NoteType();
+//			NoteType nota2 = new NoteType();
 //			playNote( nota1 );
 //			playNote( nota2 );
 
@@ -122,7 +125,6 @@ public class SibMusicXMLOutput implements SibOutputController {
 	}
 
 	public void playNote( NoteType note ) {
-		NodeList mea = doc.getElementsByTagName("measure");
 
 		// New note
 		Element n = doc.createElement( "note" );
@@ -142,7 +144,30 @@ public class SibMusicXMLOutput implements SibOutputController {
 		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
 		n.appendChild( ty );
 
-		mea.item(0).appendChild( n );
+
+		NodeList part = doc.getElementsByTagName("score-partwise");
+
+		actualDuration += note.duration;
+		if ( ( actualDuration ) >= 4 ) {
+			// Añadimos nuevo compás - measure
+			// Part - Measure
+			Element measure = doc.createElement("measure");
+			measure.setAttribute( "number", "1" );
+			part.item( part.getLength() - 1 ).appendChild( measure );
+
+			// Attributes
+			Element attr = doc.createElement("attributes");
+			measure.appendChild( attr );
+
+			this.addMeasureAttributes( attr );
+			measure.appendChild( n );
+
+			actualDuration = 0;
+		} else {
+			NodeList mea = doc.getElementsByTagName("measure");
+			mea.item( part.getLength() - 1 ).appendChild( n );
+		}
+
 	}
 
 	/**

@@ -46,7 +46,6 @@ public class FuncionPlay extends InstFuncion {
 			default:
 				throw new Exception();
 			}
-			outputController.playNote( n );
 		} catch ( Exception e ) {
 			System.err.println( "Error al aplicar toNote en FunctionPlay.");
 			e.printStackTrace();
