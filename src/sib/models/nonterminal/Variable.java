@@ -23,6 +23,8 @@ public class Variable extends OperandoAritmetico {
 			tipo = "";
 			valor = null;
 		}
+
+		this.register();
 	}
 
 	/**

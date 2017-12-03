@@ -4,12 +4,19 @@ import sib.models.datatype.DataType;
 
 public class TipoNumero extends OperandoAritmetico {
 
-	float valor;
+	public static final String TYPE_INT = "int";
+	public static final String TYPE_FLOAT = "float";
+	public static final String TYPE_FRAC = "frac";
+	public static final String TYPE_NFRAC = "nfrac";
+
+	float real;
+	int numerator;
+	int denominator;
 	String tipo;
 
 	public TipoNumero( String num, String t ) {
-		valor = Float.parseFloat( num );
 		tipo = t;
+		setValue( num );
 	}
 
 	public String getType() {
@@ -26,21 +33,59 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	public String getStringValue() {
-		return String.valueOf( valor );
+		return String.valueOf( real );
 	}
 
-	public void setValue( Float f ) {
-		valor = f;
+	public void setValue( String num ) {
+		switch ( tipo ) {
+			case TipoNumero.TYPE_INT:
+			case TipoNumero.TYPE_FLOAT:
+				real = Float.parseFloat( num );
+				numerator = 0;
+				denominator = 0;
+				break;
+			case TipoNumero.TYPE_FRAC:
+				// @todo implementarlo
+				break;
+			case TipoNumero.TYPE_NFRAC:
+				try {
+					String[] parts = num.split("/");
+					if ( parts.length == 2 ) {
+						numerator = Integer.valueOf( parts[0] );
+						denominator = Integer.valueOf( parts[1] );
+					} else {
+						real = Float.valueOf( num ); // solo tiene parte real
+					}
+				} catch ( Exception e ) {
+					System.err.println( "Error en TipoNumero->setValue con NFRAC " + num);
+					e.printStackTrace();
+				}
+				break;
+		}
+	}
+
+	public int getNumerator() {
+		return numerator;
+	}
+
+	public int getDenominator() {
+		return denominator;
+	}
+
+	public float getReal() {
+		return real;
 	}
 
 	public String toString() {
-		return tipo + ":" + String.valueOf( valor );
+		// @todo falta hacer switch 
+		return String.valueOf( real );
 	}
 
 	public float toFloat() {
+		// @todo falta hacer switch
 		float result = 0;
 		try {
-			result = Float.valueOf( valor );
+			result = Float.valueOf( real );
 		} catch ( Exception e ) {
 			System.err.println( e.toString() );
 		}
@@ -48,32 +93,32 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	public void trans( Float f ) {
-		valor = valor + f;
+		real = real + f;
 	}
 
-	protected TipoNumero clone() {
-		TipoNumero num = new TipoNumero( String.valueOf( valor ), this.tipo );
+	public TipoNumero clone() {
+		TipoNumero num = new TipoNumero( this.getStringValue(), this.tipo );
 		return num;
 	}
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		return valor == ((TipoNumero)op2).toFloat();
+		return real == ((TipoNumero)op2).toFloat();
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return valor != ((TipoNumero)op2).toFloat();
+		return real != ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		return valor < ((TipoNumero)op2).toFloat();
+		return real < ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return valor <= ((TipoNumero)op2).toFloat();
+		return real <= ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return valor > ((TipoNumero)op2).toFloat();
+		return real > ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return valor >= ((TipoNumero)op2).toFloat();
+		return real >= ((TipoNumero)op2).toFloat();
 	}
 
 	public ValorAsignacion evalua() {

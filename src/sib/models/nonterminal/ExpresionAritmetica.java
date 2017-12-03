@@ -32,23 +32,23 @@ public class ExpresionAritmetica extends ValorAsignacion {
 		switch ( operador ) {
 			case ExpresionAritmetica.MAS :
 				fl = operandoIzq.toFloat() + operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
 				break;
 			case ExpresionAritmetica.MENOS :
 				fl = operandoIzq.toFloat() - operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
 				break;
 			case ExpresionAritmetica.DIV :
 				fl = operandoIzq.toFloat() / operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );
 				break;
 			case ExpresionAritmetica.MULT :
 				fl = operandoIzq.toFloat() * operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );
 				break;
 			case ExpresionAritmetica.MOD :
 				fl = operandoIzq.toFloat() % operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  "float" );
+				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );
 				break;
 			default:
 				try {

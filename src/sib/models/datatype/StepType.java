@@ -26,7 +26,7 @@ public class StepType extends DataType {
 		return this;
 	}
 
-	protected ValorAsignacion clone() {
+	public ValorAsignacion clone() {
 		StepType st = new StepType( this.value );
 		return st;
 	}

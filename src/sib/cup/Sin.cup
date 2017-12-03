@@ -144,9 +144,9 @@ valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSim
 			| expresion_arit:exp {: RESULT = exp; :}
 			;
 
-tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), "int" ); :}
-			| NUMERO_REAL:n {: RESULT = new TipoNumero( n.toString(), "real" ); :}
-			| NUMERO_INT_FRAC:n {: RESULT = new TipoNumero( n.toString(), "int_frac" ); :}
+tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_INT ); :}
+			| NUMERO_REAL:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_FLOAT ); :}
+			| NUMERO_INT_FRAC:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_NFRAC ); :}
 			;
 
 /* Operacion_trans - OperacionTrans */

@@ -10,7 +10,10 @@ import sib.inout.SibInputController;
 import sib.inout.SibMusicXMLInput;
 import sib.inout.SibMusicXMLOutput;
 import sib.inout.SibOutputController;
+import sib.models.datatype.DataType;
+import sib.models.datatype.PartitureType;
 import sib.models.nonterminal.TablaSimbolos;
+import sib.models.nonterminal.Variable;
 import sib.views.SibIDE;
 
 public class ViewsControllerFase1 {
@@ -21,6 +24,11 @@ public class ViewsControllerFase1 {
 
 	SibOutputController output;
 	SibInputController input;
+
+	/**
+	 * Variable global que contiene el 'estado' de la partitura.
+	 */
+	public PartitureType partiture;
 
 	public ViewsControllerFase1 ( SibIDE view ) {
 		this.view = view;
@@ -45,14 +53,23 @@ public class ViewsControllerFase1 {
 			parser p = new parser( analizadorJFlex );
 			p.setViewController( this );
 
+			// Inicializamos partiture
+			partiture = new PartitureType();
+
 			// input / output controllers
-			output = new SibMusicXMLOutput();
-			input = new SibMusicXMLInput();
+			output = new SibMusicXMLOutput( partiture );
+			input = new SibMusicXMLInput( partiture );
 			p.setOutputController( output );
 			p.setInputController( input );
 
 			// Tabla simbolos
 			tablaSimbolos = new TablaSimbolos();
+			// Metemos la variable global partiture
+			Variable part = new Variable( "$partiture", tablaSimbolos );
+			part.setType( DataType.TYPE_PARTITURE );
+			part.setValue( partiture );
+			tablaSimbolos.addVariable( part );
+
 			p.setTablaSimbolos( tablaSimbolos );
 			p.parse();
 

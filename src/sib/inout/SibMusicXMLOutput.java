@@ -21,12 +21,14 @@ import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 
 import sib.models.datatype.NoteType;
+import sib.models.datatype.PartitureType;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class SibMusicXMLOutput implements SibOutputController {
 
+	protected PartitureType partiture;
 	public Document doc;
 
 	/**
@@ -34,7 +36,9 @@ public class SibMusicXMLOutput implements SibOutputController {
 	 */
 	private float actualDuration = 0;
 
-	public SibMusicXMLOutput() {
+	public SibMusicXMLOutput( PartitureType p ) {
+		partiture = p;
+
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -95,7 +99,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 		attr.appendChild( key );
 		// Key - Fifths
 		Element fifths = doc.createElement("fifths");
-		fifths.appendChild( doc.createTextNode( "0" ) );
+		fifths.appendChild( doc.createTextNode( String.valueOf( partiture.getKeysign() ) ) );
 		key.appendChild( fifths );
 
 		// Time
@@ -103,11 +107,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 		attr.appendChild( tim );
 		// Time - beats
 		Element beats = doc.createElement("beats");
-		beats.appendChild( doc.createTextNode( "4" ) );
+		beats.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeats() ) ) );
 		tim.appendChild( beats );
 		// Time - beat-type
 		Element beatt = doc.createElement("beat-type");
-		beatt.appendChild( doc.createTextNode( "4" ) );
+		beatt.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeatType() ) ) );
 		tim.appendChild( beatt );
 
 		// Clef
@@ -115,11 +119,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 		attr.appendChild( clef );
 		// Clef - sign
 		Element sign = doc.createElement("sign");
-		sign.appendChild( doc.createTextNode( "G" ) );
+		sign.appendChild( doc.createTextNode( partiture.getClef().getSign() ) );
 		clef.appendChild( sign );
 		// Clef - line
 		Element line = doc.createElement("line");
-		line.appendChild( doc.createTextNode( "2" ) );
+		line.appendChild( doc.createTextNode( partiture.getClef().getLine() ) );
 		clef.appendChild( line );
 
 	}

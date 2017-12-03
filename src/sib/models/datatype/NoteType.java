@@ -47,7 +47,7 @@ public class NoteType extends DataType {
 	}
 
 	@Override
-	protected ValorAsignacion clone() {
+	public ValorAsignacion clone() {
 		NoteType n = new NoteType();
 		n.value = value;
 		n.accent = accent;

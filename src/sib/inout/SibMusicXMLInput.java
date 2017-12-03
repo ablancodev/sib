@@ -3,12 +3,15 @@ package sib.inout;
 import org.w3c.dom.Document;
 
 import sib.models.datatype.NoteType;
+import sib.models.datatype.PartitureType;
 
 public class SibMusicXMLInput implements SibInputController {
 
+	protected PartitureType partiture;
 	public Document doc;
 
-	public SibMusicXMLInput() {
+	public SibMusicXMLInput( PartitureType p ) {
+		partiture = p;
 	}
 
 	public void readPartiture() {

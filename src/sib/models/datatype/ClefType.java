@@ -15,6 +15,10 @@ public class ClefType extends DataType {
 		return "clef";
 	}
 
+	public void setValue( String v ) {
+		value = v;
+	}
+
 	public ValorAsignacion getValue() {
 		return this;
 	}
@@ -23,11 +27,19 @@ public class ClefType extends DataType {
 		return value;
 	}
 
+	public String getSign() {
+		return String.valueOf( value.charAt(0) );
+	}
+
+	public String getLine() {
+		return String.valueOf( value.charAt(1) );
+	}
+
 	public ValorAsignacion evalua() {
 		return this;
 	}
 
-	protected ValorAsignacion clone() {
+	public ValorAsignacion clone() {
 		ClefType st = new ClefType( this.value );
 		return st;
 	}

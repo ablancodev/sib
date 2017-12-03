@@ -40,7 +40,7 @@ public class StringType extends DataType {
 	}
 
 	@Override
-	protected ValorAsignacion clone() {
+	public ValorAsignacion clone() {
 		// TODO Auto-generated method stub
 		return null;
 	}
