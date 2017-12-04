@@ -3,6 +3,7 @@
   <viewpoint:DAnalysis xmi:id="_3I1dALJMEeebfO7MkmMkjA" selectedViews="_3VDUELJMEeebfO7MkmMkjA _3VWPALJMEeebfO7MkmMkjA _3VgAALJMEeebfO7MkmMkjA _3VpxALJMEeebfO7MkmMkjA _3Vy68LJMEeebfO7MkmMkjA" version="12.0.0.201704271200">
     <semanticResources>SibTraductor.uml</semanticResources>
     <semanticResources>Sib.uml</semanticResources>
+    <semanticResources>musicxml.uml</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_3VDUELJMEeebfO7MkmMkjA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.obeonetwork.dsl.uml2.design/description/uml2.odesign#//@ownedViewpoints[name='Reused']"/>
     </ownedViews>
