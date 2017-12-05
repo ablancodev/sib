@@ -1,7 +1,9 @@
 package sib.models.nonterminal;
 
 import sib.inout.SibOutputController;
+import sib.models.datatype.DataType;
 import sib.models.datatype.NoteType;
+import sib.models.datatype.StepType;
 
 public class FuncionPlay extends InstFuncion {
 
@@ -18,7 +20,7 @@ public class FuncionPlay extends InstFuncion {
 	 * @param v Variable
 	 */
 	public void play( Variable v ) {
-		this.variable = v.clone();
+		this.variable = v; //.clone();
 	}
 
 	@Override
@@ -37,17 +39,17 @@ public class FuncionPlay extends InstFuncion {
 		NoteType n = new NoteType();
 		try {
 			switch ( v.getType() ) {
-			case "step":
-				n.value = v.getStringValue();
+			case DataType.TYPE_STEP:
+				n.value = new StepType( v.getStringValue() );
 				break;
-			case "note":
-				n = (NoteType)v.getValue().clone();
+			case DataType.TYPE_NOTE:
+				n = (NoteType)v.getValue();
 				break;
 			default:
 				throw new Exception();
 			}
 		} catch ( Exception e ) {
-			System.err.println( "Error al aplicar toNote en FunctionPlay.");
+			System.err.println( "Error al aplicar toNote en FunctionPlay:" + v.name );
 			e.printStackTrace();
 		}
 		return n;

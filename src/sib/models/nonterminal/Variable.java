@@ -165,7 +165,7 @@ public class Variable extends OperandoAritmetico {
 	private boolean esAplicable( String op ) {
 		boolean result = false;
 		switch ( tipo ) {
-			case "note":
+			case DataType.TYPE_NOTE:
 				switch ( op ) {
 					case "_#":
 					case "_##":

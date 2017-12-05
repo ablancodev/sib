@@ -135,7 +135,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 		Element pi = doc.createElement( "pitch" );
 		n.appendChild( pi );
 		Element st = doc.createElement( "step" );
-		st.appendChild( doc.createTextNode( note.value ) );
+		st.appendChild( doc.createTextNode( note.getStringValue() ) );
 		pi.appendChild( st );
 		Element oc = doc.createElement( "octave" );
 		oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
@@ -147,6 +147,9 @@ public class SibMusicXMLOutput implements SibOutputController {
 		Element ty = doc.createElement( "type" );
 		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
 		n.appendChild( ty );
+		Element ac = doc.createElement( "accidental" );
+		ac.appendChild( doc.createTextNode( note.accidental ) );
+		n.appendChild( ac );
 
 		Element dot = null;
 		for ( int cnt = 0; cnt < note.dots; cnt++ ) {

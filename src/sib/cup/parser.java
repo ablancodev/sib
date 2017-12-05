@@ -601,7 +601,7 @@ class CUP$parser$actions {
 		int nleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int nright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object n = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new TipoNumero( n.toString(), "int" ); 
+		 RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_INT ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo_numeros",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -613,7 +613,7 @@ class CUP$parser$actions {
 		int nleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int nright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object n = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new TipoNumero( n.toString(), "real" ); 
+		 RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_FLOAT ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo_numeros",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -625,7 +625,7 @@ class CUP$parser$actions {
 		int nleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int nright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object n = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT = new TipoNumero( n.toString(), "int_frac" ); 
+		 RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_NFRAC ); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo_numeros",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
