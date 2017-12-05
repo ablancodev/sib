@@ -4,10 +4,15 @@ import sib.models.nonterminal.ValorAsignacion;
 
 public class StringType extends DataType {
 
+	public static final String DEFAULT_VALUE = "";
 	private String value;
 
 	public StringType( String str ) {
 		value = str;
+	}
+
+	public StringType() {
+		value = StringType.DEFAULT_VALUE;
 	}
 
 	public void setValue( String str ) {

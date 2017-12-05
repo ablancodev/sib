@@ -1,13 +1,13 @@
 package sib.models.nonterminal;
 
-import sib.models.datatype.DataType;
-
 public class TipoNumero extends OperandoAritmetico {
 
 	public static final String TYPE_INT = "int";
 	public static final String TYPE_FLOAT = "float";
 	public static final String TYPE_FRAC = "frac";
 	public static final String TYPE_NFRAC = "nfrac";
+
+	public static final String DEFAULT_VALUE = "0";
 
 	float real;
 	int numerator;

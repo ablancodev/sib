@@ -36,7 +36,6 @@ public class NoteType extends DataType {
 
 	@Override
 	public ValorAsignacion evalua() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -91,6 +90,23 @@ public class NoteType extends DataType {
 	public boolean mayorIgualQue(ValorAsignacion op2) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	/**
+	 * Aplica un operador nota.
+	 *
+	 * @param op String
+	 */
+	public void applyOperator(String op) {
+		// @todo sólo está implementado los puntillos, faltan sostenidos y bemoles y becuadro
+		switch ( op ) {
+			case "_.":
+				dots ++;
+				break;
+			case "_..":
+				dots = dots + 2;
+				break;
+		}
 	}
 
 }

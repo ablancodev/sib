@@ -23,7 +23,7 @@ public class InstOperador extends Instruccion {
 		ListIterator<String> it = listaOperadores.listIterator();
 		while ( it.hasNext() ) {
 			operador = it.next();
-			variable.aplicarOperador( operador );
+			variable.aplicarOperadorNota( operador );
 		}
 		variable.register();
 	}

@@ -1,6 +1,6 @@
 package sib.models.nonterminal;
 
-import sib.models.datatype.StringType;
+import sib.models.datatype.*;
 
 public class Variable extends OperandoAritmetico {
 
@@ -40,8 +40,42 @@ public class Variable extends OperandoAritmetico {
 
 	public void setType( String t ) {
 		tipo = t;
+		if ( valor == null ) {
+			// Establecemos los valores por defecto en caso de que aún no tenga valor asignado
+			// Si declaramos una variable de tipo note, directamente debe contener los valores por defecto
+			switch ( tipo ) {
+				case DataType.TYPE_NOTE:
+					valor = new NoteType();
+					break;
+				case DataType.TYPE_CLEF:
+					valor = new ClefType();
+					break;
+				case DataType.TYPE_PARTITURE:
+					valor = new PartitureType();
+					break;
+				case DataType.TYPE_STEP:
+					valor = new StepType();
+					break;
+				case DataType.TYPE_STRING:
+					valor = new StringType();
+					break;
+				case TipoNumero.TYPE_INT:
+					valor = new TipoNumero( TipoNumero.DEFAULT_VALUE, TipoNumero.TYPE_INT);
+					break;
+				case TipoNumero.TYPE_FLOAT:
+					valor = new TipoNumero( TipoNumero.DEFAULT_VALUE, TipoNumero.TYPE_FLOAT);
+					break;
+				case TipoNumero.TYPE_FRAC:
+					valor = new TipoNumero( TipoNumero.DEFAULT_VALUE, TipoNumero.TYPE_FRAC);
+					break;
+				case TipoNumero.TYPE_NFRAC:
+					valor = new TipoNumero( TipoNumero.DEFAULT_VALUE, TipoNumero.TYPE_NFRAC);
+					break;
+			}
+		}
 		// Actualizamos TablaSimbolos
 		tablaSimbolos.updateVariable( this );
+		
 	}
 
 	public void setValue( ValorAsignacion v ) {
@@ -72,14 +106,14 @@ public class Variable extends OperandoAritmetico {
 		return this.valor.getStringValue();
 	}
 
-	public void aplicarOperador( String op ) {
+	public void aplicarOperadorNota( String op ) {
 		// @todo implementar el operador sobre una variable, tendrá que aplica sobre cada tipo de dato posible
-		if ( this.esAplicable( op ) ) {
-			String v = "";
-			if ( valor != null ) {
-				v = valor.toString();
+		if ( this.esAplicable( op ) && ( valor != null ) ) {
+			switch ( this.tipo ) {
+				case DataType.TYPE_NOTE:
+					( (NoteType)valor ).applyOperator( op );
+					break;
 			}
-			valor = new StringType( v + "_" + op );
 			// Actualizamos TablaSimbolos
 			tablaSimbolos.updateVariable( this );
 		}

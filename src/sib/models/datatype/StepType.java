@@ -4,10 +4,15 @@ import sib.models.nonterminal.ValorAsignacion;
 
 public class StepType extends DataType {
 
+	public static final String DEFAULT_VALUE = "C";
 	private String value;
 
 	public StepType( String str ) {
 		value = str;
+	}
+
+	public StepType() {
+		value = StepType.DEFAULT_VALUE;
 	}
 
 	public String getType() {

@@ -148,6 +148,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
 		n.appendChild( ty );
 
+		Element dot = null;
+		for ( int cnt = 0; cnt < note.dots; cnt++ ) {
+			dot = doc.createElement( "dot" );
+			n.appendChild( dot );
+		}
 
 		NodeList part = doc.getElementsByTagName("score-partwise");
 

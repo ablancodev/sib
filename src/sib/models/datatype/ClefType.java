@@ -5,10 +5,15 @@ import java.lang.Exception;
 
 public class ClefType extends DataType {
 
+	public static final String DEFAULT_VALUE = "G2";
 	private String value;
 
 	public ClefType( String str ) {
 		value = str;
+	}
+
+	public ClefType() {
+		value = ClefType.DEFAULT_VALUE;
 	}
 
 	public String getType() {
@@ -68,11 +73,6 @@ public class ClefType extends DataType {
 			e.printStackTrace();
 		}
 		return result;
-	}
-
-	private boolean comparaValido(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
