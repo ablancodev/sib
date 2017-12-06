@@ -1010,9 +1010,9 @@ public class AnalizadorLexicoFase2 implements java_cup.runtime.Scanner {
             }
           case 82: break;
           case 37: 
-            { //Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+            { Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 		this._existenTokens = true;
-		//return t;
+		return t;
             }
           case 83: break;
           case 38: 

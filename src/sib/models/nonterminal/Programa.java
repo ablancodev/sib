@@ -21,6 +21,7 @@ public class Programa {
 			instrucciones.run();
 		} catch ( Exception e ) {
 			System.err.println( "ERROR exec:" + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

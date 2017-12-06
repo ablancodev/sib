@@ -79,18 +79,36 @@ public class Variable extends OperandoAritmetico {
 	}
 
 	public void setValue( ValorAsignacion v ) {
+		this.setValue( v, null );
+	}
+	public void setValue( ValorAsignacion v, String prop ) {
 		if ( v != null ) {
-			ValorAsignacion newV = v.clone();
-			if ( v.getClass() == Variable.class ) {
-				valor = ( (Variable)newV ).valor;
+			//ValorAsignacion newV = v.clone(); #estopuedeser
+			ValorAsignacion newV = v.getValue();
+			if ( prop == null ) {
+				if ( v.getClass() == Variable.class ) {
+					valor = ( (Variable)newV ).valor;
+				} else {
+					valor = newV;
+				}
 			} else {
-				valor = newV;
+				if ( v.getClass() == Variable.class ) {
+					valor = ( (Variable)newV ).valor;
+				} else {
+					if ( ( valor.getClass() == NoteType.class ) && ( v.getClass() != NoteType.class ) ) {
+						((NoteType)valor).setPropertyValue( prop, newV );
+					} else if ( ( valor.getClass() == PartitureType.class ) && ( v.getClass() != PartitureType.class ) ) {
+						((PartitureType)valor).setPropertyValue( prop, newV );
+					} else {
+						valor = newV;
+					}
+				}
 			}
 			// Actualizamos TablaSimbolos
 			tablaSimbolos.updateVariable( this );
 		} else {
 			try {
-				throw new Exception( "ERROR variable->setValue, v es null para " + this.name );
+				throw new Exception( "ERROR variable->setValue, v es null para " + this.name + ", propiedad:" + prop );
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -251,4 +269,5 @@ public class Variable extends OperandoAritmetico {
 		return this.valor.mayorIgualQue( op2 );
 		//return this.getValue().compareTo( op2.getValue() ) >= 0;
 	}
+
 }

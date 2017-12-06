@@ -34,8 +34,7 @@ public class StringType extends DataType {
 
 	@Override
 	public ValorAsignacion evalua() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
@@ -46,8 +45,8 @@ public class StringType extends DataType {
 
 	@Override
 	public ValorAsignacion clone() {
-		// TODO Auto-generated method stub
-		return null;
+		StringType newSt = new StringType( this.value );
+		return newSt;
 	}
 
 	@Override
@@ -72,8 +71,7 @@ public class StringType extends DataType {
 
 	@Override
 	public boolean distintoQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !igualQue( op2 );
 	}
 
 	@Override

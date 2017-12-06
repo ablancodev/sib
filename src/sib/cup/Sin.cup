@@ -40,11 +40,10 @@ terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y
 terminal LPAREN, RPAREN;
 terminal TRANS;
 
-terminal TIPO, VARIABLE, PROPIEDAD, OPERADOR_NOTA, STEP, CLEF_VALUE, ACCENT_VALUE;
 terminal CADENA;
 
 */
-terminal BEGIN, IDENTIFICADOR, END, VARIABLE, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
+terminal BEGIN, IDENTIFICADOR, END, VARIABLE, PROPIEDAD, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
 terminal OPERADOR_NOTA;
 terminal STEP, CLEF_VALUE, ACCENT_VALUE, CADENA;
 terminal LPAREN, RPAREN, TRANS;
@@ -131,8 +130,14 @@ operador ::= VARIABLE:v OPERADOR_NOTA:on {: RESULT = new InstOperador( new Varia
 			| operador:op OPERADOR_NOTA:on {: op.addOperadorNota( on.toString() ); RESULT = op; :}
 			;
 
-/* Asignación - InstAsignacion  @todo no se ha tenido en cuenta la signación a propiedades */
-asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( new Variable( v.toString(), tablaSimbolos ), valor ); :}
+/* Asignación - InstAsignacion */
+asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new InstAsignacion( valor, new Variable( v.toString(), tablaSimbolos ) ); :}
+			| PROPIEDAD:p IGUAL_SIMPLE valor_asignacion:valor {:
+				String[] parts = (p.toString()).split("\\.");
+				String variable = parts[0];
+				String property = parts[1];
+				RESULT = new InstAsignacion( valor, new Variable( variable, tablaSimbolos ), property );
+				:}
 			;
 valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
 			| STEP:st {: RESULT = new StepType( st.toString() ); :}

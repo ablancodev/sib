@@ -332,9 +332,9 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 	}
 	
 	{Propiedad}	{
-		//Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
+		Token t = new Token( sym.PROPIEDAD, yycolumn, yyline+1, 0, yytext(), Token.VARIABLE );
 		this._existenTokens = true;
-		//return t;
+		return t;
 	}
 	
 	{Operador_nota}	{

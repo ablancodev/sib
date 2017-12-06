@@ -157,7 +157,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 			n.appendChild( dot );
 		}
 
-		NodeList part = doc.getElementsByTagName("score-partwise");
+		NodeList score = doc.getElementsByTagName("score-partwise");
 
 		actualDuration += note.duration;
 		if ( ( actualDuration ) >= 4 ) {
@@ -165,7 +165,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 			// Part - Measure
 			Element measure = doc.createElement("measure");
 			measure.setAttribute( "number", "1" );
-			part.item( part.getLength() - 1 ).appendChild( measure );
+			score.item( score.getLength() - 1 ).appendChild( measure );
 
 			// Attributes
 			Element attr = doc.createElement("attributes");
@@ -177,7 +177,22 @@ public class SibMusicXMLOutput implements SibOutputController {
 			actualDuration = 0;
 		} else {
 			NodeList mea = doc.getElementsByTagName("measure");
-			mea.item( part.getLength() - 1 ).appendChild( n );
+			if ( mea.getLength() == 0 ) {
+				// Añadimos nuevo compás - measure
+				// Part - Measure
+				Element measure = doc.createElement("measure");
+				measure.setAttribute( "number", "1" );
+				score.item( score.getLength() - 1 ).appendChild( measure );
+
+				// Attributes
+				Element attr = doc.createElement("attributes");
+				measure.appendChild( attr );
+
+				this.addMeasureAttributes( attr );
+				measure.appendChild( n );
+			} else {
+				mea.item( mea.getLength() - 1 ).appendChild( n );
+			}
 		}
 
 	}

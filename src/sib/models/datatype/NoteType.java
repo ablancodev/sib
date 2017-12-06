@@ -218,4 +218,34 @@ public class NoteType extends DataType {
 		}
 	}
 
+	public void setPropertyValue( String prop, ValorAsignacion v ) {
+		try {
+			switch ( prop ) {
+				case "step":
+					value = new StepType( v.getStringValue() );
+					break;
+				case "duration":
+					duration = new Float( v.getStringValue() ).intValue();
+					break;
+				case "octave":
+					octave = new Float( v.getStringValue() ).intValue();
+					break;
+				case "dots":
+					dots = new Float( v.getStringValue() ).intValue();
+					break;
+				case "accent":
+					accent = v.getStringValue();
+					break;
+				case "accidental":
+					accidental = v.getStringValue();
+					break;
+				default:
+					throw new Exception( "Nombre de propiedad no existe: " + prop );
+			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR en NoteType->setPropertyValue():" + v.getStringValue() );
+			e.printStackTrace();
+		}
+	}
+
 }
