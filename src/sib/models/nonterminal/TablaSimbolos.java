@@ -29,7 +29,7 @@ public class TablaSimbolos {
 		for ( Entry<String, Variable> v : vars.entrySet()) {
 			String key = v.getKey();
 			Variable value = v.getValue();
-			vc.printOutput( "\n TS--------->:" + key + ":" + value );
+			vc.printLog( "\n TS--------->:" + key + ":" + value );
 		}
 	}
 

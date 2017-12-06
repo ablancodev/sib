@@ -4,14 +4,15 @@ import org.w3c.dom.Document;
 
 import sib.models.datatype.NoteType;
 import sib.models.datatype.PartitureType;
+import sib.models.nonterminal.TablaSimbolos;
 
 public class SibMusicXMLInput implements SibInputController {
 
-	protected PartitureType partiture;
+	protected TablaSimbolos tablaSimbolos;
 	public Document doc;
 
-	public SibMusicXMLInput( PartitureType p ) {
-		partiture = p;
+	public SibMusicXMLInput( TablaSimbolos ts ) {
+		tablaSimbolos = ts;
 	}
 
 	public void readPartiture() {

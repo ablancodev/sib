@@ -1,8 +1,8 @@
 package sib.inout;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,13 +22,18 @@ import org.xml.sax.InputSource;
 
 import sib.models.datatype.NoteType;
 import sib.models.datatype.PartitureType;
+import sib.models.nonterminal.TablaSimbolos;
+import sib.models.nonterminal.Variable;
+import sib.views.SibIDE;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class SibMusicXMLOutput implements SibOutputController {
 
-	protected PartitureType partiture;
+	private SibIDE view;
+
+	protected TablaSimbolos tablaSimbolos;
 	public Document doc;
 
 	/**
@@ -36,8 +41,9 @@ public class SibMusicXMLOutput implements SibOutputController {
 	 */
 	private float actualDuration = 0;
 
-	public SibMusicXMLOutput( PartitureType p ) {
-		partiture = p;
+	public SibMusicXMLOutput( TablaSimbolos ts, SibIDE v ) {
+		view = v;
+		tablaSimbolos = ts;
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -90,41 +96,56 @@ public class SibMusicXMLOutput implements SibOutputController {
 	}
 
 	public void addMeasureAttributes( Element attr ) {
-		// Divisions
-		Element divv = doc.createElement("divisions");
-		divv.appendChild( doc.createTextNode( "1" ) );
-		attr.appendChild( divv );
-		// Key
-		Element key = doc.createElement("key");
-		attr.appendChild( key );
-		// Key - Fifths
-		Element fifths = doc.createElement("fifths");
-		fifths.appendChild( doc.createTextNode( String.valueOf( partiture.getKeysign() ) ) );
-		key.appendChild( fifths );
-
-		// Time
-		Element tim = doc.createElement("time");
-		attr.appendChild( tim );
-		// Time - beats
-		Element beats = doc.createElement("beats");
-		beats.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeats() ) ) );
-		tim.appendChild( beats );
-		// Time - beat-type
-		Element beatt = doc.createElement("beat-type");
-		beatt.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeatType() ) ) );
-		tim.appendChild( beatt );
-
-		// Clef
-		Element clef = doc.createElement("clef");
-		attr.appendChild( clef );
-		// Clef - sign
-		Element sign = doc.createElement("sign");
-		sign.appendChild( doc.createTextNode( partiture.getClef().getSign() ) );
-		clef.appendChild( sign );
-		// Clef - line
-		Element line = doc.createElement("line");
-		line.appendChild( doc.createTextNode( partiture.getClef().getLine() ) );
-		clef.appendChild( line );
+		try {
+			Variable v = tablaSimbolos.getVariable( "$partiture" );
+			if ( v != null ) {
+				PartitureType partiture = (PartitureType)v.getValue();
+				if ( partiture != null ) {
+					// Divisions
+					Element divv = doc.createElement("divisions");
+					divv.appendChild( doc.createTextNode( "1" ) );
+					attr.appendChild( divv );
+					// Key
+					Element key = doc.createElement("key");
+					attr.appendChild( key );
+					// Key - Fifths
+					Element fifths = doc.createElement("fifths");
+					fifths.appendChild( doc.createTextNode( String.valueOf( partiture.getKeysign() ) ) );
+					key.appendChild( fifths );
+	
+					// Time
+					Element tim = doc.createElement("time");
+					attr.appendChild( tim );
+					// Time - beats
+					Element beats = doc.createElement("beats");
+					beats.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeats() ) ) );
+					tim.appendChild( beats );
+					// Time - beat-type
+					Element beatt = doc.createElement("beat-type");
+					beatt.appendChild( doc.createTextNode( String.valueOf( partiture.getTimeBeatType() ) ) );
+					tim.appendChild( beatt );
+	
+					// Clef
+					Element clef = doc.createElement("clef");
+					attr.appendChild( clef );
+					// Clef - sign
+					Element sign = doc.createElement("sign");
+					sign.appendChild( doc.createTextNode( partiture.getClef().getSign() ) );
+					clef.appendChild( sign );
+					// Clef - line
+					Element line = doc.createElement("line");
+					line.appendChild( doc.createTextNode( partiture.getClef().getLine() ) );
+					clef.appendChild( line );
+				} else {
+					throw new Exception ( "El valor de $partiture es null." );
+				}
+			} else {
+				throw new Exception ( "$partiture no se encuentra en la TablaSimbolos" );
+			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR en addMeasureAttributes: " + e.getMessage() );
+			e.printStackTrace();
+		}
 
 	}
 
@@ -233,10 +254,12 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			transformerFactory.setAttribute("indent-number", 10);
 			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty( OutputKeys.DOCTYPE_SYSTEM, "http://www.musicxml.org/dtds/partwise.dtd" );
 			transformer.setOutputProperty( OutputKeys.DOCTYPE_PUBLIC, "-//Recordare//DTD MusicXML 3.0 Partwise//EN" );
-			
+
 			DOMSource source = new DOMSource(doc);
 
 			// Output to console for testing
@@ -245,6 +268,22 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
 			transformer.transform(source, result);
+
+			/*
+	        StringWriter stringWriter = new StringWriter();
+	        StreamResult xmlOutput = new StreamResult(stringWriter);
+	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	        transformerFactory.setAttribute("indent-number", indent);
+	        Transformer transformer = transformerFactory.newTransformer(); 
+	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	        transformer.transform(xmlInput, xmlOutput);
+	        return xmlOutput.getWriter().toString();
+	        */
+	        
+			StringWriter writer = new StringWriter();
+			transformer.transform( source, new StreamResult(writer) );
+			String output = writer.toString();
+			view.printOutput( output );
 
 		} catch (Exception e) {
 			e.printStackTrace();

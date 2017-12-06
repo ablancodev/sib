@@ -56,12 +56,6 @@ public class ViewsControllerFase1 {
 			// Inicializamos partiture
 			partiture = new PartitureType();
 
-			// input / output controllers
-			output = new SibMusicXMLOutput( partiture );
-			input = new SibMusicXMLInput( partiture );
-			p.setOutputController( output );
-			p.setInputController( input );
-
 			// Tabla simbolos
 			tablaSimbolos = new TablaSimbolos();
 			// Metemos la variable global partiture
@@ -69,6 +63,12 @@ public class ViewsControllerFase1 {
 			part.setType( DataType.TYPE_PARTITURE );
 			part.setValue( partiture );
 			tablaSimbolos.addVariable( part );
+
+			// input / output controllers
+			output = new SibMusicXMLOutput( tablaSimbolos, view );
+			input = new SibMusicXMLInput( tablaSimbolos );
+			p.setOutputController( output );
+			p.setInputController( input );
 
 			p.setTablaSimbolos( tablaSimbolos );
 			p.parse();
@@ -158,4 +158,9 @@ public class ViewsControllerFase1 {
 	public void printOutput( String s ) {
 		view.printOutput( s );
 	}
+
+	public void printLog( String s ) {
+		view.printLog( s );
+	}
+
 }
