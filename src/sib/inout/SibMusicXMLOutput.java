@@ -178,7 +178,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 			n.appendChild( dot );
 		}
 
-		NodeList score = doc.getElementsByTagName("score-partwise");
+		NodeList score = doc.getElementsByTagName("part");
 
 		actualDuration += note.duration;
 		if ( ( actualDuration ) >= 4 ) {
