@@ -36,12 +36,7 @@ parser code {:
 
 /* Terminales sin atributo */
 /*
-terminal PALABRA_RESERVADA, PACKAGE, IMPORT, IDENTIFICADOR, PUNTO, COMA, PUNTO_Y_COMA, IGUAL_SIMPLE, BEGIN, END;
-terminal LPAREN, RPAREN;
-terminal TRANS;
-
-terminal CADENA;
-
+terminalPACKAGE, IMPORT, PUNTO;
 */
 terminal BEGIN, IDENTIFICADOR, END, VARIABLE, PROPIEDAD, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
 terminal OPERADOR_NOTA;
@@ -54,17 +49,10 @@ terminal MAS, MENOS, DIV, MULT, MOD;
 
 terminal IF, ENDIF, ELSE, COMPARADOR, WHILE, ENDWHILE;
 
-
-
 /* No terminales sin atributo */
 /*
 non terminal paquete, imports, un_import;
 non terminal String mas_paquete, mas_import;
-
-
-
-
-
 */
 
 non terminal Programa programa;

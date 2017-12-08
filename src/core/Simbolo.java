@@ -6,15 +6,12 @@ package core;
  * @author Antonio
  */
 public class Simbolo {
-	String lexema; // aqui debemos poner todos los atributos que queremos usar
+/*
+  	String lexema; // aqui debemos poner todos los atributos que queremos usar
+ 
 					// en el compilador
 	int longitudBytes;
 
-	/**
-	 * Constructor que recibe lexema
-	 * 
-	 * @param l
-	 */
 	public Simbolo(String l) {
 		this.lexema = l;
 	}
@@ -28,5 +25,5 @@ public class Simbolo {
 	public String getLexema() {
 		return this.lexema;
 	}
-
+*/
 }

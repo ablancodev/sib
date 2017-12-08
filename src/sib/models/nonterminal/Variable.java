@@ -193,6 +193,7 @@ public class Variable extends OperandoAritmetico {
 					case "_.":
 					case "_..":
 					case "_...":
+					case "__":
 						result = true;
 						break;
 					default:

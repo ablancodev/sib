@@ -10,6 +10,7 @@ import sib.models.nonterminal.ValorAsignacion;
  */
 public class NoteType extends DataType {
 
+	public static final String ACCIDENTAL_NONE = "";
 	public static final String ACCIDENTAL_NATURAL = "natural";
 	public static final String ACCIDENTAL_FLAT = "flat";
 	public static final String ACCIDENTAL_DOUBLE_FLAT = "flat-flat";
@@ -29,7 +30,7 @@ public class NoteType extends DataType {
 		octave = 4;
 		dots = 0;
 		accent = "";
-		accidental = NoteType.ACCIDENTAL_NATURAL;
+		accidental = NoteType.ACCIDENTAL_NONE;
 	}
 
 	@Override
@@ -109,7 +110,6 @@ public class NoteType extends DataType {
 	 * @param op String
 	 */
 	public void applyOperator(String op) {
-		System.err.println("\nNote->ApplyOperador:" + op + " en " + accidental);
 		switch ( op ) {
 			case "_.":
 				dots ++;
@@ -135,12 +135,16 @@ public class NoteType extends DataType {
 			case "_@":
 				accidental = NoteType.ACCIDENTAL_NATURAL;
 				break;
+			case "__":
+				accidental = NoteType.ACCIDENTAL_NONE;
+				break;
 		}
 	}
 
 	private void applyFlat(int i) {
 		if ( i == 1 ) {
 			switch ( accidental ) {
+				case NoteType.ACCIDENTAL_NONE:
 				case NoteType.ACCIDENTAL_NATURAL:
 					accidental = NoteType.ACCIDENTAL_FLAT;
 					break;
@@ -159,6 +163,7 @@ public class NoteType extends DataType {
 			}
 		} else if ( i == 2 ) {
 			switch ( accidental ) {
+				case NoteType.ACCIDENTAL_NONE:
 				case NoteType.ACCIDENTAL_NATURAL:
 					accidental = NoteType.ACCIDENTAL_DOUBLE_FLAT;
 					break;
@@ -181,8 +186,9 @@ public class NoteType extends DataType {
 	private void applySharp(int i) {
 		if ( i == 1 ) {
 			switch ( accidental ) {
+				case NoteType.ACCIDENTAL_NONE:
 				case NoteType.ACCIDENTAL_NATURAL:
-					accidental = NoteType.ACCIDENTAL_SHARP;
+						accidental = NoteType.ACCIDENTAL_SHARP;
 					break;
 				case NoteType.ACCIDENTAL_FLAT:
 					accidental = NoteType.ACCIDENTAL_NATURAL;
@@ -199,6 +205,7 @@ public class NoteType extends DataType {
 			}
 		} else if ( i == 2 ) {
 			switch ( accidental ) {
+				case NoteType.ACCIDENTAL_NONE:
 				case NoteType.ACCIDENTAL_NATURAL:
 					accidental = NoteType.ACCIDENTAL_DOUBLE_SHARP;
 					break;

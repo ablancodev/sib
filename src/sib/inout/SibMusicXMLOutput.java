@@ -168,9 +168,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 		Element ty = doc.createElement( "type" );
 		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
 		n.appendChild( ty );
-		Element ac = doc.createElement( "accidental" );
-		ac.appendChild( doc.createTextNode( note.accidental ) );
-		n.appendChild( ac );
+		if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
+			Element ac = doc.createElement( "accidental" );
+			ac.appendChild( doc.createTextNode( note.accidental ) );
+			n.appendChild( ac );
+		}
 
 		Element dot = null;
 		for ( int cnt = 0; cnt < note.dots; cnt++ ) {
