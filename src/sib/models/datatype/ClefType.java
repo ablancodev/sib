@@ -9,7 +9,15 @@ public class ClefType extends DataType {
 	private String value;
 
 	public ClefType( String str ) {
-		value = str;
+		if ( isValidClefValue( str ) ) {
+			value = str;
+		} else {
+			try {
+				throw new Exception( "Clef value not valid:" + str );
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public ClefType() {
@@ -20,8 +28,16 @@ public class ClefType extends DataType {
 		return "clef";
 	}
 
-	public void setValue( String v ) {
-		value = v;
+	public void setValue( String str ) {
+		if ( isValidClefValue( str ) ) {
+			value = str;
+		} else {
+			try {
+				throw new Exception( "Clef value not valid:" + str );
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public ValorAsignacion getValue() {
@@ -105,4 +121,17 @@ public class ClefType extends DataType {
 		return false;
 	}
 
+	private boolean isValidClefValue(String str) {
+		boolean valid = false;
+		if ( ( str.compareTo( "C1" ) == 0 )
+				|| ( str.compareTo( "C2" ) == 0 )
+				|| ( str.compareTo( "C3" ) == 0 )
+				|| ( str.compareTo( "C4" ) == 0 )
+				|| ( str.compareTo( "G2" ) == 0 )
+				|| ( str.compareTo( "F3" ) == 0 )
+				|| ( str.compareTo( "F4" ) == 0 ) ) {
+			valid = true;
+		}
+		return valid;
+	}
 }
