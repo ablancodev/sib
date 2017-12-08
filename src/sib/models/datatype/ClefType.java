@@ -67,8 +67,11 @@ public class ClefType extends DataType {
 
 	@Override
 	public void trans(Float float1) {
-		// TODO Auto-generated method stub
-		
+		try {
+			throw new Exception( "No tiene sentido Trans() sobre un tipo ClefType.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -78,7 +81,6 @@ public class ClefType extends DataType {
 			switch (op2.getType() ) {
 				case "string":
 				case "clef":
-				case "step":
 					result = this.value.compareTo( op2.getStringValue() ) == 0;
 					break;
 				default:
@@ -93,32 +95,83 @@ public class ClefType extends DataType {
 
 	@Override
 	public boolean distintoQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !igualQue( op2 );
 	}
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "clef":
+					result = this.value.compareTo( op2.getStringValue() ) < 0;
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR ClefType: Comparación menorQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "clef":
+					result = this.value.compareTo( op2.getStringValue() ) <= 0;
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR ClefType: Comparación menorIgualQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "clef":
+					result = this.value.compareTo( op2.getStringValue() ) > 0;
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR ClefType: Comparación mayorQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "clef":
+					result = this.value.compareTo( op2.getStringValue() ) >= 0;
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR ClefType: Comparación mayorIgualQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	private boolean isValidClefValue(String str) {

@@ -6,5 +6,31 @@
 <part-name>Generada por Sib</part-name>
 </score-part>
 </part-list>
-<part id="P1"/>
+<part id="P1">
+<measure number="1">
+<attributes>
+<divisions>16</divisions>
+<key>
+<fifths>0</fifths>
+</key>
+<time>
+<beats>2</beats>
+<beat-type>3</beat-type>
+</time>
+<clef>
+<sign>G</sign>
+<line>2</line>
+</clef>
+</attributes>
+<note>
+<pitch>
+<step>C</step>
+<octave>4</octave>
+</pitch>
+<duration>4.0</duration>
+<type>quarter</type>
+<accidental>flat</accidental>
+</note>
+</measure>
+</part>
 </score-partwise>

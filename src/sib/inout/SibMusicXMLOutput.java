@@ -31,6 +31,8 @@ import org.w3c.dom.Element;
 
 public class SibMusicXMLOutput implements SibOutputController {
 
+	public static final int DIVISIONS = 16; // precisión hasta Semifusas
+
 	private SibIDE view;
 
 	protected TablaSimbolos tablaSimbolos;
@@ -103,7 +105,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 				if ( partiture != null ) {
 					// Divisions
 					Element divv = doc.createElement("divisions");
-					divv.appendChild( doc.createTextNode( "1" ) );
+					divv.appendChild( doc.createTextNode( String.valueOf( SibMusicXMLOutput.DIVISIONS ) ) );
 					attr.appendChild( divv );
 					// Key
 					Element key = doc.createElement("key");
@@ -167,11 +169,12 @@ public class SibMusicXMLOutput implements SibOutputController {
 			pi.appendChild( oc );
 		}
 
+		// La duration de la nota se multiplica por DIVISIONS
 		Element dur = doc.createElement( "duration" );
-		dur.appendChild( doc.createTextNode( String.valueOf( note.duration ) ) );
+		dur.appendChild( doc.createTextNode( String.valueOf( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS ) ) );
 		n.appendChild( dur );
 		Element ty = doc.createElement( "type" );
-		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration ) ) );
+		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration.getStringValue() ) ) );
 		n.appendChild( ty );
 		if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
 			Element ac = doc.createElement( "accidental" );
@@ -187,8 +190,8 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 		NodeList score = doc.getElementsByTagName("part");
 
-		actualDuration += note.duration;
-		if ( ( actualDuration ) >= 4 ) {
+		actualDuration = actualDuration + ( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS );
+		if ( ( actualDuration ) > SibMusicXMLOutput.DIVISIONS ) {
 			// Añadimos nuevo compás - measure
 			// Part - Measure
 			Element measure = doc.createElement("measure");
@@ -231,26 +234,31 @@ public class SibMusicXMLOutput implements SibOutputController {
 	 * @param duration int
 	 * @return String
 	 */
-	private String noteDurationToType( int duration ) {
+	private String noteDurationToType( String duration ) {
 		String resultado = "quarter"; // 4
 		switch ( duration ) {
-			case 1:
+			case "1": // Redonda
 				resultado = "whole";
 				break;
-			case 2:
+			case "1/2": // Blanca
 				resultado = "half";
 				break;
-			case 4:
+			case "1/4": // Negra
 				resultado = "quarter";
 				break;
-			case 8:
+			case "1/8": // Corchea
 				resultado = "eighth";
 				break;
-			case 16:
+			case "1/16": // Semicorchea
 				resultado = "16th";
 				break;
+			case "1/32": // Fusa
+				resultado = "32th";
+				break;
+			case "1/64": // Semifusa
+				resultado = "64th";
+				break;
 		}
-		// @todo duration to type - añadir el resto de correspondencias
 		return resultado;
 	}
 

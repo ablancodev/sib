@@ -3,5 +3,6 @@ sib.controllers
 sib.cup
 sib.flex
 sib.inout
-sib.models
+sib.models.datatype
+sib.models.nonterminal
 sib.views

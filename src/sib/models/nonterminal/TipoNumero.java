@@ -33,7 +33,19 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	public String getStringValue() {
-		return String.valueOf( real );
+		String result = "";
+		switch ( this.tipo ) {
+			case TipoNumero.TYPE_NFRAC:
+				result = String.valueOf( numerator ) + "/" + String.valueOf( denominator );
+				break;
+			case TipoNumero.TYPE_FRAC:
+				result = String.valueOf( real ) + " " + String.valueOf( numerator ) + "/" + String.valueOf( denominator );
+				break;
+			default:
+			result = String.valueOf( real );
+			break;
+		}
+		return result;
 	}
 
 	public void setValue( String num ) {
@@ -53,8 +65,9 @@ public class TipoNumero extends OperandoAritmetico {
 					if ( parts.length == 2 ) {
 						numerator = Integer.valueOf( parts[0] );
 						denominator = Integer.valueOf( parts[1] );
+						real = 0;
 					} else {
-						real = Float.valueOf( num ); // solo tiene parte real
+						throw new Exception();
 					}
 				} catch ( Exception e ) {
 					System.err.println( "Error en TipoNumero->setValue con NFRAC " + num);
@@ -82,12 +95,15 @@ public class TipoNumero extends OperandoAritmetico {
 	}
 
 	public float toFloat() {
-		// @todo falta hacer switch
 		float result = 0;
 		try {
 			result = Float.valueOf( real );
+			if ( denominator != 0 ) {
+				result = result + ( (float)numerator / denominator );
+			}
 		} catch ( Exception e ) {
 			System.err.println( e.toString() );
+			e.printStackTrace();
 		}
 		return result;
 	}

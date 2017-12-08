@@ -1,5 +1,6 @@
 package sib.models.datatype;
 
+import sib.models.nonterminal.TipoNumero;
 import sib.models.nonterminal.ValorAsignacion;
 
 /**
@@ -18,7 +19,7 @@ public class NoteType extends DataType {
 	public static final String ACCIDENTAL_DOUBLE_SHARP = "double-sharp";
 
 	public StepType value;
-	public int duration;
+	public TipoNumero duration;
 	public int octave;
 	public int dots;
 	public String accent;
@@ -26,7 +27,7 @@ public class NoteType extends DataType {
 
 	public NoteType() {
 		value = new StepType( "C" );
-		duration = 4;
+		duration = new TipoNumero( "1/4", TipoNumero.TYPE_NFRAC );
 		octave = 4;
 		dots = 0;
 		accent = "";
@@ -63,7 +64,7 @@ public class NoteType extends DataType {
 		n.value = (StepType)value.clone();
 		n.accent = accent;
 		n.dots = dots;
-		n.duration = duration;
+		n.duration = duration.clone();
 		n.octave = octave;
 		n.accidental = accidental;
 		return n;
@@ -232,7 +233,11 @@ public class NoteType extends DataType {
 					value = new StepType( v.getStringValue() );
 					break;
 				case "duration":
-					duration = new Float( v.getStringValue() ).intValue();
+					if ( duration != null ) {
+						duration.setValue( v.getStringValue() );
+					} else {
+						duration = new TipoNumero( v.getStringValue(), TipoNumero.TYPE_NFRAC );
+					}
 					break;
 				case "octave":
 					octave = new Float( v.getStringValue() ).intValue();
