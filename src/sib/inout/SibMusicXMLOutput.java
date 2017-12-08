@@ -153,14 +153,19 @@ public class SibMusicXMLOutput implements SibOutputController {
 
 		// New note
 		Element n = doc.createElement( "note" );
-		Element pi = doc.createElement( "pitch" );
-		n.appendChild( pi );
-		Element st = doc.createElement( "step" );
-		st.appendChild( doc.createTextNode( note.getStringValue() ) );
-		pi.appendChild( st );
-		Element oc = doc.createElement( "octave" );
-		oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
-		pi.appendChild( oc );
+		if ( note.getStringValue().equalsIgnoreCase( "S" ) ) {  // Silencio
+			Element re = doc.createElement( "rest" );
+			n.appendChild( re );
+		} else {  // Nota musical
+			Element pi = doc.createElement( "pitch" );
+			n.appendChild( pi );
+			Element st = doc.createElement( "step" );
+			st.appendChild( doc.createTextNode( note.getStringValue() ) );
+			pi.appendChild( st );
+			Element oc = doc.createElement( "octave" );
+			oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
+			pi.appendChild( oc );
+		}
 
 		Element dur = doc.createElement( "duration" );
 		dur.appendChild( doc.createTextNode( String.valueOf( note.duration ) ) );
