@@ -57,6 +57,7 @@ public class NoteType extends DataType {
 
 	@Override
 	public void trans( Float ntones ) {
+		/*
 		int current = this.value.getCurrentPositionValues();
 		// Actualizamos step
 		this.value.trans( ntones );
@@ -79,6 +80,107 @@ public class NoteType extends DataType {
 				applyFlat(1);
 			}
 		}
+		*/
+		// Octavas
+		octave = octave + numOctaves( ntones );
+		// Semitonos?
+		int semitones = semitonesExtra( ntones );
+		
+		System.err.println( semitones );
+		
+		if ( semitones > 0 ) {
+			applySharp( semitones );
+		}
+		if ( semitones < 0 ) {
+			applyFlat( Math.abs( semitones ) );
+		}
+
+		// Actualizamos step
+		this.value.trans( ntones );
+
+	}
+
+	private int numOctaves(Float ntones) {
+		int octaves = 0;
+		boolean negative = false;
+		if ( ntones < 0 ) {
+			negative = true;
+		}
+		float tonos = Math.abs( ntones );
+		int current = this.value.stepValues.indexOf( this.value.value );
+		// caso especial si inicialmente current = 0
+		if ( negative && ( current == 0 ) ) {
+			octaves--;
+		}
+		while ( tonos > 0 ) {
+			if ( negative ) {
+				int temp =( current - 1 ) % 7;
+				if ( temp < 0 ) {
+					temp = temp + 7;
+				}
+				tonos = ( tonos - this.value.tonesValues[temp] );
+			} else {
+				tonos = ( tonos - this.value.tonesValues[current] );
+			}
+			if ( tonos >= 0 ) {  // por si hay exceso
+				if ( negative ) {
+					current = ( current - 1 ) % 7;
+					if ( current < 0 ) {
+						current = current + 7;
+					}
+				} else {
+					current = ( current + 1 ) % 7;
+				}
+				if ( current == 0 ) {
+					if ( negative ) {
+						octaves--;
+					} else {
+						octaves++;
+					}
+				}
+			}
+		}
+		return octaves;
+	}
+
+	private int semitonesExtra(Float ntones) {
+		int semi = 0;
+		boolean negative = false;
+		if ( ntones < 0 ) {
+			negative = true;
+		}
+		float tonos = Math.abs( ntones );
+		int current = this.value.stepValues.indexOf( this.value.value );
+		while ( tonos > 0 ) {
+			if ( negative ) {
+				int temp =( current - 1 ) % 7;
+				if ( temp < 0 ) {
+					temp = temp + 7;
+				}
+				tonos = ( tonos - this.value.tonesValues[temp] );
+			} else {
+				tonos = ( tonos - this.value.tonesValues[current] );
+			}
+
+			if ( tonos >= 0 ) {  // por si hay exceso
+				if ( negative ) {
+					current = ( current - 1 ) % 7;
+					if ( current < 0 ) {
+						current = current + 7;
+					}
+				} else {
+					current = ( current + 1 ) % 7;
+				}
+			}
+		}
+		if ( tonos < 0 ) {
+			if ( negative ) {
+				semi--;
+			} else {
+				semi++;
+			}
+		}
+		return semi;
 	}
 
 	@Override

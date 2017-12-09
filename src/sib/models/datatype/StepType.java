@@ -6,10 +6,11 @@ import sib.models.nonterminal.ValorAsignacion;
 
 public class StepType extends DataType {
 
-	private ArrayList<String> stepValues = new ArrayList<String>();
+	protected ArrayList<String> stepValues = new ArrayList<String>();
+	protected float[] tonesValues = new float[7];
 
 	public static final String DEFAULT_VALUE = "C";
-	private String value;
+	protected String value;
 
 	public StepType( String str ) {
 		// Inicializamos los posibles valores
@@ -20,6 +21,15 @@ public class StepType extends DataType {
 		stepValues.add( 4, "G" );
 		stepValues.add( 5, "A" );
 		stepValues.add( 6, "B" );
+
+		// Inicializamos la lista de tonos que hay entre cada salto
+		tonesValues[0] = 1;  // C -> D
+		tonesValues[1] = 1;  // D -> E
+		tonesValues[2] = (float)0.5;  // E -> F
+		tonesValues[3] = 1;
+		tonesValues[4] = 1;
+		tonesValues[5] = 1;
+		tonesValues[6] = (float)0.5;
 
 		value = str;
 
@@ -52,6 +62,7 @@ public class StepType extends DataType {
 
 	@Override
 	public void trans( Float tn ) {
+		/*
 		int tonos = Math.round( tn );
 		if ( ( ( tn - tonos ) != 0 ) && ( tn > 0 ) ) { // tiene decimales, asi que hay que restar, ya que round calcula hacia arriba
 			tonos--;
@@ -64,6 +75,37 @@ public class StepType extends DataType {
 			}
 			value = stepValues.get( current );
 		}
+		*/
+		boolean negative = false;
+		if ( tn < 0 ) {
+			negative = true;
+		}
+		float tonos = Math.abs( tn );
+		int current = stepValues.indexOf( value );
+		while ( tonos > 0 ) {
+			if ( negative ) {
+				int temp =( current - 1 ) % 7;
+				if ( temp < 0 ) {
+					temp = temp + 7;
+				}
+				tonos = ( tonos - tonesValues[temp] );
+			} else {
+				tonos = ( tonos - tonesValues[current] );
+			}
+			
+			if ( tonos >= 0 ) {  // por si hay exceso
+				if ( negative ) {
+					current = ( current - 1 ) % 7;
+					if ( current < 0 ) {
+						current = current + 7;
+					}
+				} else {
+					current = ( current + 1 ) % 7;
+				}
+			}
+			System.err.println( tn + ">-" + tonos + "-" + current);
+		}
+		value = stepValues.get( current );
 	}
 
 	@Override
