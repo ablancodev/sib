@@ -49,6 +49,7 @@ public class OperacionTrans extends ValorAsignacion {
 			}
 		} catch ( Exception e ) {
 			System.err.println( "ERROR en OperacionTrans->trans: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

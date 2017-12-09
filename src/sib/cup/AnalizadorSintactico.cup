@@ -40,11 +40,11 @@ terminalPACKAGE, IMPORT, PUNTO;
 */
 terminal BEGIN, IDENTIFICADOR, END, VARIABLE, PROPIEDAD, TIPO, PUNTO_Y_COMA, COMA, IGUAL_SIMPLE;
 terminal OPERADOR_NOTA;
-terminal STEP, CLEF_VALUE, ACCENT_VALUE, CADENA;
+terminal STEP, CLEF_VALUE, ARTICULATION_VALUE, CADENA;
 terminal LPAREN, RPAREN, TRANS;
 terminal PLAY, PLAYPARTITURE, READ, READPARTITURE;
 
-terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_INT_FRAC;
+terminal NUMERO_ENTERO, NUMERO_REAL, NUMERO_NFRAC, NUMERO_FRAC;
 terminal MAS, MENOS, DIV, MULT, MOD;
 
 terminal IF, ENDIF, ELSE, COMPARADOR, WHILE, ENDWHILE;
@@ -130,7 +130,7 @@ asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new In
 valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
 			| STEP:st {: RESULT = new StepType( st.toString() ); :}
 			| CLEF_VALUE:cl {: RESULT = new ClefType( cl.toString() ); :}
-			| ACCENT_VALUE:ac {: RESULT = new StringType( ac.toString() ); :}
+			| ARTICULATION_VALUE:ac {: RESULT = new StringType( ac.toString() ); :}
 			| CADENA:st {: RESULT = new StringType( st.toString() ); :}
 			| tipo_numeros:tn {: RESULT = tn; :}
 			| operacion_trans:op {: RESULT = op; :}
@@ -139,7 +139,8 @@ valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSim
 
 tipo_numeros ::= NUMERO_ENTERO:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_INT ); :}
 			| NUMERO_REAL:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_FLOAT ); :}
-			| NUMERO_INT_FRAC:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_NFRAC ); :}
+			| NUMERO_NFRAC:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_NFRAC ); :}
+			| NUMERO_FRAC:n {: RESULT = new TipoNumero( n.toString(), TipoNumero.TYPE_FRAC ); :}
 			;
 
 /* Operacion_trans - OperacionTrans */

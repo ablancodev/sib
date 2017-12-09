@@ -182,6 +182,11 @@ public class SibMusicXMLOutput implements SibOutputController {
 					Element st = doc.createElement( "step" );
 					st.appendChild( doc.createTextNode( note.getStringValue() ) );
 					pi.appendChild( st );
+					if ( note.alter != 0 ) {
+						Element alt = doc.createElement( "alter" );
+						alt.appendChild( doc.createTextNode( String.valueOf( note.alter ) ) );
+						pi.appendChild( alt );
+					}
 					Element oc = doc.createElement( "octave" );
 					oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
 					pi.appendChild( oc );
@@ -199,7 +204,21 @@ public class SibMusicXMLOutput implements SibOutputController {
 					ac.appendChild( doc.createTextNode( note.accidental ) );
 					n.appendChild( ac );
 				}
-		
+				// Articulation
+				Element articulation;
+				switch ( note.articulation ) {
+					case "staccato":
+						articulation = doc.createElement( "staccato" );
+						n.appendChild( articulation );
+					case "tenuto":
+						articulation = doc.createElement( "tenuto" );
+						n.appendChild( articulation );
+					case "accent":
+						articulation = doc.createElement( "accent" );
+						n.appendChild( articulation );
+						break;
+				}
+				// Puntillos
 				Element dot = null;
 				for ( int cnt = 0; cnt < note.dots; cnt++ ) {
 					dot = doc.createElement( "dot" );

@@ -57,7 +57,23 @@ public class TipoNumero extends OperandoAritmetico {
 				denominator = 0;
 				break;
 			case TipoNumero.TYPE_FRAC:
-				// @todo implementarlo
+				try {
+					String[] parts = num.split(" ");
+					if ( parts.length == 2 ) {
+						real = Integer.valueOf( parts[0] );
+
+						String[] parts2 = parts[1].split("/");
+						if ( parts2.length == 2 ) {
+							numerator = Integer.valueOf( parts2[0] );
+							denominator = Integer.valueOf( parts2[1] );
+						} else {
+							throw new Exception();
+						}
+					}
+				} catch ( Exception e ) {
+					System.err.println( "Error en TipoNumero->setValue con NFRAC " + num);
+					e.printStackTrace();
+				}
 				break;
 			case TipoNumero.TYPE_NFRAC:
 				try {

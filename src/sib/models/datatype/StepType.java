@@ -1,14 +1,28 @@
 package sib.models.datatype;
 
+import java.util.ArrayList;
+
 import sib.models.nonterminal.ValorAsignacion;
 
 public class StepType extends DataType {
+
+	private ArrayList<String> stepValues = new ArrayList<String>();
 
 	public static final String DEFAULT_VALUE = "C";
 	private String value;
 
 	public StepType( String str ) {
+		// Inicializamos los posibles valores
+		stepValues.add( 0, "C" );
+		stepValues.add( 1, "D" );
+		stepValues.add( 2, "E" );
+		stepValues.add( 3, "F" );
+		stepValues.add( 4, "G" );
+		stepValues.add( 5, "A" );
+		stepValues.add( 6, "B" );
+
 		value = str;
+
 	}
 
 	public StepType() {
@@ -37,9 +51,19 @@ public class StepType extends DataType {
 	}
 
 	@Override
-	public void trans(Float float1) {
-		// TODO Auto-generated method stub
-		
+	public void trans( Float tn ) {
+		int tonos = Math.round( tn );
+		if ( ( ( tn - tonos ) != 0 ) && ( tn > 0 ) ) { // tiene decimales, asi que hay que restar, ya que round calcula hacia arriba
+			tonos--;
+		}
+		int current = stepValues.indexOf( value );
+		if ( current >= 0 ) {  // existe
+			current = (current + tonos) % 7;
+			if ( current < 0 ) {
+				current += 7;
+			}
+			value = stepValues.get( current );
+		}
 	}
 
 	@Override
@@ -90,6 +114,10 @@ public class StepType extends DataType {
 	public boolean mayorIgualQue(ValorAsignacion op2) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public int getCurrentPositionValues() {
+		return stepValues.indexOf( value );
 	}
 
 }

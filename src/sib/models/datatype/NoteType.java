@@ -22,16 +22,18 @@ public class NoteType extends DataType {
 	public TipoNumero duration;
 	public int octave;
 	public int dots;
-	public String accent;
+	public String articulation;
 	public String accidental;
+	public int alter;
 
 	public NoteType() {
 		value = new StepType( "C" );
 		duration = new TipoNumero( "1/4", TipoNumero.TYPE_NFRAC );
 		octave = 4;
 		dots = 0;
-		accent = "";
+		articulation = "";
 		accidental = NoteType.ACCIDENTAL_NONE;
+		alter = 0;
 	}
 
 	@Override
@@ -55,14 +57,35 @@ public class NoteType extends DataType {
 
 	@Override
 	public void trans( Float ntones ) {
+		int current = this.value.getCurrentPositionValues();
+		// Actualizamos step
 		this.value.trans( ntones );
+		// Actualizamos octave
+		this.octave += Math.round( ( current + Math.round( ntones ) ) / 7 );
+		int modulo = ( current + Math.round( ntones ) ) % 7;
+		if ( modulo != 0 ) {
+			if ( ( ntones > 0 ) && ( this.value.getCurrentPositionValues() < current ) ) {  // ha dado la vuelta
+				this.octave++;
+			}
+			if ( ( ntones < 0 ) && ( this.value.getCurrentPositionValues() > current ) ) {  // ha dado la vuelta
+				this.octave--;
+			}
+		}
+		// Hay semitonos ?
+		if ( ( ntones - Math.round( ntones ) ) != 0 ) {
+			if ( ntones > 0 ) { // hay medio tono positivo
+				applySharp(1);
+			} else {
+				applyFlat(1);
+			}
+		}
 	}
 
 	@Override
 	public ValorAsignacion clone() {
 		NoteType n = new NoteType();
 		n.value = (StepType)value.clone();
-		n.accent = accent;
+		n.articulation = articulation;
 		n.dots = dots;
 		n.duration = duration.clone();
 		n.octave = octave;
@@ -162,6 +185,7 @@ public class NoteType extends DataType {
 					accidental = NoteType.ACCIDENTAL_SHARP;
 					break;
 			}
+			alter = Math.max( alter - 1, -2 );
 		} else if ( i == 2 ) {
 			switch ( accidental ) {
 				case NoteType.ACCIDENTAL_NONE:
@@ -181,6 +205,7 @@ public class NoteType extends DataType {
 					accidental = NoteType.ACCIDENTAL_NATURAL;
 					break;
 			}
+			alter = Math.max( alter - 2, -2 );
 		}
 	}
 
@@ -204,6 +229,7 @@ public class NoteType extends DataType {
 					accidental = NoteType.ACCIDENTAL_DOUBLE_SHARP;
 					break;
 			}
+			alter = Math.min( alter + 1, 2 );
 		} else if ( i == 2 ) {
 			switch ( accidental ) {
 				case NoteType.ACCIDENTAL_NONE:
@@ -223,6 +249,7 @@ public class NoteType extends DataType {
 					accidental = NoteType.ACCIDENTAL_DOUBLE_SHARP;
 					break;
 			}
+			alter = Math.min( alter + 2, 2 );
 		}
 	}
 
@@ -245,8 +272,8 @@ public class NoteType extends DataType {
 				case "dots":
 					dots = new Float( v.getStringValue() ).intValue();
 					break;
-				case "accent":
-					accent = v.getStringValue();
+				case "articulation":
+					articulation = v.getStringValue();
 					break;
 				case "accidental":
 					accidental = v.getStringValue();

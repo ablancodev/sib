@@ -86,7 +86,7 @@ public class Variable extends OperandoAritmetico {
 			//ValorAsignacion newV = v.clone(); #estopuedeser
 			ValorAsignacion newV = v.getValue();
 			if ( prop == null ) {
-				if ( v.getClass() == Variable.class ) {
+				if ( newV.getClass() == Variable.class ) {
 					valor = ( (Variable)newV ).valor;
 				} else {
 					valor = newV;

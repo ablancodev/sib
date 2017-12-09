@@ -103,7 +103,7 @@ Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[
 
 Clef_value = G[2]? | F[3-4] | C[1-4]
 
-Accent_value = "staccato" | "staccatissimo" | "marcato" | "tenuto" | "accent" | \"\"
+Articulation_value = "staccato" | "tenuto" | "accent" | \"\"
 
 Digito = [0-9]
 Numeros = {Digito}{Digito}*
@@ -117,8 +117,9 @@ Espacio = [ \t\f]
 // Tipo numeros
 Numero_entero = [-]?{Numeros}
 Numero_real = {Numero_entero}"."{Numeros}
-Numero_int_frac = [-]?{Fraccion}
-				| {Numero_entero}{Espacio}+{Fraccion}
+Numero_nfrac = {Fraccion}
+Numero_frac = [-]?{Fraccion}
+				| [-]?{Numero_entero}{Espacio}+{Fraccion}
 Fraccion = {Numero_entero}"/"{Numero_entero}
 
 /* Finaliza expresiones regulares */
@@ -257,8 +258,8 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		return t;
 	}
 	
-	{Accent_value}	{
-		Token t = new Token( sym.ACCENT_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
+	{Articulation_value}	{
+		Token t = new Token( sym.ARTICULATION_VALUE, yycolumn, yyline+1, 0, yytext(), Token.SIMBOLO );
 		this._existenTokens = true;
 		return t;
 	}
@@ -353,12 +354,17 @@ Fraccion = {Numero_entero}"/"{Numero_entero}
 		this._existenTokens = true;
 		return t;
 	}
-	{Numero_int_frac} {
-		Token t = new Token( sym.NUMERO_INT_FRAC, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
+	{Numero_nfrac} {
+		Token t = new Token( sym.NUMERO_NFRAC, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
 		this._existenTokens = true;
 		return t;
 	}
-	
+	{Numero_frac} {
+		Token t = new Token( sym.NUMERO_FRAC, yycolumn, yyline+1, 0, yytext(), Token.TIPO );
+		this._existenTokens = true;
+		return t;
+	}
+
 	{Str_ident} {
 		Token t = new Token( sym.IDENTIFICADOR, yycolumn, yyline+1, 0, yytext(), Token.STR_IDENT );
 		this._existenTokens = true;
