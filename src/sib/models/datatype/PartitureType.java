@@ -19,13 +19,17 @@ public class PartitureType extends DataType {
 	private int[] slurs;
 	private int wedge;
 
+	/**
+	 * Flag que indica si la partiture fue modificada desde su última "impresión"
+	 */
+	public boolean isModified = true;
+
 	public PartitureType() {
 		// Valores por defecto
 		clef = new ClefType( "G2" );
 		tempo = 60;
 		keysign = 0;
-		//time = new TipoNumero( "4/4", TipoNumero.TYPE_NFRAC );
-		time = new TipoNumero( "2/3", TipoNumero.TYPE_NFRAC );
+		time = new TipoNumero( "4/4", TipoNumero.TYPE_NFRAC );
 		volume = 50;
 		slurs = new int[2];
 		slurs[0] = 0;
@@ -35,32 +39,39 @@ public class PartitureType extends DataType {
 
 	public void setClef( ClefType c ) {
 		clef = c;
+		isModified = true;
 	}
 
 	public void setTempo( int t ) {
 		tempo = t;
+		isModified = true;
 	}
 
 	public void setKeysign( int k ) {
 		keysign = k;
+		isModified = true;
 	}
 
 	public void setTime( TipoNumero t ) {
 		time = t;
+		isModified = true;
 	}
 
 	public void setVolume( int v ) {
 		volume = v;
+		isModified = true;
 	}
 
 	public void setSlurs( int[] sl ) {
 		slurs = new int[2];
 		slurs[0] = sl[0];
 		slurs[1] = sl[1];
+		isModified = true;
 	}
 
 	public void setWedge( int w ) {
 		wedge = w;
+		isModified = true;
 	}
 
 	public ClefType getClef() {
@@ -209,6 +220,7 @@ public class PartitureType extends DataType {
 			System.err.println( "ERROR en PartitureType->setPropertyValue():" + v.getStringValue() );
 			e.printStackTrace();
 		}
+		isModified = true;
 	}
 
 }

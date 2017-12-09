@@ -94,7 +94,22 @@ public class SibMusicXMLOutput implements SibOutputController {
 	}
 
 	public void playPartiture() {
-		// @todo implementarlo. Posiblemente sea parecido a addMeasureAttributes
+		Variable v = tablaSimbolos.getVariable( "$partiture" );
+		if ( v != null ) {
+			PartitureType partiture = (PartitureType)v.getValue();
+			if ( partiture != null ) {
+				if ( partiture.isModified ) {
+					NodeList mea = doc.getElementsByTagName("measure");
+					if ( mea.getLength() > 0 ) {
+						Element attr = doc.createElement("attributes");
+						mea.item( mea.getLength() - 1 ).insertBefore( attr, mea.item( mea.getLength() - 1 ).getFirstChild() );
+			
+						this.addMeasureAttributes( attr );
+						partiture.isModified = false;
+					}
+				}
+			}
+		}
 	}
 
 	public void addMeasureAttributes( Element attr ) {
@@ -152,80 +167,92 @@ public class SibMusicXMLOutput implements SibOutputController {
 	}
 
 	public void playNote( NoteType note ) {
-
-		// New note
-		Element n = doc.createElement( "note" );
-		if ( note.getStringValue().equalsIgnoreCase( "S" ) ) {  // Silencio
-			Element re = doc.createElement( "rest" );
-			n.appendChild( re );
-		} else {  // Nota musical
-			Element pi = doc.createElement( "pitch" );
-			n.appendChild( pi );
-			Element st = doc.createElement( "step" );
-			st.appendChild( doc.createTextNode( note.getStringValue() ) );
-			pi.appendChild( st );
-			Element oc = doc.createElement( "octave" );
-			oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
-			pi.appendChild( oc );
-		}
-
-		// La duration de la nota se multiplica por DIVISIONS
-		Element dur = doc.createElement( "duration" );
-		dur.appendChild( doc.createTextNode( String.valueOf( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS ) ) );
-		n.appendChild( dur );
-		Element ty = doc.createElement( "type" );
-		ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration.getStringValue() ) ) );
-		n.appendChild( ty );
-		if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
-			Element ac = doc.createElement( "accidental" );
-			ac.appendChild( doc.createTextNode( note.accidental ) );
-			n.appendChild( ac );
-		}
-
-		Element dot = null;
-		for ( int cnt = 0; cnt < note.dots; cnt++ ) {
-			dot = doc.createElement( "dot" );
-			n.appendChild( dot );
-		}
-
-		NodeList score = doc.getElementsByTagName("part");
-
-		actualDuration = actualDuration + ( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS );
-		if ( ( actualDuration ) > SibMusicXMLOutput.DIVISIONS ) {
-			// Añadimos nuevo compás - measure
-			// Part - Measure
-			Element measure = doc.createElement("measure");
-			measure.setAttribute( "number", "1" );
-			score.item( score.getLength() - 1 ).appendChild( measure );
-
-			// Attributes
-			Element attr = doc.createElement("attributes");
-			measure.appendChild( attr );
-
-			this.addMeasureAttributes( attr );
-			measure.appendChild( n );
-
-			actualDuration = 0;
-		} else {
-			NodeList mea = doc.getElementsByTagName("measure");
-			if ( mea.getLength() == 0 ) {
-				// Añadimos nuevo compás - measure
-				// Part - Measure
-				Element measure = doc.createElement("measure");
-				measure.setAttribute( "number", "1" );
-				score.item( score.getLength() - 1 ).appendChild( measure );
-
-				// Attributes
-				Element attr = doc.createElement("attributes");
-				measure.appendChild( attr );
-
-				this.addMeasureAttributes( attr );
-				measure.appendChild( n );
-			} else {
-				mea.item( mea.getLength() - 1 ).appendChild( n );
+		Variable v = tablaSimbolos.getVariable( "$partiture" );
+		if ( v != null ) {
+			PartitureType partiture = (PartitureType)v.getValue();
+			if ( partiture != null ) {
+				// New note
+				Element n = doc.createElement( "note" );
+				if ( note.getStringValue().equalsIgnoreCase( "S" ) ) {  // Silencio
+					Element re = doc.createElement( "rest" );
+					n.appendChild( re );
+				} else {  // Nota musical
+					Element pi = doc.createElement( "pitch" );
+					n.appendChild( pi );
+					Element st = doc.createElement( "step" );
+					st.appendChild( doc.createTextNode( note.getStringValue() ) );
+					pi.appendChild( st );
+					Element oc = doc.createElement( "octave" );
+					oc.appendChild( doc.createTextNode( String.valueOf( note.octave ) ) );
+					pi.appendChild( oc );
+				}
+		
+				// La duration de la nota se multiplica por DIVISIONS
+				Element dur = doc.createElement( "duration" );
+				dur.appendChild( doc.createTextNode( String.valueOf( Math.round( 4 * note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS ) ) ) );
+				n.appendChild( dur );
+				Element ty = doc.createElement( "type" );
+				ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration.getStringValue() ) ) );
+				n.appendChild( ty );
+				if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
+					Element ac = doc.createElement( "accidental" );
+					ac.appendChild( doc.createTextNode( note.accidental ) );
+					n.appendChild( ac );
+				}
+		
+				Element dot = null;
+				for ( int cnt = 0; cnt < note.dots; cnt++ ) {
+					dot = doc.createElement( "dot" );
+					n.appendChild( dot );
+				}
+		
+				// Antes de añadir la nota, vemos si hay que modificar armaduras y opciones del compás
+				playPartiture();
+		
+				NodeList score = doc.getElementsByTagName("part");
+		
+				float note_beats = note.duration.toFloat() * partiture.getTimeBeatType();
+				
+				//actualDuration = actualDuration + ( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS );
+				//if ( actualDuration > SibMusicXMLOutput.DIVISIONS ) {
+				actualDuration = actualDuration + note_beats;
+				if ( actualDuration > partiture.getTimeBeats() ) {
+					// Añadimos nuevo compás - measure
+					// Part - Measure
+					Element measure = doc.createElement("measure");
+					measure.setAttribute( "number", "1" );
+					score.item( score.getLength() - 1 ).appendChild( measure );
+		
+					// Attributes
+					//Element attr = doc.createElement("attributes");
+					//measure.appendChild( attr );
+					//this.addMeasureAttributes( attr );
+		
+					measure.appendChild( n );
+		
+					//actualDuration = ( note.duration.toFloat() * SibMusicXMLOutput.DIVISIONS );
+					actualDuration = note_beats;
+				} else {
+					NodeList mea = doc.getElementsByTagName("measure");
+					if ( mea.getLength() == 0 ) {
+						// Añadimos nuevo compás - measure
+						// Part - Measure
+						Element measure = doc.createElement("measure");
+						measure.setAttribute( "number", "1" );
+						score.item( score.getLength() - 1 ).appendChild( measure );
+		
+						// Attributes
+						//Element attr = doc.createElement("attributes");
+						//measure.appendChild( attr );
+						//this.addMeasureAttributes( attr );
+		
+						measure.appendChild( n );
+					} else {
+						mea.item( mea.getLength() - 1 ).appendChild( n );
+					}
+				}
 			}
 		}
-
 	}
 
 	/**
@@ -238,6 +265,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 		String resultado = "quarter"; // 4
 		switch ( duration ) {
 			case "1": // Redonda
+			case "1/1":
 				resultado = "whole";
 				break;
 			case "1/2": // Blanca
@@ -278,23 +306,12 @@ public class SibMusicXMLOutput implements SibOutputController {
 			DOMSource source = new DOMSource(doc);
 
 			// Output to console for testing
-			StreamResult consoleResult = new StreamResult(System.out);
-			transformer.transform(source, consoleResult);
+			//StreamResult consoleResult = new StreamResult(System.out);
+			//transformer.transform(source, consoleResult);
 
 			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
 			transformer.transform(source, result);
 
-			/*
-	        StringWriter stringWriter = new StringWriter();
-	        StreamResult xmlOutput = new StreamResult(stringWriter);
-	        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	        transformerFactory.setAttribute("indent-number", indent);
-	        Transformer transformer = transformerFactory.newTransformer(); 
-	        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-	        transformer.transform(xmlInput, xmlOutput);
-	        return xmlOutput.getWriter().toString();
-	        */
-	        
 			StringWriter writer = new StringWriter();
 			transformer.transform( source, new StreamResult(writer) );
 			String output = writer.toString();
