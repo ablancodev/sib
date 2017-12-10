@@ -16,6 +16,7 @@ public class Condicion {
 		boolean result = false;
 		operador1.evalua();
 		operador2.evalua();
+		
 		if ( operador1.getType().equals( operador2.getType() ) ) {
 			switch ( condicion ) {
 			case "==":

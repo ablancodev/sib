@@ -128,6 +128,14 @@ asignacion ::= VARIABLE:v IGUAL_SIMPLE valor_asignacion:valor {: RESULT = new In
 				:}
 			;
 valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSimbolos ); :}
+			| PROPIEDAD:pr {:
+//				RESULT = RESULT = new StringType("A");
+				String[] parts = (pr.toString()).split("\\.");
+				String variable = parts[0];
+				String property = parts[1];
+				Variable v = new Variable( variable, tablaSimbolos );
+				RESULT = v.getProperty( property );
+				:}
 			| STEP:st {: RESULT = new StepType( st.toString() ); :}
 			| CLEF_VALUE:cl {: RESULT = new ClefType( cl.toString() ); :}
 			| ARTICULATION_VALUE:ac {: RESULT = new StringType( ac.toString() ); :}

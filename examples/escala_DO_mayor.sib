@@ -1,5 +1,3 @@
-PACKAGE sib.ejemplos;
-
 // Programa que representa la escala de Do mayor con negras.
 BEGIN escalaDOMayor
 
@@ -7,29 +5,18 @@ BEGIN escalaDOMayor
 	int $num;
 	note $nota;
 
-	// Inicializamos
-	/* En este caso no modifcamos el valor de $partiture, dejando los valores por defecto:
-	clef: G2
-	tempo: 60
-	keysign: 0
-	time: 4/4
-	volume: 50
-	slurs: 0
-	wedge: 0
-	*/
-
 	$num = 0;
-	/* Valores por defecto de $nota
-	duration = 4
-	octave = 4
-	dots = 0
-	accent = ""
-	*/
-	$nota.value = C;
-
 	WHILE ( $num <= 7 )
 		play( $nota );
-		$nota = trans( $nota, 1 );
+		IF ( $nota.step == B )
+			$nota = trans( $nota, 1/2 );
+		ELSE
+			IF ( $nota.step == E )
+				$nota = trans( $nota, 1/2 );
+			ELSE
+				$nota = trans( $nota, 1 );
+			ENDIF;
+		ENDIF;
 		$num = $num + 1;
 	ENDWHILE;
 

@@ -387,4 +387,35 @@ public class NoteType extends DataType {
 		}
 	}
 
+	public ValorAsignacion getProperty (String prop) {
+		ValorAsignacion result = null;
+		try {
+			switch ( prop ) {
+				case "step":
+					result = value;
+					break;
+				case "duration":
+					result = duration;
+					break;
+				case "octave":
+					result = new TipoNumero( String.valueOf( octave ), TipoNumero.TYPE_INT );
+					break;
+				case "dots":
+					result = new TipoNumero( String.valueOf( dots ), TipoNumero.TYPE_INT );
+					break;
+				case "articulation":
+					result = new StringType( articulation );
+					break;
+				case "accidental":
+					result = new StringType( articulation );
+					break;
+				default:
+					throw new Exception( "Nombre de propiedad no existe: " + prop );
+			}
+		} catch ( Exception e ) {
+			System.err.println( "ERROR en NoteType->getProperty():" + prop + " no existe como propiedad." );
+		}
+		return result;
+	}
+
 }

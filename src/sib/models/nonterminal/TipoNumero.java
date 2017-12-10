@@ -139,22 +139,22 @@ public class TipoNumero extends OperandoAritmetico {
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
-		return real == ((TipoNumero)op2).toFloat();
+		return this.toFloat() == ((TipoNumero)op2).toFloat();
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
-		return real != ((TipoNumero)op2).toFloat();
+		return this.toFloat() != ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
-		return real < ((TipoNumero)op2).toFloat();
+		return this.toFloat() < ((TipoNumero)op2).toFloat();
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
-		return real <= ((TipoNumero)op2).toFloat();
+		return this.toFloat() <= ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
-		return real > ((TipoNumero)op2).toFloat();
+		return this.toFloat() > ((TipoNumero)op2).toFloat();
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
-		return real >= ((TipoNumero)op2).toFloat();
+		return this.toFloat() >= ((TipoNumero)op2).toFloat();
 	}
 
 	public ValorAsignacion evalua() {

@@ -124,6 +124,16 @@ public class Variable extends OperandoAritmetico {
 		return this.valor.getStringValue();
 	}
 
+	public ValorAsignacion getProperty( String prop ) {
+		ValorAsignacion property = null;
+		if ( ( valor.getClass() == NoteType.class ) ) {
+			property = ((NoteType)valor).getProperty( prop );
+		} else if ( ( valor.getClass() == PartitureType.class ) ) {
+	//		property = ((PartitureType)valor).getProperty( prop );
+		}
+		return property;
+	}
+
 	public void aplicarOperadorNota( String op ) {
 		// @todo implementar el operador sobre una variable, tendrá que aplica sobre cada tipo de dato posible
 		if ( this.esAplicable( op ) && ( valor != null ) ) {

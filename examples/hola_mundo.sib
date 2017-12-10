@@ -1,0 +1,10 @@
+/*
+Programa "Hola Mundo" en Sib
+Muestra la nota DO en 4º octava en una partitura en clave de SOL y 4/4
+*/
+BEGIN HolaMundo
+
+	note $nota;
+	play( $nota );
+
+END
