@@ -126,6 +126,7 @@ public class SibIDE {
 		toolBar.add(btnRun);
 		
 		// Run JFlex .sid
+		/*
 		JButton btnRunSid = new JButton("Run Sid");
 		btnRunSid.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,52 +134,17 @@ public class SibIDE {
 			}
 		});
 		toolBar.add(btnRunSid);
+		*/
 
 		// Save file
 		JButton btnSaveFile = new JButton("Save to file");
 		btnSaveFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				JFileChooser fileChooserLoadFile = new JFileChooser();
-				FileFilter typeSib = new FileNameExtensionFilter("Sib files", "sib");
-				FileFilter typeSid = new FileNameExtensionFilter("Sid files", "sid");
-				fileChooserLoadFile.addChoosableFileFilter(typeSib);
-				fileChooserLoadFile.addChoosableFileFilter(typeSid);
-				fileChooserLoadFile.setFileFilter(typeSib); // Initial filter setting
-				File workingDirectory = new File(System.getProperty("user.dir"));
-				fileChooserLoadFile.setCurrentDirectory(workingDirectory);
-				int returnVal = fileChooserLoadFile.showOpenDialog(null); //replace null with your swing container
-				File file;
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					file = fileChooserLoadFile.getSelectedFile();
-					BufferedReader in;
-					try {
-						in = new BufferedReader(new FileReader(file));
-						String line;
-						try {
-							textPaneInput.setText( "" );
-							line = in.readLine();
-							while(line != null){
-								textPaneInput.setText( textPaneInput.getText() + line + "\n");
-								line = in.readLine();
-							}
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				*/
 				JFrame parentFrame = new JFrame();
-				 
 				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setDialogTitle("Specify a file to save");   
-				 
+				fileChooser.setDialogTitle("Seleccione un archivo donde guardar");
+				
 				int userSelection = fileChooser.showSaveDialog(parentFrame);
-				 
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					try {
 						File fileToSave = fileChooser.getSelectedFile();
@@ -187,7 +153,6 @@ public class SibIDE {
 						fileWriter.flush();
 						fileWriter.close();
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
