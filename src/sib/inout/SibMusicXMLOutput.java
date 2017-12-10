@@ -205,19 +205,30 @@ public class SibMusicXMLOutput implements SibOutputController {
 					n.appendChild( ac );
 				}
 				// Articulation
-				Element articulation;
-				switch ( note.articulation ) {
-					case "staccato":
-						articulation = doc.createElement( "staccato" );
-						n.appendChild( articulation );
-					case "tenuto":
-						articulation = doc.createElement( "tenuto" );
-						n.appendChild( articulation );
-					case "accent":
-						articulation = doc.createElement( "accent" );
-						n.appendChild( articulation );
-						break;
+				if ( note.articulation != "" ) {
+					Element notations = doc.createElement( "notations" );
+					Element articulations = doc.createElement( "articulations" );
+					notations.appendChild( articulations );
+					Element art;
+					switch ( note.articulation ) {
+						case "staccato":
+							art = doc.createElement( "staccato" );
+							articulations.appendChild( art );
+							n.appendChild( notations );
+							break;
+						case "tenuto":
+							art = doc.createElement( "tenuto" );
+							articulations.appendChild( art );
+							n.appendChild( notations );
+							break;
+						case "accent":
+							art = doc.createElement( "accent" );
+							articulations.appendChild( art );
+							n.appendChild( notations );
+							break;
+					}
 				}
+
 				// Puntillos
 				Element dot = null;
 				for ( int cnt = 0; cnt < note.dots; cnt++ ) {
