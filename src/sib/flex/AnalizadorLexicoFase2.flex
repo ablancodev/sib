@@ -99,7 +99,7 @@ Propiedad = {Variable}"."{Str_ident}
 
 Operador_nota = "_#"|"_##"|"_b"|"_bb"|"_@"|"_."|"_.."|"_..."|"__"
 
-Step = A[#b]* | B[#b]* | C[#b]* | D[#b]* | E[#b]* | F[#b]* | G[#b]* | A[@]? | B[@]? | C[@]? | D[@]? | E[@]? | F[@]? | G[@]? | S
+Step = A | B | C | D | E | F | G | S
 
 Clef_value = G[2]? | F[3-4] | C[1-4]
 
