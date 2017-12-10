@@ -83,11 +83,9 @@ public class NoteType extends DataType {
 		*/
 		// Octavas
 		octave = octave + numOctaves( ntones );
+
 		// Semitonos?
 		int semitones = semitonesExtra( ntones );
-		
-		System.err.println( semitones );
-		
 		if ( semitones > 0 ) {
 			applySharp( semitones );
 		}

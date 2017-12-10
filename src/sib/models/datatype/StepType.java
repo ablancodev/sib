@@ -103,7 +103,6 @@ public class StepType extends DataType {
 					current = ( current + 1 ) % 7;
 				}
 			}
-			System.err.println( tn + ">-" + tonos + "-" + current);
 		}
 		value = stepValues.get( current );
 	}

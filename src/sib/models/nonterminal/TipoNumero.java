@@ -115,7 +115,11 @@ public class TipoNumero extends OperandoAritmetico {
 		try {
 			result = Float.valueOf( real );
 			if ( denominator != 0 ) {
-				result = result + ( (float)numerator / denominator );
+				if ( real < 0 ) {
+					result = result - ( (float)numerator / denominator );
+				} else {
+					result = result + ( (float)numerator / denominator );
+				}
 			}
 		} catch ( Exception e ) {
 			System.err.println( e.toString() );
