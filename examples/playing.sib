@@ -1,0 +1,15 @@
+
+BEGIN Playing
+
+	note $nota;
+
+	$nota_b;
+	$nota_#;
+	$nota_..;
+
+	$partiture.time = 2/4;
+	play($nota);
+	$nota = trans( $nota, 2 1/2 );
+	play($nota);
+
+END

@@ -199,11 +199,6 @@ public class SibMusicXMLOutput implements SibOutputController {
 				Element ty = doc.createElement( "type" );
 				ty.appendChild( doc.createTextNode( this.noteDurationToType( note.duration.getStringValue() ) ) );
 				n.appendChild( ty );
-				if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
-					Element ac = doc.createElement( "accidental" );
-					ac.appendChild( doc.createTextNode( note.accidental ) );
-					n.appendChild( ac );
-				}
 				// Articulation
 				if ( note.articulation != "" ) {
 					Element notations = doc.createElement( "notations" );
@@ -235,7 +230,13 @@ public class SibMusicXMLOutput implements SibOutputController {
 					dot = doc.createElement( "dot" );
 					n.appendChild( dot );
 				}
-		
+
+				if ( note.accidental != NoteType.ACCIDENTAL_NONE ) {
+					Element ac = doc.createElement( "accidental" );
+					ac.appendChild( doc.createTextNode( note.accidental ) );
+					n.appendChild( ac );
+				}
+
 				// Antes de añadir la nota, vemos si hay que modificar armaduras y opciones del compás
 				playPartiture();
 		
