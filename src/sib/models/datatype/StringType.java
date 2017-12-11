@@ -1,6 +1,7 @@
 package sib.models.datatype;
 
 import sib.models.nonterminal.ValorAsignacion;
+import sib.models.nonterminal.Variable;
 
 public class StringType extends DataType {
 
@@ -50,7 +51,11 @@ public class StringType extends DataType {
 	}
 
 	@Override
-	public boolean igualQue(ValorAsignacion op2) {
+	public boolean igualQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
 		boolean result = false;
 		try {
 			switch (op2.getType() ) {
@@ -75,27 +80,27 @@ public class StringType extends DataType {
 	}
 
 	@Override
-	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean menorQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		return value.compareTo( op2.getStringValue() ) < 0;
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return menorQue( op2 ) || igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 ) && !igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 );
 	}
 
 }

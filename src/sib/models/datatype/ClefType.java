@@ -1,6 +1,8 @@
 package sib.models.datatype;
 
 import sib.models.nonterminal.ValorAsignacion;
+import sib.models.nonterminal.Variable;
+
 import java.lang.Exception;
 
 public class ClefType extends DataType {
@@ -75,16 +77,22 @@ public class ClefType extends DataType {
 	}
 
 	@Override
-	public boolean igualQue(ValorAsignacion op2) {
+	public boolean igualQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
 		boolean result = false;
 		try {
-			switch (op2.getType() ) {
-				case "string":
-				case "clef":
-					result = this.value.compareTo( op2.getStringValue() ) == 0;
-					break;
-				default:
-					throw new Exception();
+			if ( isValidClefValue( op2.getStringValue() ) ) {
+				switch (op2.getType() ) {
+					case "string":
+					case "clef":
+						result = this.value.compareTo( op2.getStringValue() ) == 0;
+						break;
+					default:
+						throw new Exception();
+				}
 			}
 		} catch (Exception e) {
 			System.err.println(  "ERROR ClefType: Comparación igualQue entre elementos incompatibles." );
@@ -99,18 +107,30 @@ public class ClefType extends DataType {
 	}
 
 	@Override
-	public boolean menorQue(ValorAsignacion op2) {
-		// @todo implementarlo usando la función hash: valor numérico = ( línea * 7 ) + Step.toInt()
-		// El calculo actual está mal: A1 > C2
+	public boolean menorQue(ValorAsignacion oper2) {
+		// función hash: valor numérico = ( línea * 7 ) + Step.toInt()
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
 		boolean result = false;
 		try {
-			switch (op2.getType() ) {
-				case "string":
-				case "clef":
-					result = this.value.compareTo( op2.getStringValue() ) < 0;
-					break;
-				default:
-					throw new Exception();
+			if ( isValidClefValue( op2.getStringValue() ) ) {
+				switch (op2.getType() ) {
+					case "string":
+					case "clef":
+						String op2string = op2.getStringValue();
+						StepType op2step = new StepType( op2string.substring(0, 1) );
+						int op2line = Integer.getInteger( op2string.substring(1, 2) );
+						StepType op1step = new StepType( value.substring(0, 1) );
+						int op1line = Integer.getInteger( value.substring(1, 2) );
+						int hashop1 = (op1line * 7) + op1step.toInt();
+						int hashop2 = (op2line * 7) + op2step.toInt();
+						result = hashop1 < hashop2;
+						break;
+					default:
+						throw new Exception();
+				}
 			}
 		} catch (Exception e) {
 			System.err.println(  "ERROR ClefType: Comparación menorQue entre elementos incompatibles." );
@@ -121,59 +141,17 @@ public class ClefType extends DataType {
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		boolean result = false;
-		try {
-			switch (op2.getType() ) {
-				case "string":
-				case "clef":
-					result = this.value.compareTo( op2.getStringValue() ) <= 0;
-					break;
-				default:
-					throw new Exception();
-			}
-		} catch (Exception e) {
-			System.err.println(  "ERROR ClefType: Comparación menorIgualQue entre elementos incompatibles." );
-			e.printStackTrace();
-		}
-		return result;
+		return menorQue( op2 ) || igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		boolean result = false;
-		try {
-			switch (op2.getType() ) {
-				case "string":
-				case "clef":
-					result = this.value.compareTo( op2.getStringValue() ) > 0;
-					break;
-				default:
-					throw new Exception();
-			}
-		} catch (Exception e) {
-			System.err.println(  "ERROR ClefType: Comparación mayorQue entre elementos incompatibles." );
-			e.printStackTrace();
-		}
-		return result;
+		return !menorQue( op2 ) && !igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		boolean result = false;
-		try {
-			switch (op2.getType() ) {
-				case "string":
-				case "clef":
-					result = this.value.compareTo( op2.getStringValue() ) >= 0;
-					break;
-				default:
-					throw new Exception();
-			}
-		} catch (Exception e) {
-			System.err.println(  "ERROR ClefType: Comparación mayorIgualQue entre elementos incompatibles." );
-			e.printStackTrace();
-		}
-		return result;
+		return !menorQue( op2 );
 	}
 
 	private boolean isValidClefValue(String str) {
@@ -189,4 +167,11 @@ public class ClefType extends DataType {
 		}
 		return valid;
 	}
+
+	public int getHashCode() {
+		StepType op1step = new StepType( value.substring(0, 1) );
+		int op1line = Integer.getInteger( value.substring(1, 2) );
+		return (op1line * 7) + op1step.toInt();
+	}
+
 }

@@ -2,6 +2,7 @@ package sib.models.datatype;
 
 import sib.models.nonterminal.TipoNumero;
 import sib.models.nonterminal.ValorAsignacion;
+import sib.models.nonterminal.Variable;
 
 /**
  * Representa el tipo de datos Partiture
@@ -141,39 +142,45 @@ public class PartitureType extends DataType {
 	}
 
 	@Override
-	public boolean igualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean igualQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		float hashop1 = clef.getHashCode() + tempo + keysign + time.toFloat() + volume + wedge;
+		float hashop2 = clef.getHashCode() + tempo + keysign + time.toFloat() + volume + wedge;
+		return ( hashop1 == hashop2 );
 	}
 
 	@Override
 	public boolean distintoQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !igualQue( op2 );
 	}
 
 	@Override
-	public boolean menorQue(ValorAsignacion op2) {
-		// función hash:  clef – tempo – keysign – time – volume  – wedge
-		return false;
+	public boolean menorQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		float hashop1 = clef.getHashCode() + tempo + keysign + time.toFloat() + volume + wedge;
+		float hashop2 = clef.getHashCode() + tempo + keysign + time.toFloat() + volume + wedge;
+		return ( hashop1 < hashop2 );
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return menorQue( op2 ) || igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 ) && !igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 );
 	}
 
 	public void setPropertyValue( String prop, ValorAsignacion v ) {

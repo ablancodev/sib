@@ -3,6 +3,7 @@ package sib.models.datatype;
 import java.util.ArrayList;
 
 import sib.models.nonterminal.ValorAsignacion;
+import sib.models.nonterminal.Variable;
 
 public class StepType extends DataType {
 
@@ -108,7 +109,11 @@ public class StepType extends DataType {
 	}
 
 	@Override
-	public boolean igualQue(ValorAsignacion op2) {
+	public boolean igualQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
 		boolean result = false;
 		try {
 			switch (op2.getType() ) {
@@ -132,31 +137,73 @@ public class StepType extends DataType {
 	}
 
 	@Override
-	public boolean menorQue(ValorAsignacion op2) {
-		// @todo implementar comparaciones: Sería el contrario a la comparación de String. A es 1, B es 2 ....
-		return false;
+	public boolean menorQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		boolean result = false;
+		try {
+			switch (op2.getType() ) {
+				case "string":
+				case "step":
+					result = toInt() < ((StepType)op2).toInt();
+					break;
+				default:
+					throw new Exception();
+			}
+		} catch (Exception e) {
+			System.err.println(  "ERROR StepType: Comparación menorQue entre elementos incompatibles." );
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return menorQue( op2 ) || igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 ) && !igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 );
 	}
 
 	public int getCurrentPositionValues() {
 		return stepValues.indexOf( value );
+	}
+
+	public int toInt() {
+		int result = 0;
+		switch ( value ) {
+			case "A":
+				result = 7;
+				break;
+			case "B":
+				result = 6;
+				break;
+			case "C":
+				result = 5;
+				break;
+			case "D":
+				result = 4;
+				break;
+			case "E":
+				result = 3;
+				break;
+			case "F":
+				result = 2;
+				break;
+			case "G":
+				result = 1;
+				break;
+		}
+		return result;
 	}
 
 }

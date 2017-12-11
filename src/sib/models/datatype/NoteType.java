@@ -2,6 +2,7 @@ package sib.models.datatype;
 
 import sib.models.nonterminal.TipoNumero;
 import sib.models.nonterminal.ValorAsignacion;
+import sib.models.nonterminal.Variable;
 
 /**
  * Representa el tipo de datos note
@@ -194,9 +195,14 @@ public class NoteType extends DataType {
 	}
 
 	@Override
-	public boolean igualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean igualQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		float hashop1 = octave + value.toInt() + accidental.hashCode() + duration.toFloat() + dots + articulation.hashCode();
+		float hashop2 = ((NoteType)op2).octave + ((NoteType)op2).value.toInt() + ((NoteType)op2).accidental.hashCode() + ((NoteType)op2).duration.toFloat() + ((NoteType)op2).dots + ((NoteType)op2).articulation.hashCode();
+		return ( hashop1 == hashop2 );
 	}
 
 	@Override
@@ -205,27 +211,29 @@ public class NoteType extends DataType {
 	}
 
 	@Override
-	public boolean menorQue(ValorAsignacion op2) {
-		// function:    octave – ( value + accidental ) - ( duration + dots ) - articulation 
-		return false;
+	public boolean menorQue(ValorAsignacion oper2) {
+		ValorAsignacion op2 = oper2;
+		if ( op2.getClass() == Variable.class ) {
+			op2 = oper2.getValue();
+		}
+		float hashop1 = octave + value.toInt() + accidental.hashCode() + duration.toFloat() + dots + articulation.hashCode();
+		float hashop2 = ((NoteType)op2).octave + ((NoteType)op2).value.toInt() + ((NoteType)op2).accidental.hashCode() + ((NoteType)op2).duration.toFloat() + ((NoteType)op2).dots + ((NoteType)op2).articulation.hashCode();
+		return ( hashop1 < hashop2 );
 	}
 
 	@Override
 	public boolean menorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return menorQue( op2 ) || igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 ) && !igualQue( op2 );
 	}
 
 	@Override
 	public boolean mayorIgualQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !menorQue( op2 );
 	}
 
 	/**
