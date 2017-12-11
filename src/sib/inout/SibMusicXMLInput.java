@@ -66,9 +66,15 @@ public class SibMusicXMLInput implements SibInputController {
 			if ( node != null ) {
 				note = new NoteType();
 				Element eElement = (Element) node;
+				/*
 				if ( eElement.getElementsByTagName("duration").getLength() > 0 ) {
 					note.setPropertyValue( "duration", new TipoNumero( eElement.getElementsByTagName("duration").item(0).getTextContent() + "/" + String.valueOf( SibMusicXMLOutput.DIVISIONS ), TipoNumero.TYPE_NFRAC ) );
 				}
+				*/
+				if ( eElement.getElementsByTagName("type").getLength() > 0 ) {
+					note.setPropertyValue( "duration", new TipoNumero( this.noteTypeToDuration( eElement.getElementsByTagName("duration").item(0).getTextContent() ), TipoNumero.TYPE_NFRAC ) );
+				}
+
 				if ( eElement.getElementsByTagName("dot").getLength() > 0 ) {
 					note.setPropertyValue( "dots", new TipoNumero( String.valueOf( eElement.getElementsByTagName("dot").getLength() ), TipoNumero.TYPE_INT ) );
 				}
@@ -94,6 +100,34 @@ public class SibMusicXMLInput implements SibInputController {
 		}
 
 		return note;
+	}
+
+	private String noteTypeToDuration(String duration) {
+		String resultado = "1/4";
+		switch ( duration ) {
+			case "whole": // Redonda
+				resultado = "1/1";
+				break;
+			case "half": // Blanca
+				resultado = "1/2";
+				break;
+			case "quarter": // Negra
+				resultado = "1/4";
+				break;
+			case "eighth": // Corchea
+				resultado = "1/8";
+				break;
+			case "16th": // Semicorchea
+				resultado = "1/16";
+				break;
+			case "32th": // Fusa
+				resultado = "1/32";
+				break;
+			case "64th": // Semifusa
+				resultado = "1/64";
+				break;
+		}
+		return resultado;
 	}
 
 }
