@@ -1,0 +1,19 @@
+/*
+Transporta una partitura dos tonos y medio más agudos.
+En este ejemplo se supone que la partitura de entrada tiene 8 notas.
+*/
+BEGIN AltoATenor
+note $nota;
+int $cnt;
+
+readPartiture();
+
+$cnt = 0;
+WHILE ( $cnt < 8 )
+  $nota = read();
+  $nota = trans( $nota, 2 1/2 );
+  play( $nota );
+  $cnt = $cnt + 1;
+ENDWHILE;
+
+END
