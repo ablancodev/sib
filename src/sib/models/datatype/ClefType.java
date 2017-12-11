@@ -100,6 +100,8 @@ public class ClefType extends DataType {
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
+		// @todo implementarlo usando la función hash: valor numérico = ( línea * 7 ) + Step.toInt()
+		// El calculo actual está mal: A1 > C2
 		boolean result = false;
 		try {
 			switch (op2.getType() ) {

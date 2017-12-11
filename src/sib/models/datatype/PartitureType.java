@@ -16,7 +16,6 @@ public class PartitureType extends DataType {
 	private int keysign;
 	private TipoNumero time;
 	private int volume;
-	private int[] slurs;
 	private int wedge;
 
 	/**
@@ -31,9 +30,6 @@ public class PartitureType extends DataType {
 		keysign = 0;
 		time = new TipoNumero( "4/4", TipoNumero.TYPE_NFRAC );
 		volume = 50;
-		slurs = new int[2];
-		slurs[0] = 0;
-		slurs[1] = 0;
 		wedge = 0;
 	}
 
@@ -59,13 +55,6 @@ public class PartitureType extends DataType {
 
 	public void setVolume( int v ) {
 		volume = v;
-		isModified = true;
-	}
-
-	public void setSlurs( int[] sl ) {
-		slurs = new int[2];
-		slurs[0] = sl[0];
-		slurs[1] = sl[1];
 		isModified = true;
 	}
 
@@ -100,10 +89,6 @@ public class PartitureType extends DataType {
 
 	public int getVolume() {
 		return volume;
-	}
-
-	public int[] getSlurs() {
-		return slurs;
 	}
 
 	public int getWedge() {
@@ -150,7 +135,6 @@ public class PartitureType extends DataType {
 		n.keysign = keysign;
 		n.time = (TipoNumero)time.clone();
 		n.volume = volume;
-		n.slurs = slurs.clone();
 		n.wedge = wedge;
 		*/
 		return null;
@@ -170,7 +154,7 @@ public class PartitureType extends DataType {
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
+		// función hash:  clef – tempo – keysign – time – volume  – wedge
 		return false;
 	}
 

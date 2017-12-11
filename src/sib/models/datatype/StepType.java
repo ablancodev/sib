@@ -113,7 +113,6 @@ public class StepType extends DataType {
 		try {
 			switch (op2.getType() ) {
 				case "string":
-				case "clef":
 				case "step":
 					result = this.value.compareTo( op2.getStringValue() ) == 0;
 					break;
@@ -129,13 +128,12 @@ public class StepType extends DataType {
 
 	@Override
 	public boolean distintoQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
-		return false;
+		return !igualQue( op2 );
 	}
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
+		// @todo implementar comparaciones: Sería el contrario a la comparación de String. A es 1, B es 2 ....
 		return false;
 	}
 

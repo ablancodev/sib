@@ -206,7 +206,7 @@ public class NoteType extends DataType {
 
 	@Override
 	public boolean menorQue(ValorAsignacion op2) {
-		// TODO Auto-generated method stub
+		// function:    octave – ( value + accidental ) - ( duration + dots ) - articulation 
 		return false;
 	}
 

@@ -21,7 +21,9 @@ public class FuncionRead extends InstFuncion {
 	public void run() {
 		if ( variable.getType().equalsIgnoreCase( DataType.TYPE_NOTE ) ) {
 			NoteType n = inputController.readNote();
-			variable.setValue( n );
+			if ( n != null ) {
+				variable.setValue( n );
+			}
 		}
 	}
 }
