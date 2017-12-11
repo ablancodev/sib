@@ -204,15 +204,9 @@ funcion ::= PLAY:pl LPAREN:lp VARIABLE:v RPAREN:rp {:
 				:}
 			| VARIABLE:v IGUAL_SIMPLE READ:pl LPAREN:lp RPAREN:rp {:
 				FuncionRead fr = new FuncionRead( input );
-				fr.read(new Variable( v.toString(), tablaSimbolos ) );
+				//fr.read(new Variable( v.toString(), tablaSimbolos ) );
+				fr.setDestinationVariable(new Variable( v.toString(), tablaSimbolos ) );
 				RESULT = fr;
-				/*
-				Variable varOrigen = fr.read();
-				Variable varDestino = new Variable( v.toString(), tablaSimbolos );
-				varDestino.setType( varOrigen.getType() );
-				varDestino.setValue( varOrigen.getValue() );
-				RESULT = fr;  // Quizás devolver null, ya que no queremos este valor para nada.
-				*/
 				:}
 			| READPARTITURE:pl LPAREN:lp RPAREN:rp {:
 				RESULT = new FuncionReadPartiture( input );

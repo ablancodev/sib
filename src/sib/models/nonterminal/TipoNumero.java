@@ -82,6 +82,10 @@ public class TipoNumero extends OperandoAritmetico {
 						numerator = Integer.valueOf( parts[0] );
 						denominator = Integer.valueOf( parts[1] );
 						real = 0;
+					} else if ( parts.length == 1 ) {  // Viene en formato entero
+						numerator = Integer.valueOf( parts[0] );
+						denominator = 1;
+						real = 0;
 					} else {
 						throw new Exception();
 					}

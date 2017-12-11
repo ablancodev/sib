@@ -1,6 +1,8 @@
 package sib.models.nonterminal;
 
 import sib.inout.SibInputController;
+import sib.models.datatype.DataType;
+import sib.models.datatype.NoteType;
 
 public class FuncionRead extends InstFuncion {
 
@@ -11,20 +13,15 @@ public class FuncionRead extends InstFuncion {
 		inputController = input;
 	}
 
-	public void read( Variable v ) {
+	public void setDestinationVariable( Variable v ) {
 		variable = v.clone();
 	}
-	/*
-	public Variable readNote() {
-		// @todo implementar readNote
-		return variable;
-	}
-	*/
 
 	@Override
 	public void run() {
-		// @todo implementarlo
-		this.variable.tipo = "int";
-		this.variable.setValue( new TipoNumero( "999", "int" ) );
+		if ( variable.getType().equalsIgnoreCase( DataType.TYPE_NOTE ) ) {
+			NoteType n = inputController.readNote();
+			variable.setValue( n );
+		}
 	}
 }

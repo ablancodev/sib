@@ -1011,15 +1011,9 @@ class CUP$parser$actions {
 		Object rp = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
 				FuncionRead fr = new FuncionRead( input );
-				fr.read(new Variable( v.toString(), tablaSimbolos ) );
+				//fr.read(new Variable( v.toString(), tablaSimbolos ) );
+				fr.setDestinationVariable(new Variable( v.toString(), tablaSimbolos ) );
 				RESULT = fr;
-				/*
-				Variable varOrigen = fr.read();
-				Variable varDestino = new Variable( v.toString(), tablaSimbolos );
-				varDestino.setType( varOrigen.getType() );
-				varDestino.setValue( varOrigen.getValue() );
-				RESULT = fr;  // Quizás devolver null, ya que no queremos este valor para nada.
-				*/
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
