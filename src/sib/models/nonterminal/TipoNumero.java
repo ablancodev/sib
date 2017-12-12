@@ -161,6 +161,16 @@ public class TipoNumero extends OperandoAritmetico {
 		return this.toFloat() >= ((TipoNumero)op2).toFloat();
 	}
 
+	public String toNFrac ( String op ) {
+		float num = Float.parseFloat( op );
+		float den = 1;
+		while ( (num*den) % 1 != 0 ) {
+			den++;
+		}
+
+		return Math.round(num*den) + "/" + Math.round(den);
+	}
+
 	public ValorAsignacion evalua() {
 		return this;
 	}

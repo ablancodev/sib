@@ -1,24 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="sib.models.datatype.NoteType" project="Sib" 
-    file="/Sib/src/sib/models/datatype/NoteType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="657" width="295" x="23" y="-190"/>    
+  <interface id="1" language="java" name="sib.inout.SibOutputController" project="Sib" 
+    file="/Sib/src/sib/inout/SibOutputController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="349" y="131"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </class>  
-  <class id="2" language="java" name="sib.models.datatype.PartitureType" project="Sib" 
-    file="/Sib/src/sib/models/datatype/PartitureType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="374" y="147"/>    
+  </interface>  
+  <class id="2" language="java" name="sib.inout.SibMusicXMLOutput" project="Sib" 
+    file="/Sib/src/sib/inout/SibMusicXMLOutput.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="348" y="339"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
+  <class id="3" language="java" name="sib.inout.SibMusicXMLInput" project="Sib" 
+    file="/Sib/src/sib/inout/SibMusicXMLInput.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="554" y="330"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="4" language="java" name="sib.inout.SibInputController" project="Sib" 
+    file="/Sib/src/sib/inout/SibInputController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="553" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <realization id="5">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="6">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -1,5 +1,8 @@
 package sib.models.nonterminal;
 
+import sib.models.datatype.DataType;
+import sib.models.datatype.NoteType;
+
 public class ExpresionAritmetica extends ValorAsignacion {
 
 	public static final String MAS = "+";
@@ -26,26 +29,77 @@ public class ExpresionAritmetica extends ValorAsignacion {
 	 */
 	public OperandoAritmetico evalua() {
 		OperandoAritmetico result = null;
-		OperandoAritmetico operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua();
+		OperandoAritmetico operandoIzq;
+		if ( this.operandoIzq.getClass() == Variable.class ) {
+			operandoIzq = (OperandoAritmetico) this.operandoIzq.clone();
+		} else {
+			operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua();
+		}
 		OperandoAritmetico operandoDer = (OperandoAritmetico) this.operandoDer.evalua();
 		float fl;
 		switch ( operador ) {
 			case ExpresionAritmetica.MAS :
-				fl = operandoIzq.toFloat() + operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+				switch ( operandoIzq.getType() ) {
+					case DataType.TYPE_NOTE:
+						operandoIzq.trans( operandoDer.toFloat());
+						result = operandoIzq;
+						break;
+					case TipoNumero.TYPE_INT:
+					case TipoNumero.TYPE_FLOAT:
+					case TipoNumero.TYPE_FRAC:
+					case TipoNumero.TYPE_NFRAC:
+						fl = operandoIzq.toFloat() + operandoDer.toFloat();
+						result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+						break;
+				}
 				break;
 			case ExpresionAritmetica.MENOS :
-				fl = operandoIzq.toFloat() - operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+				switch ( operandoIzq.getType() ) {
+					case DataType.TYPE_NOTE:
+						operandoIzq.trans( -operandoDer.toFloat());
+						result = operandoIzq;
+						break;
+					case TipoNumero.TYPE_INT:
+					case TipoNumero.TYPE_FLOAT:
+					case TipoNumero.TYPE_FRAC:
+					case TipoNumero.TYPE_NFRAC:
+						fl = operandoIzq.toFloat() - operandoDer.toFloat();
+						result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+						break;
+				}
 				break;
 			case ExpresionAritmetica.DIV :
-				fl = operandoIzq.toFloat() / operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );
+				switch ( operandoIzq.getType() ) {
+					case DataType.TYPE_NOTE:
+						NoteType note = (NoteType)operandoIzq.getValue();
+						note.duration.setValue( note.duration.toNFrac( String.valueOf(note.duration.toFloat() / operandoDer.toFloat() ) ) );
+						result = operandoIzq;
+						break;
+					case TipoNumero.TYPE_INT:
+					case TipoNumero.TYPE_FLOAT:
+					case TipoNumero.TYPE_FRAC:
+					case TipoNumero.TYPE_NFRAC:
+						fl = operandoIzq.toFloat() / operandoDer.toFloat();
+						result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+						break;
+				}
 				break;
 			case ExpresionAritmetica.MULT :
-				fl = operandoIzq.toFloat() * operandoDer.toFloat();
-				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );
-				break;
+				switch ( operandoIzq.getType() ) {
+				case DataType.TYPE_NOTE:
+					NoteType note = (NoteType)operandoIzq.getValue();
+					note.duration.setValue( note.duration.toNFrac( String.valueOf(note.duration.toFloat() * operandoDer.toFloat() ) ) );
+					result = operandoIzq;
+					break;
+				case TipoNumero.TYPE_INT:
+				case TipoNumero.TYPE_FLOAT:
+				case TipoNumero.TYPE_FRAC:
+				case TipoNumero.TYPE_NFRAC:
+					fl = operandoIzq.toFloat() * operandoDer.toFloat();
+					result = new TipoNumero( String.valueOf( fl ),  TipoNumero.TYPE_FLOAT );
+					break;
+			}
+			break;
 			case ExpresionAritmetica.MOD :
 				fl = operandoIzq.toFloat() % operandoDer.toFloat();
 				result = new TipoNumero( String.valueOf( fl ), TipoNumero.TYPE_FLOAT );

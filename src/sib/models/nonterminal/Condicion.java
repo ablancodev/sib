@@ -51,7 +51,7 @@ public class Condicion {
 			try {
 				throw new Exception( "Para comparar dos elementos, deben ser del mismo tipo:" + operador1.getType() + "-" + operador2.getType() );
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				System.err.println( e.getMessage() );
 				e.printStackTrace();
 			}
 		}
