@@ -72,22 +72,6 @@ public class SibMusicXMLOutput implements SibOutputController {
 			part.setAttribute( "id", "P1" );
 			rootElement.appendChild( part );
 
-			// Part - Measure
-//			Element measure = doc.createElement("measure");
-//			measure.setAttribute( "number", "1" );
-//			part.appendChild( measure );
-//			// Attributes
-//			Element attr = doc.createElement("attributes");
-//			measure.appendChild( attr );
-
-//			this.addMeasureAttributes( attr );
-
-			// Datos de ejemplo - @todo eliminar la carga de datos de ejemplo
-//			NoteType nota1 = new NoteType();
-//			NoteType nota2 = new NoteType();
-//			playNote( nota1 );
-//			playNote( nota2 );
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
