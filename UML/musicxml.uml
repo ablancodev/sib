@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yIuBQNjcEeepyuicfsHRyA" name="NewModel">
+  <packagedElement xmi:type="uml:Class" xmi:id="_M3TzgNs9EeedRL0eS7MAqg" name="TipoDatos" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_VoEegNs9EeedRL0eS7MAqg" name="Step" visibility="public">
+    <generalization xmi:id="_orZ6oNs_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cxL2QNs9EeedRL0eS7MAqg" name="Clef" visibility="public">
+    <generalization xmi:id="_sFc_oNs_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_gC_lQNs9EeedRL0eS7MAqg" name="String" visibility="public">
+    <generalization xmi:id="_skAj4Ns_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iI_BYNs9EeedRL0eS7MAqg" name="Note" visibility="public">
+    <generalization xmi:id="_tVMJMNs_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_j11kwNs9EeedRL0eS7MAqg" name="Partiture" visibility="public">
+    <generalization xmi:id="_twBEANs_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_l6BDANs9EeedRL0eS7MAqg" name="TipoNumero" visibility="public">
+    <generalization xmi:id="_s8y3UNs_EeedRL0eS7MAqg" general="_M3TzgNs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_lHinwNs-EeedRL0eS7MAqg" name="Instruccion" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nXn0ANs-EeedRL0eS7MAqg" name="InsAsignacion" visibility="public">
+    <generalization xmi:id="_HyI-kNs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xKDXYNs-EeedRL0eS7MAqg" name="InstDeclaracion" visibility="public">
+    <generalization xmi:id="_KY17ENs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0JPFUNs-EeedRL0eS7MAqg" name="InstFuncion" visibility="public">
+    <generalization xmi:id="_JwndcNs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_7w6BUNs-EeedRL0eS7MAqg" name="InstOperador" visibility="public">
+    <generalization xmi:id="_JVV2sNs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-Hs5kNs-EeedRL0eS7MAqg" name="InstIf" visibility="public">
+    <generalization xmi:id="_IztJQNs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AOiDMNs_EeedRL0eS7MAqg" name="InstWhile" visibility="public">
+    <generalization xmi:id="_IR9uINs_EeedRL0eS7MAqg" general="_lHinwNs-EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_UlFocNtGEeekEKG3N2SwOA" name="Programa Sib" node="_G3SmQNtHEeekEKG3N2SwOA _QhW30NtHEeekEKG3N2SwOA _UGoVYNtHEeekEKG3N2SwOA _1buR0NtHEeekEKG3N2SwOA _82NGYNtHEeekEKG3N2SwOA _qeJJ8NtHEeekEKG3N2SwOA" group="_UGoVYNtHEeekEKG3N2SwOA _qeJJ8NtHEeekEKG3N2SwOA">
+    <edge xmi:type="uml:ControlFlow" xmi:id="_C4icQNtIEeekEKG3N2SwOA" target="_UGoVYNtHEeekEKG3N2SwOA" source="_G3SmQNtHEeekEKG3N2SwOA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_C4icQdtIEeekEKG3N2SwOA" name="Inicio código_To_Importaciones_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_C4icQttIEeekEKG3N2SwOA" name="Inicio código_To_Importaciones_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_DgZtgNtIEeekEKG3N2SwOA" target="_QhW30NtHEeekEKG3N2SwOA" source="_UGoVYNtHEeekEKG3N2SwOA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_DgZtgdtIEeekEKG3N2SwOA" name="Importaciones_To_BEGIN_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_DgZtgttIEeekEKG3N2SwOA" name="Importaciones_To_BEGIN_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_ECcqoNtIEeekEKG3N2SwOA" target="_qeJJ8NtHEeekEKG3N2SwOA" source="_QhW30NtHEeekEKG3N2SwOA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_ECmboNtIEeekEKG3N2SwOA" name="BEGIN_To_Instrucciones_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_ECmbodtIEeekEKG3N2SwOA" name="BEGIN_To_Instrucciones_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_FgVk8NtIEeekEKG3N2SwOA" target="_82NGYNtHEeekEKG3N2SwOA" source="_1buR0NtHEeekEKG3N2SwOA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_FgVk8dtIEeekEKG3N2SwOA" name="END_To_Fin código_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_FgVk8ttIEeekEKG3N2SwOA" name="END_To_Fin código_weight"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_QSNMENtIEeekEKG3N2SwOA" target="_1buR0NtHEeekEKG3N2SwOA" source="_qeJJ8NtHEeekEKG3N2SwOA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_QSNMEdtIEeekEKG3N2SwOA" name="Instrucciones_To_END_guard" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_QSNMEttIEeekEKG3N2SwOA" name="Instrucciones_To_END_weight"/>
+    </edge>
+    <structuredNode xmi:id="_UGoVYNtHEeekEKG3N2SwOA" name="Importaciones" incoming="_C4icQNtIEeekEKG3N2SwOA" outgoing="_DgZtgNtIEeekEKG3N2SwOA">
+      <ownedComment xmi:id="_kEW9YNtHEeekEKG3N2SwOA" annotatedElement="_UGoVYNtHEeekEKG3N2SwOA">
+        <body>Definición del paquete de trabajo.&#xD;
+Importación de ficheros con macros.</body>
+      </ownedComment>
+    </structuredNode>
+    <structuredNode xmi:id="_qeJJ8NtHEeekEKG3N2SwOA" name="Cuerpo del programa" incoming="_ECcqoNtIEeekEKG3N2SwOA" outgoing="_QSNMENtIEeekEKG3N2SwOA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_zxKn8NtcEeekEKG3N2SwOA" target="_zPQtYNtfEeekEKG3N2SwOA" source="_9_X4cNtIEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_zxKn8dtcEeekEKG3N2SwOA" name="Inicio instrucción_To_Decision1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_zxKn8ttcEeekEKG3N2SwOA" name="Inicio instrucción_To_Decision1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_1SBWsNtcEeekEKG3N2SwOA" target="_QKylYNtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_1SBWsdtcEeekEKG3N2SwOA" name="Decision1_To_Asignacion_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_1SBWsttcEeekEKG3N2SwOA" name="Decision1_To_Asignacion_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_16BK0NtcEeekEKG3N2SwOA" target="_S6fF0NtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_16BK0dtcEeekEKG3N2SwOA" name="Decision1_To_Declaración_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_16BK0ttcEeekEKG3N2SwOA" name="Decision1_To_Declaración_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_2hkTANtcEeekEKG3N2SwOA" target="_WcWDANtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_2hkTAdtcEeekEKG3N2SwOA" name="Decision1_To_Función_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_2hkTAttcEeekEKG3N2SwOA" name="Decision1_To_Función_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_3L63kNtcEeekEKG3N2SwOA" target="_ehp9QNtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_3L63kdtcEeekEKG3N2SwOA" name="Decision1_To_Operador_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_3L63kttcEeekEKG3N2SwOA" name="Decision1_To_Operador_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="__dDAQNtcEeekEKG3N2SwOA" target="_sA6-wNtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="__dDAQdtcEeekEKG3N2SwOA" name="Decision1_To_IF_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="__dDAQttcEeekEKG3N2SwOA" name="Decision1_To_IF_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_Ajfq8NtdEeekEKG3N2SwOA" target="_vb5Q0NtcEeekEKG3N2SwOA" source="_zPQtYNtfEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_Ajfq8dtdEeekEKG3N2SwOA" name="Decision1_To_WHILE_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_Ajpb8NtdEeekEKG3N2SwOA" name="Decision1_To_WHILE_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_eX5u4NtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_QKylYNtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_eX5u4dtdEeekEKG3N2SwOA" name="Asignacion_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_eYDf4NtdEeekEKG3N2SwOA" name="Asignacion_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_fQTWgNtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_S6fF0NtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_fQTWgdtdEeekEKG3N2SwOA" name="Declaración_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_fQTWgttdEeekEKG3N2SwOA" name="Declaración_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_gKSSgNtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_WcWDANtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_gKSSgdtdEeekEKG3N2SwOA" name="Función_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_gKSSgttdEeekEKG3N2SwOA" name="Función_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_iaZ7ANtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_ehp9QNtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_iaZ7AdtdEeekEKG3N2SwOA" name="Operador_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_iaZ7AttdEeekEKG3N2SwOA" name="Operador_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_jKG5oNtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_sA6-wNtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_jKG5odtdEeekEKG3N2SwOA" name="IF_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_jKG5ottdEeekEKG3N2SwOA" name="IF_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_j9Rb8NtdEeekEKG3N2SwOA" target="_OKIDQNteEeekEKG3N2SwOA" source="_vb5Q0NtcEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_j9Rb8dtdEeekEKG3N2SwOA" name="WHILE_To_Merge1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_j9Rb8ttdEeekEKG3N2SwOA" name="WHILE_To_Merge1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_p8elUNtdEeekEKG3N2SwOA" target="_zPQtYNtfEeekEKG3N2SwOA" source="_s29kANteEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_p8elUdtdEeekEKG3N2SwOA" name="Merge1_To_Decision1_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_p8elUttdEeekEKG3N2SwOA" name="Merge1_To_Decision1_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_ySVnkNteEeekEKG3N2SwOA" target="_s29kANteEeekEKG3N2SwOA" source="_OKIDQNteEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_ySVnkdteEeekEKG3N2SwOA" name="Join1_To_¿Más Instrucciones?_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_ySVnktteEeekEKG3N2SwOA" name="Join1_To_¿Más Instrucciones?_weight"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_zYFusNteEeekEKG3N2SwOA" target="_BQCX8NtJEeekEKG3N2SwOA" source="_s29kANteEeekEKG3N2SwOA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_zYO4oNteEeekEKG3N2SwOA" name="¿Más Instrucciones?_To_Fin instrucción_guard" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_zYO4odteEeekEKG3N2SwOA" name="¿Más Instrucciones?_To_Fin instrucción_weight"/>
+      </edge>
+      <node xmi:type="uml:InitialNode" xmi:id="_9_X4cNtIEeekEKG3N2SwOA" name="BEGIN" outgoing="_zxKn8NtcEeekEKG3N2SwOA"/>
+      <node xmi:type="uml:ActivityFinalNode" xmi:id="_BQCX8NtJEeekEKG3N2SwOA" name="END" incoming="_zYFusNteEeekEKG3N2SwOA"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_QKylYNtcEeekEKG3N2SwOA" name="Asignacion" incoming="_1SBWsNtcEeekEKG3N2SwOA" outgoing="_eX5u4NtdEeekEKG3N2SwOA">
+        <body>// TODO body of OpaqueAction1</body>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_S6fF0NtcEeekEKG3N2SwOA" name="Declaración" incoming="_16BK0NtcEeekEKG3N2SwOA" outgoing="_fQTWgNtdEeekEKG3N2SwOA">
+        <body>// TODO body of OpaqueAction2</body>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_WcWDANtcEeekEKG3N2SwOA" name="Función" incoming="_2hkTANtcEeekEKG3N2SwOA" outgoing="_gKSSgNtdEeekEKG3N2SwOA">
+        <body>// TODO body of OpaqueAction3</body>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_ehp9QNtcEeekEKG3N2SwOA" name="Operador" incoming="_3L63kNtcEeekEKG3N2SwOA" outgoing="_iaZ7ANtdEeekEKG3N2SwOA">
+        <body>// TODO body of OpaqueAction4</body>
+      </node>
+      <node xmi:type="uml:StructuredActivityNode" xmi:id="_sA6-wNtcEeekEKG3N2SwOA" name="IF" incoming="__dDAQNtcEeekEKG3N2SwOA" outgoing="_jKG5oNtdEeekEKG3N2SwOA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_v4z1UNtnEeekEKG3N2SwOA" target="_jaukANtnEeekEKG3N2SwOA" source="_bN8v0NtnEeekEKG3N2SwOA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_v4z1UdtnEeekEKG3N2SwOA" name="Inicio_To_¿Se cumple la condición?_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_v49mUNtnEeekEKG3N2SwOA" name="Inicio_To_¿Se cumple la condición?_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_wxjbMNtnEeekEKG3N2SwOA" name="SI" target="_oLmSANtnEeekEKG3N2SwOA" source="_jaukANtnEeekEKG3N2SwOA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_wxjbMdtnEeekEKG3N2SwOA" name="¿Se cumple la condición?_To_Instrucciones_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_wxslINtnEeekEKG3N2SwOA" name="¿Se cumple la condición?_To_Instrucciones_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_xsojYNtnEeekEKG3N2SwOA" name="NO" target="_rMQmoNtnEeekEKG3N2SwOA" source="_jaukANtnEeekEKG3N2SwOA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_xsojYdtnEeekEKG3N2SwOA" name="¿Se cumple la condición?_To_Instrucciones_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_xsojYttnEeekEKG3N2SwOA" name="¿Se cumple la condición?_To_Instrucciones_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_zKK4YNtnEeekEKG3N2SwOA" target="_tlw0oNtnEeekEKG3N2SwOA" source="_oLmSANtnEeekEKG3N2SwOA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_zKK4YdtnEeekEKG3N2SwOA" name="Instrucciones_To_Fin_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_zKK4YttnEeekEKG3N2SwOA" name="Instrucciones_To_Fin_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_0QRk0NtnEeekEKG3N2SwOA" target="_tlw0oNtnEeekEKG3N2SwOA" source="_rMQmoNtnEeekEKG3N2SwOA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_0QRk0dtnEeekEKG3N2SwOA" name="Instrucciones_To_Fin_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_0QRk0ttnEeekEKG3N2SwOA" name="Instrucciones_To_Fin_weight"/>
+        </edge>
+        <node xmi:type="uml:InitialNode" xmi:id="_bN8v0NtnEeekEKG3N2SwOA" name="Inicio" outgoing="_v4z1UNtnEeekEKG3N2SwOA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_jaukANtnEeekEKG3N2SwOA" name="¿Se cumple la condición?" incoming="_v4z1UNtnEeekEKG3N2SwOA" outgoing="_wxjbMNtnEeekEKG3N2SwOA _xsojYNtnEeekEKG3N2SwOA"/>
+        <node xmi:type="uml:StructuredActivityNode" xmi:id="_oLmSANtnEeekEKG3N2SwOA" name="Instrucciones" incoming="_wxjbMNtnEeekEKG3N2SwOA" outgoing="_zKK4YNtnEeekEKG3N2SwOA"/>
+        <node xmi:type="uml:StructuredActivityNode" xmi:id="_rMQmoNtnEeekEKG3N2SwOA" name="Instrucciones" incoming="_xsojYNtnEeekEKG3N2SwOA" outgoing="_0QRk0NtnEeekEKG3N2SwOA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_tlw0oNtnEeekEKG3N2SwOA" name="Fin" incoming="_zKK4YNtnEeekEKG3N2SwOA _0QRk0NtnEeekEKG3N2SwOA"/>
+      </node>
+      <node xmi:type="uml:StructuredActivityNode" xmi:id="_vb5Q0NtcEeekEKG3N2SwOA" name="WHILE" incoming="_Ajfq8NtdEeekEKG3N2SwOA" outgoing="_j9Rb8NtdEeekEKG3N2SwOA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_m4RIQNtvEeeXxezhA0npBA" target="_T0R58NtvEeeXxezhA0npBA" source="_ha6HsNtvEeeXxezhA0npBA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_m4SWYNtvEeeXxezhA0npBA" name="Inicio_To_¿Se cumple la condición?_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_m4TkgNtvEeeXxezhA0npBA" name="Inicio_To_¿Se cumple la condición?_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_n1EHsNtvEeeXxezhA0npBA" name="SI" target="_d6pF8NtvEeeXxezhA0npBA" source="_T0R58NtvEeeXxezhA0npBA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_0dfAwNtvEeeXxezhA0npBA" name="null_guard">
+            <body>SI</body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_n1FV0NtvEeeXxezhA0npBA" name="¿Se cumple la condición?_To_Instrucciones_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_plvbINtvEeeXxezhA0npBA" name="NO" target="_kUSvoNtvEeeXxezhA0npBA" source="_T0R58NtvEeeXxezhA0npBA">
+          <guard xmi:type="uml:OpaqueExpression" xmi:id="_4dTsUNtvEeeXxezhA0npBA" name="null_guard">
+            <body>NO</body>
+          </guard>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_plwCMdtvEeeXxezhA0npBA" name="¿Se cumple la condición?_To_Fin_weight"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_uWE9oNtvEeeXxezhA0npBA" target="_T0R58NtvEeeXxezhA0npBA" source="_d6pF8NtvEeeXxezhA0npBA">
+          <guard xmi:type="uml:LiteralBoolean" xmi:id="_uWFksNtvEeeXxezhA0npBA" name="Instrucciones_To_¿Se cumple la condición?_guard" value="true"/>
+          <weight xmi:type="uml:LiteralInteger" xmi:id="_uWFksdtvEeeXxezhA0npBA" name="Instrucciones_To_¿Se cumple la condición?_weight"/>
+        </edge>
+        <node xmi:type="uml:DecisionNode" xmi:id="_T0R58NtvEeeXxezhA0npBA" name="¿Se cumple la condición?" incoming="_m4RIQNtvEeeXxezhA0npBA _uWE9oNtvEeeXxezhA0npBA" outgoing="_n1EHsNtvEeeXxezhA0npBA _plvbINtvEeeXxezhA0npBA"/>
+        <node xmi:type="uml:StructuredActivityNode" xmi:id="_d6pF8NtvEeeXxezhA0npBA" name="Instrucciones" incoming="_n1EHsNtvEeeXxezhA0npBA" outgoing="_uWE9oNtvEeeXxezhA0npBA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_ha6HsNtvEeeXxezhA0npBA" name="Inicio" outgoing="_m4RIQNtvEeeXxezhA0npBA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_kUSvoNtvEeeXxezhA0npBA" name="Fin" incoming="_plvbINtvEeeXxezhA0npBA"/>
+      </node>
+      <node xmi:type="uml:JoinNode" xmi:id="_OKIDQNteEeekEKG3N2SwOA" name="Join1" incoming="_fQTWgNtdEeekEKG3N2SwOA _eX5u4NtdEeekEKG3N2SwOA _gKSSgNtdEeekEKG3N2SwOA _iaZ7ANtdEeekEKG3N2SwOA _jKG5oNtdEeekEKG3N2SwOA _j9Rb8NtdEeekEKG3N2SwOA" outgoing="_ySVnkNteEeekEKG3N2SwOA">
+        <joinSpec xmi:type="uml:LiteralBoolean" xmi:id="_OKIDQdteEeekEKG3N2SwOA" name="Join1" value="true"/>
+      </node>
+      <node xmi:type="uml:DecisionNode" xmi:id="_s29kANteEeekEKG3N2SwOA" name="¿Más Instrucciones?" incoming="_ySVnkNteEeekEKG3N2SwOA" outgoing="_p8elUNtdEeekEKG3N2SwOA _zYFusNteEeekEKG3N2SwOA"/>
+      <node xmi:type="uml:JoinNode" xmi:id="_zPQtYNtfEeekEKG3N2SwOA" name="Join2" incoming="_zxKn8NtcEeekEKG3N2SwOA _p8elUNtdEeekEKG3N2SwOA" outgoing="_Ajfq8NtdEeekEKG3N2SwOA __dDAQNtcEeekEKG3N2SwOA _3L63kNtcEeekEKG3N2SwOA _2hkTANtcEeekEKG3N2SwOA _16BK0NtcEeekEKG3N2SwOA _1SBWsNtcEeekEKG3N2SwOA">
+        <joinSpec xmi:type="uml:LiteralBoolean" xmi:id="_zPQtYdtfEeekEKG3N2SwOA" name="Join2" value="true"/>
+      </node>
+    </structuredNode>
+    <node xmi:type="uml:InitialNode" xmi:id="_G3SmQNtHEeekEKG3N2SwOA" name="Inicio código" outgoing="_C4icQNtIEeekEKG3N2SwOA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_QhW30NtHEeekEKG3N2SwOA" name="BEGIN" incoming="_DgZtgNtIEeekEKG3N2SwOA" outgoing="_ECcqoNtIEeekEKG3N2SwOA">
+      <body>// TODO body of OpaqueAction1</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_1buR0NtHEeekEKG3N2SwOA" name="END" incoming="_QSNMENtIEeekEKG3N2SwOA" outgoing="_FgVk8NtIEeekEKG3N2SwOA">
+      <body>// TODO body of OpaqueAction2</body>
+    </node>
+    <node xmi:type="uml:FlowFinalNode" xmi:id="_82NGYNtHEeekEKG3N2SwOA" name="Fin código" incoming="_FgVk8NtIEeekEKG3N2SwOA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EJ4BUNuVEeeXxezhA0npBA" name="ValorAsignación" visibility="public" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_KU0goNuVEeeXxezhA0npBA" name="ExpresiónAritmética" visibility="public">
+    <generalization xmi:id="_XsMfgNuXEeeXxezhA0npBA" general="_EJ4BUNuVEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PAZe8NuVEeeXxezhA0npBA" name="OperadorTrans" visibility="public">
+    <generalization xmi:id="_YuhfMNuXEeeXxezhA0npBA" general="_EJ4BUNuVEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_NjNSwNuWEeeXxezhA0npBA" name="TipoDato" visibility="public">
+    <generalization xmi:id="_ZnwNQNuXEeeXxezhA0npBA" general="_EJ4BUNuVEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_XpEIcNuWEeeXxezhA0npBA" name="OperadorAritmético" visibility="public" isAbstract="true">
+    <generalization xmi:id="_anPUUNuXEeeXxezhA0npBA" general="_EJ4BUNuVEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_kyv7gNuWEeeXxezhA0npBA" name="TipoNumero" visibility="public">
+    <generalization xmi:id="_VykrcNuXEeeXxezhA0npBA" general="_XpEIcNuWEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mppywNuWEeeXxezhA0npBA" name="Variable" visibility="public">
+    <generalization xmi:id="_WwuVwNuXEeeXxezhA0npBA" general="_XpEIcNuWEeeXxezhA0npBA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_f9f8cNuZEeeXxezhA0npBA" memberEnd="_f9f8cduZEeeXxezhA0npBA _f9f8dNuZEeeXxezhA0npBA" navigableOwnedEnd="_f9f8dNuZEeeXxezhA0npBA">
+    <ownedEnd xmi:id="_f9f8cduZEeeXxezhA0npBA" name="operadorAritméticos" type="_XpEIcNuWEeeXxezhA0npBA" association="_f9f8cNuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f9f8ctuZEeeXxezhA0npBA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f9f8c9uZEeeXxezhA0npBA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_f9f8dNuZEeeXxezhA0npBA" name="expresiónAritméticas" type="_KU0goNuVEeeXxezhA0npBA" association="_f9f8cNuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f9f8dduZEeeXxezhA0npBA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f9f8dtuZEeeXxezhA0npBA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_gp6WgNuZEeeXxezhA0npBA" memberEnd="_gp6WgduZEeeXxezhA0npBA _gp6WhNuZEeeXxezhA0npBA" navigableOwnedEnd="_gp6WhNuZEeeXxezhA0npBA">
+    <ownedEnd xmi:id="_gp6WgduZEeeXxezhA0npBA" name="operadorAritméticos" type="_XpEIcNuWEeeXxezhA0npBA" association="_gp6WgNuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gp6WgtuZEeeXxezhA0npBA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gp6Wg9uZEeeXxezhA0npBA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_gp6WhNuZEeeXxezhA0npBA" name="expresiónAritméticas" type="_KU0goNuVEeeXxezhA0npBA" association="_gp6WgNuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gp6WhduZEeeXxezhA0npBA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gp6WhtuZEeeXxezhA0npBA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_pxV1ENuZEeeXxezhA0npBA" memberEnd="_pxV1EduZEeeXxezhA0npBA _pxV1FNuZEeeXxezhA0npBA" navigableOwnedEnd="_pxV1FNuZEeeXxezhA0npBA">
+    <ownedEnd xmi:id="_pxV1EduZEeeXxezhA0npBA" name="operadorTranss" type="_PAZe8NuVEeeXxezhA0npBA" association="_pxV1ENuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pxV1EtuZEeeXxezhA0npBA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pxV1E9uZEeeXxezhA0npBA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_pxV1FNuZEeeXxezhA0npBA" name="variables" type="_mppywNuWEeeXxezhA0npBA" association="_pxV1ENuZEeeXxezhA0npBA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pxe_ANuZEeeXxezhA0npBA" value="2"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pxe_AduZEeeXxezhA0npBA" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CRfdkNv8EeesgaHhzgOkVQ" name="int" visibility="public">
+    <generalization xmi:id="_Zf3BoNv8EeesgaHhzgOkVQ" general="_l6BDANs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Ep8isNv8EeesgaHhzgOkVQ" name="float" visibility="public">
+    <generalization xmi:id="_aODkYNv8EeesgaHhzgOkVQ" general="_l6BDANs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GVoocNv8EeesgaHhzgOkVQ" name="frac" visibility="public">
+    <generalization xmi:id="_a1afUNv8EeesgaHhzgOkVQ" general="_l6BDANs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JBULkNv8EeesgaHhzgOkVQ" name="nfrac" visibility="public">
+    <generalization xmi:id="_bf5mwNv8EeesgaHhzgOkVQ" general="_l6BDANs9EeedRL0eS7MAqg"/>
+  </packagedElement>
+</uml:Model>

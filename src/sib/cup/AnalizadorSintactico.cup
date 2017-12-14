@@ -1,3 +1,11 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class Fichero CUP generador analizador sintáctico
+ * @version 1.0
+ * 
+ */
 package sib.cup;
 
 import java_cup.runtime.*;
@@ -10,13 +18,13 @@ import sib.models.nonterminal.*;
 
 parser code {:
 
-	public ViewsControllerFase1 viewsController;
+	public ViewsController viewsController;
 	public SibOutputController output;
 	public SibInputController input;
 
 	public TablaSimbolos tablaSimbolos;
 
-	public void setViewController( ViewsControllerFase1 vc ) {
+	public void setViewController( ViewsController vc ) {
 		this.viewsController = vc;
 	}
 
@@ -133,8 +141,9 @@ valor_asignacion ::= VARIABLE:v {: RESULT = new Variable( v.toString(), tablaSim
 				String[] parts = (pr.toString()).split("\\.");
 				String variable = parts[0];
 				String property = parts[1];
-				Variable v = new Variable( variable, tablaSimbolos );
-				RESULT = v.getProperty( property );
+				Property propr = new Property( variable, property );
+				propr.setTablaSimbolos( tablaSimbolos);
+				RESULT = propr;
 				:}
 			| STEP:st {: RESULT = new StepType( st.toString() ); :}
 			| CLEF_VALUE:cl {: RESULT = new ClefType( cl.toString() ); :}

@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class SibMusicXMLInput
+ * @version 1.0
+ * 
+ */
+
 package sib.inout;
 
 import java.io.File;
@@ -14,7 +23,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import sib.models.datatype.NoteType;
-import sib.models.datatype.PartitureType;
 import sib.models.datatype.StepType;
 import sib.models.nonterminal.TablaSimbolos;
 import sib.models.nonterminal.TipoNumero;

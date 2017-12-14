@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class InstIf
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class InstIf extends Instruccion {

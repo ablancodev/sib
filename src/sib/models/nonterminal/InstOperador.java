@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class InstOperador
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 import java.util.ArrayList;
@@ -27,28 +36,5 @@ public class InstOperador extends Instruccion {
 		}
 		variable.register();
 	}
-
-
-/*
-	public Variable run() {
-		String temp;
-		ListIterator<String> it = listaOperadores.listIterator();
-		while ( it.hasNext() ) {
-			temp = it.next();
-			variable.aplicarOperador( temp );
-		}
-		return variable;
-	}
-
-	public void run( TablaSimbolos ts ) {
-		String temp;
-		ListIterator<String> it = listaOperadores.listIterator();
-		while ( it.hasNext() ) {
-			temp = it.next();
-			variable.aplicarOperador( temp );
-		}
-		ts.updateVariable( variable );
-	}
-*/
 
 }

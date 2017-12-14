@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class InstWhile
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class InstWhile extends Instruccion {

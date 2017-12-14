@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class ListaInstrucciones
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 import java.util.ArrayList;

@@ -1,11 +1,12 @@
 /**
- * Analizador Léxico fase 1.
- * Limpia el código de:
- * - Saltos de línea
- * - Comentarios
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class AnalizadorLexicoMacros - Analizador de ficheros que contengan macros. Aun no implementado en la version actual.
+ * @version 1.1
+ * 
  */
 
-/* Sección de declaraciones de JFlex */
 package sib.flex;
 
 %%

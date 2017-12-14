@@ -243,13 +243,13 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
-	public ViewsControllerFase1 viewsController;
+	public ViewsController viewsController;
 	public SibOutputController output;
 	public SibInputController input;
 
 	public TablaSimbolos tablaSimbolos;
 
-	public void setViewController( ViewsControllerFase1 vc ) {
+	public void setViewController( ViewsController vc ) {
 		this.viewsController = vc;
 	}
 
@@ -555,8 +555,9 @@ class CUP$parser$actions {
 				String[] parts = (pr.toString()).split("\\.");
 				String variable = parts[0];
 				String property = parts[1];
-				Variable v = new Variable( variable, tablaSimbolos );
-				RESULT = v.getProperty( property );
+				Property propr = new Property( variable, property );
+				propr.setTablaSimbolos( tablaSimbolos);
+				RESULT = propr;
 				
               CUP$parser$result = parser.getSymbolFactory().newSymbol("valor_asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }

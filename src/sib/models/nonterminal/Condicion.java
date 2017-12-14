@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class Condicion
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class Condicion {
@@ -14,9 +23,20 @@ public class Condicion {
 
 	public boolean evalua() {
 		boolean result = false;
-		operador1.evalua();
-		operador2.evalua();
-		
+
+		if ( operador1.getClass() == Variable.class ) {
+			((Variable)operador1).update();
+		}
+		if ( operador2.getClass() == Variable.class ) {
+			((Variable)operador2).update();
+		}
+		if ( operador1.getClass() == Property.class ) {
+			((Property)operador1).update();
+		}
+		if ( operador2.getClass() == Property.class ) {
+			((Property)operador2).update();
+		}
+
 		if ( operador1.getType().equals( operador2.getType() ) ) {
 			switch ( condicion ) {
 			case "==":
@@ -42,7 +62,7 @@ public class Condicion {
 				try {
 					throw new Exception( "Comparador no válido." );
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					System.err.println( e.getMessage() );
 					e.printStackTrace();
 				}
 				break;

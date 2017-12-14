@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class TipoNumero
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class TipoNumero extends OperandoAritmetico {
@@ -26,7 +35,7 @@ public class TipoNumero extends OperandoAritmetico {
 	/**
 	 * Devuelve el valor. Como TipoNúmero es 'atómico', devuelte un TipoNumero
 	 *
-	 * @return ValorAsignacion > TipoNumero
+	 * @return ValorAsignacion(TipoNumero)
 	 */
 	public ValorAsignacion getValue() {
 		return this;

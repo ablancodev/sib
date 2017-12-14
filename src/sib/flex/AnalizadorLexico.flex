@@ -1,4 +1,11 @@
-/* Sección de declaraciones de JFlex */
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class Fichero flex generador del analizador lexico.
+ * @version 1.0
+ * 
+ */
 package sib.flex;
 
 import sib.cup.*;
@@ -7,7 +14,7 @@ import sib.cup.*;
 // Clase pública
 %public
 
-%class AnalizadorLexicoFase2
+%class AnalizadorLexico
 %unicode
 %column
 %line

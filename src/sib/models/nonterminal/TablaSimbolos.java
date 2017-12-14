@@ -1,9 +1,18 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class TablaSimbolos
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import sib.controllers.ViewsControllerFase1;
+import sib.controllers.ViewsController;
 
 public class TablaSimbolos {
 
@@ -25,11 +34,11 @@ public class TablaSimbolos {
 		return vars.get( nombre );
 	}
 
-	public void print( ViewsControllerFase1 vc ) {
+	public void print( ViewsController vc ) {
 		for ( Entry<String, Variable> v : vars.entrySet()) {
 			String key = v.getKey();
 			Variable value = v.getValue();
-			vc.printLog( "\n TS--------->:" + key + ":" + value );
+			vc.printLog( "\n TablaSimbolos(Variables)-->:" + key + ":" + value );
 		}
 	}
 

@@ -1,11 +1,18 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class ValorAsignacion
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public abstract class ValorAsignacion {
 
 	public abstract String getType();
 	public abstract ValorAsignacion getValue();
-
-	//public abstract ValorAsignacion evalua( TablaSimbolos ts );
 
 	public abstract ValorAsignacion evalua( );
 

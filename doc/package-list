@@ -1,6 +1,6 @@
-core
 sib.controllers
 sib.cup
+sib.exceptions
 sib.flex
 sib.inout
 sib.models.datatype

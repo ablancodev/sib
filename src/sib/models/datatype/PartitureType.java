@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class PartitureType
+ * @version 1.0
+ * 
+ */
+
 package sib.models.datatype;
 
 import sib.models.nonterminal.TipoNumero;
@@ -126,7 +135,7 @@ public class PartitureType extends DataType {
 		try {
 			throw new Exception ( "PARTITURE no debe ser clonada !!");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.err.println( e.getMessage() );
 			e.printStackTrace();
 		}
 		/*
@@ -136,7 +145,6 @@ public class PartitureType extends DataType {
 		n.keysign = keysign;
 		n.time = (TipoNumero)time.clone();
 		n.volume = volume;
-		n.wedge = wedge;
 		*/
 		return null;
 	}

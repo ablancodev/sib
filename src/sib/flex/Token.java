@@ -1,3 +1,11 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class Token
+ * @version 1.0
+ * 
+ */
 package sib.flex;
 
 public class Token extends java_cup.runtime.Symbol {
@@ -24,7 +32,7 @@ public class Token extends java_cup.runtime.Symbol {
 	private String lexema;
 
 	public Token ( String lexema, String token ) {
-		super( 1, lexema ); // @todo tengo que cambiar el 1, no puede ser un int fijo
+		super( 1, lexema );
 		this.lexema = lexema;
 		this.token  = token;
 	}

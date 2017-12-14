@@ -1,25 +1,17 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class SibIDE
+ * @version 1.0
+ * 
+ */
+
 package sib.views;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import javax.swing.JToolBar;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.FileChooserUI;
-
-import sib.controllers.ViewsControllerFase1;
-import sib.inout.SibMusicXMLOutput;
-import sib.models.nonterminal.TablaSimbolos;
-import sib.inout.SibMusicXMLInput;
-import sib.views.TextLineNumber;
-
-import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
-import javax.swing.JTextPane;
-import javax.swing.JButton;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +19,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextPane;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+
+import sib.controllers.ViewsController;
 
 public class SibIDE {
 
@@ -36,7 +42,7 @@ public class SibIDE {
 	private JTextPane textPaneInput;
 	private JTextPane textPaneOutput;
 
-	ViewsControllerFase1 viewsController;
+	ViewsController viewsController;
 
 	/**
 	 * Launch the application.
@@ -66,7 +72,7 @@ public class SibIDE {
 	 */
 	private void initialize() {
 
-		viewsController = new ViewsControllerFase1( this );
+		viewsController = new ViewsController( this );
 
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -172,6 +178,19 @@ public class SibIDE {
 
 		textPaneInput = new JTextPane();
 		textPaneInput.setText("// Input");
+		// Cambiamos tamaños de los tabs
+		textPaneInput.getInputMap().put(KeyStroke.getKeyStroke("TAB"), "tab");
+		textPaneInput.getActionMap().put("tab", new AbstractAction("tab"){
+			private static final long serialVersionUID = -2621537943352838927L;
+			public void actionPerformed(ActionEvent e){
+				try {
+					textPaneInput.getDocument().insertString(textPaneInput.getCaretPosition(), " ", null);
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+
 		JScrollPane jspInput = new JScrollPane( textPaneInput );
 		TextLineNumber tln = new TextLineNumber( textPaneInput );
 		jspInput.setRowHeaderView( tln );

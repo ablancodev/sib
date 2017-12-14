@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class InstAsignacion
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class InstAsignacion extends Instruccion {
@@ -35,7 +44,7 @@ public class InstAsignacion extends Instruccion {
 	}
 
 	private boolean tiposCompatibles( Variable v, ValorAsignacion valor ) {
-		// @todo falta implementarlo
+		// Actualmente el analizador sintáctico es el encargado de testar esta comprobación.
 		return true;
 	}
 

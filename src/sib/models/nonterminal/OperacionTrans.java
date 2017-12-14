@@ -1,3 +1,11 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class OperacionTrans
+ * @version 1.0
+ * 
+ */
 package sib.models.nonterminal;
 
 public class OperacionTrans extends ValorAsignacion {

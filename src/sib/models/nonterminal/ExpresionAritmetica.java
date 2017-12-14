@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class ExpresionAritmetica
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 import sib.models.datatype.DataType;
@@ -28,13 +37,19 @@ public class ExpresionAritmetica extends ValorAsignacion {
 	 * @return OperandoAritmetico TipoNumero float con el resultado
 	 */
 	public OperandoAritmetico evalua() {
+
 		OperandoAritmetico result = null;
 		OperandoAritmetico operandoIzq;
-		if ( this.operandoIzq.getClass() == Variable.class ) {
-			operandoIzq = (OperandoAritmetico) this.operandoIzq.clone();
+		if ( this.operandoIzq.getType().equalsIgnoreCase( DataType.TYPE_NOTE )) {
+			operandoIzq = this.operandoIzq;
 		} else {
 			operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua();
 		}
+		//if ( ( this.operandoIzq.getClass() == Variable.class ) && ( this.operandoIzq.evalua().getClass() == NoteType.class ) ) {
+		//	operandoIzq = (OperandoAritmetico) this.operandoIzq.clone();
+		//} else {
+		//	operandoIzq = (OperandoAritmetico) this.operandoIzq.evalua();
+		//}
 		OperandoAritmetico operandoDer = (OperandoAritmetico) this.operandoDer.evalua();
 		float fl;
 		switch ( operador ) {
@@ -108,7 +123,7 @@ public class ExpresionAritmetica extends ValorAsignacion {
 				try {
 					throw new Exception ( "Operador aritmético no válido.");
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					System.err.println( e.getMessage() );
 					e.printStackTrace();
 				}
 				break;
@@ -154,7 +169,6 @@ public class ExpresionAritmetica extends ValorAsignacion {
 	}
 
 	public void trans(Float float1) {
-		// TODO Auto-generated method stub
 		OperandoAritmetico op = this.evalua();
 		op.trans( float1 );
 	}

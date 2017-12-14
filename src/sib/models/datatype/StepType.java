@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class StepType
+ * @version 1.0
+ * 
+ */
+
 package sib.models.datatype;
 
 import java.util.ArrayList;
@@ -63,20 +72,6 @@ public class StepType extends DataType {
 
 	@Override
 	public void trans( Float tn ) {
-		/*
-		int tonos = Math.round( tn );
-		if ( ( ( tn - tonos ) != 0 ) && ( tn > 0 ) ) { // tiene decimales, asi que hay que restar, ya que round calcula hacia arriba
-			tonos--;
-		}
-		int current = stepValues.indexOf( value );
-		if ( current >= 0 ) {  // existe
-			current = (current + tonos) % 7;
-			if ( current < 0 ) {
-				current += 7;
-			}
-			value = stepValues.get( current );
-		}
-		*/
 		boolean negative = false;
 		if ( tn < 0 ) {
 			negative = true;

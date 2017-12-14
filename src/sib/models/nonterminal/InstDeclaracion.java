@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class InstDeclaracion
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 public class InstDeclaracion extends Instruccion {
@@ -14,10 +23,6 @@ public class InstDeclaracion extends Instruccion {
 	@Override
 	public void run() {
 		variables.run();
-
-		//variable.setTipo( tipo );
-		//ts.addVariable( variable, tipo );
-
 	}
 
 }

@@ -1,6 +1,15 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class Programa
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
-import sib.controllers.ViewsControllerFase1;
+import sib.controllers.ViewsController;
 
 public class Programa {
 
@@ -25,7 +34,7 @@ public class Programa {
 		}
 	}
 
-	public void print( ViewsControllerFase1 vc ) {
+	public void print( ViewsController vc ) {
 		try {
 			tablaSimbolos.print( vc );
 		} catch ( Exception e ) {

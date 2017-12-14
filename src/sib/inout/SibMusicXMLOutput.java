@@ -1,7 +1,15 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class SibMusicXMLOutput
+ * @version 1.0
+ * 
+ */
+
 package sib.inout;
 
 import java.io.File;
-import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,22 +20,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Attr;
-import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
-import org.w3c.dom.DocumentType;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.InputSource;
 
 import sib.models.datatype.NoteType;
 import sib.models.datatype.PartitureType;
 import sib.models.nonterminal.TablaSimbolos;
 import sib.models.nonterminal.Variable;
 import sib.views.SibIDE;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
 
 public class SibMusicXMLOutput implements SibOutputController {
 
@@ -77,7 +78,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 		}
 	}
 
-	public void playPartiture() {
+	private void playPartiture() {
 		Variable v = tablaSimbolos.getVariable( "$partiture" );
 		if ( v != null ) {
 			PartitureType partiture = (PartitureType)v.getValue();
@@ -96,7 +97,7 @@ public class SibMusicXMLOutput implements SibOutputController {
 		}
 	}
 
-	public void addMeasureAttributes( Element attr ) {
+	private void addMeasureAttributes( Element attr ) {
 		try {
 			Variable v = tablaSimbolos.getVariable( "$partiture" );
 			if ( v != null ) {
@@ -324,8 +325,8 @@ public class SibMusicXMLOutput implements SibOutputController {
 			//StreamResult consoleResult = new StreamResult(System.out);
 			//transformer.transform(source, consoleResult);
 
-			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
-			transformer.transform(source, result);
+//			StreamResult result = new StreamResult(new File("my_musicxml_output.xml"));
+//			transformer.transform(source, result);
 
 			StringWriter writer = new StringWriter();
 			transformer.transform( source, new StreamResult(writer) );

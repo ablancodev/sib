@@ -1,15 +1,19 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class NoteType
+ * @version 1.0
+ * 
+ */
+
 package sib.models.datatype;
 
 import sib.models.nonterminal.TipoNumero;
 import sib.models.nonterminal.ValorAsignacion;
 import sib.models.nonterminal.Variable;
 
-/**
- * Representa el tipo de datos note
- *
- * @author Antonio Blanco
- *
- */
+
 public class NoteType extends DataType {
 
 	public static final String ACCIDENTAL_NONE = "";
@@ -58,30 +62,7 @@ public class NoteType extends DataType {
 
 	@Override
 	public void trans( Float ntones ) {
-		/*
-		int current = this.value.getCurrentPositionValues();
-		// Actualizamos step
-		this.value.trans( ntones );
-		// Actualizamos octave
-		this.octave += Math.round( ( current + Math.round( ntones ) ) / 7 );
-		int modulo = ( current + Math.round( ntones ) ) % 7;
-		if ( modulo != 0 ) {
-			if ( ( ntones > 0 ) && ( this.value.getCurrentPositionValues() < current ) ) {  // ha dado la vuelta
-				this.octave++;
-			}
-			if ( ( ntones < 0 ) && ( this.value.getCurrentPositionValues() > current ) ) {  // ha dado la vuelta
-				this.octave--;
-			}
-		}
-		// Hay semitonos ?
-		if ( ( ntones - Math.round( ntones ) ) != 0 ) {
-			if ( ntones > 0 ) { // hay medio tono positivo
-				applySharp(1);
-			} else {
-				applyFlat(1);
-			}
-		}
-		*/
+
 		// Octavas
 		octave = octave + numOctaves( ntones );
 

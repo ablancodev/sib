@@ -125,6 +125,7 @@ public class Variable extends OperandoAritmetico {
 	}
 
 	public ValorAsignacion getProperty( String prop ) {
+		this.update();
 		ValorAsignacion property = null;
 		if ( ( valor.getClass() == NoteType.class ) ) {
 			property = ((NoteType)valor).getProperty( prop );
@@ -161,7 +162,7 @@ public class Variable extends OperandoAritmetico {
 		// Cargamos desde la tabla de simbolos
 		Variable v = this.tablaSimbolos.getVariable( this.name );
 		this.tipo = v.tipo;
-		this.setValue( v.valor );
+		this.valor = v.valor; // acabode cambiarlo para no use setValue
 
 		try {
 			if ( valor != null ) {
@@ -257,28 +258,38 @@ public class Variable extends OperandoAritmetico {
 
 	// Comparaciones
 	public boolean igualQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.igualQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) == 0;
 	}
 	public boolean distintoQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.distintoQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) != 0;
 	}
 	public boolean menorQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.menorQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) < 0;
 	}
 	public boolean menorIgualQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.menorIgualQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) <= 0;
 	}
 	public boolean mayorQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.mayorQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) > 0;
 	}
 	public boolean mayorIgualQue( ValorAsignacion op2 ) {
+		this.update();
 		return this.valor.mayorIgualQue( op2 );
-		//return this.getValue().compareTo( op2.getValue() ) >= 0;
 	}
 
+	/**
+	 * Actualizamos su valor con el que haya en la TablaSimbolos
+	 */
+	public void update() {
+		// Al consultar un valor siempre actualizamos desde la TablaSimbolos
+		Variable v = tablaSimbolos.getVariable( this.name );
+		//valor = v.valor;
+		this.tipo = v.tipo;
+		this.valor = v.valor;
+	}
 }

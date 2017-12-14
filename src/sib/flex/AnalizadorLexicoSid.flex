@@ -1,6 +1,12 @@
-/* 
-Analizador léxico de ficheros de definición de tipos para Sib
-*/
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class AnalizadorLexicoSid - Analizador lexico para ficheros de definiciones de tipos. Aun no implementado en la version actual.
+ * @version 1.1
+ * 
+ */
+
 package sib.flex;
 
 %%
@@ -58,10 +64,8 @@ Digito = [0-9]
 /*
 Str_definicion = DEF {Str_ident} "{" {Declaraciones} "}"
 Definicion = {Comentario} | {Str_definicion}
-
 Definiciones = {Definicion}+
 Declaraciones = {Declaracion_tipo}+
-
 Declaracion_tipo = {Tipo} {Str_ident};
 */
 /* Finaliza expresiones regulares */

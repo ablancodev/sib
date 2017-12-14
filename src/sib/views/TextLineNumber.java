@@ -1,7 +1,13 @@
+/**
+ * Clase externa, NO perteneciente a código propiamente desarrollado para el proyecto Sib.
+ * Código disponible en repositorio libre de github: https://github.com/HUSACCT/HUSACCT/blob/master/src/husacct/control/presentation/codeviewer/TextLineNumber.java
+ * Permite añadir los números de líneas junto a un JPanel.
+ * 
+ */
+
 package sib.views;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.beans.*;
 import java.util.HashMap;
 import javax.swing.*;
@@ -21,6 +27,9 @@ import javax.swing.text.*;
 public class TextLineNumber extends JPanel
 	implements CaretListener, DocumentListener, PropertyChangeListener
 {
+
+	private static final long serialVersionUID = -3577928062363351297L;
+
 	public final static float LEFT = 0.0f;
 	public final static float CENTER = 0.5f;
 	public final static float RIGHT = 1.0f;
@@ -170,7 +179,7 @@ public class TextLineNumber extends JPanel
 	 *  <li>TextLineNumber.CENTER
 	 *  <li>TextLineNumber.RIGHT (default)
 	 *	</ul>
-	 *  @param currentLineForeground  the Color used to render the current line
+	 *  @param digitAlignment
 	 */
 	public void setDigitAlignment(float digitAlignment)
 	{

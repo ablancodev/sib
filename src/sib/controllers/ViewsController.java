@@ -1,10 +1,17 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class ViewsController
+ * @version 1.0
+ * 
+ */
 package sib.controllers;
 
 import java.io.StringReader;
 
 import sib.cup.parser;
-import sib.flex.AnalizadorLexicoFase2;
-import sib.flex.AnalizadorLexicoSid;
+import sib.flex.*;
 import sib.flex.Token;
 import sib.inout.SibInputController;
 import sib.inout.SibMusicXMLInput;
@@ -16,7 +23,7 @@ import sib.models.nonterminal.TablaSimbolos;
 import sib.models.nonterminal.Variable;
 import sib.views.SibIDE;
 
-public class ViewsControllerFase1 {
+public class ViewsController {
 
 	private SibIDE view;
 
@@ -30,7 +37,7 @@ public class ViewsControllerFase1 {
 	 */
 	public PartitureType partiture;
 
-	public ViewsControllerFase1 ( SibIDE view ) {
+	public ViewsController ( SibIDE view ) {
 		this.view = view;
 	}
 
@@ -42,14 +49,12 @@ public class ViewsControllerFase1 {
 		
 		view.printLog( "Running Sib..." );
 
-		// Fase 1
-		view.printLog( "Empezamos fase 1: limpieza de comentarios y salto de línea." );
-
-		AnalizadorLexicoFase2 analizadorJFlex = null;
+		AnalizadorLexico analizadorJFlex = null;
 		try {
 
-			analizadorJFlex = new AnalizadorLexicoFase2(  new StringReader( view.getInputString() ) );
+			analizadorJFlex = new AnalizadorLexico(  new StringReader( view.getInputString() ) );
 
+			@SuppressWarnings("deprecation")
 			parser p = new parser( analizadorJFlex );
 			p.setViewController( this );
 
@@ -75,62 +80,17 @@ public class ViewsControllerFase1 {
 
 			output.print();
 
-			//new parser( analizadorJFlex ).parse();
-
-			/*
-			view.cleanOutput();
-			while (true) {
-				// Obtener el token analizado y mostrar su información
-				String cadena = analizadorJFlex.yylex();
-
-				if (!analizadorJFlex.existenTokens()) {
-					break;
-				}
-
-				view.printOutput( cadena );
-			}
-			*/
 		} catch ( Exception t) { // capture errors
 			view.printLog( "ERROR en línea " + analizadorJFlex.getLine() + "[" + analizadorJFlex.getColumn() + "]" );
 			System.out.println(t.toString());
 		}
-		/*
-		view.printLog( "Finalizada fase 1." );
 
-		// Fase 2
-		view.cleanInput();
-		view.printInput( view.getOutputString() );
-		view.cleanOutput();
-
-		view.printLog( "Empezamos Fase 2: Análisis lexicográfico." );
-
-		AnalizadorLexicoFase2 analizadorJFlex2 = null;
-		try {
-			analizadorJFlex2 = new AnalizadorLexicoFase2( new StringReader( view.getInputString() ) );
-
-			view.cleanOutput();
-			while (true) {
-				// Obtener el token analizado y mostrar su información
-				Token token = analizadorJFlex2.yylex();
-
-				if (!analizadorJFlex2.existenTokens()) {
-					break;
-				}
-
-				view.printOutput( token.toString() + "\n" );
-			}
-		} catch ( Exception t) { // capture errors
-			view.printLog( "ERROR en línea " + analizadorJFlex2.getLine() + "[" + analizadorJFlex2.getColumn() + "]" );
-			System.out.println(t.toString());
-		}
-		view.printLog( "Finalizada fase 2." );
-
-		*/
 	}
 
 	/**
 	 * Run Sid button action.
 	 */
+	/*
 	public void actionRunSidButton() {
 		view.printLog( "Running Sid..." );
 		AnalizadorLexicoSid analizadorJFlex = null;
@@ -154,6 +114,7 @@ public class ViewsControllerFase1 {
 			System.out.println(e.toString());
 		}
 	}
+	*/
 
 	public void printOutput( String s ) {
 		view.printOutput( s );

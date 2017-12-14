@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class FuncionRead
+ * @version 1.0
+ * 
+ */
+
 package sib.models.nonterminal;
 
 import sib.inout.SibInputController;

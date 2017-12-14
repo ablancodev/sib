@@ -1,3 +1,12 @@
+/**
+ * Proyecto Sib - SI BEMOL, LENGUAJE DE PROGRAMACION MUSICAL
+ * 
+ * @author Antonio Blanco Oliva
+ * @class ClefType
+ * @version 1.0
+ * 
+ */
+
 package sib.models.datatype;
 
 import sib.models.nonterminal.ValorAsignacion;
